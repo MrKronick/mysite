@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>С днём рождения! 21 🎂</title>
+    <title>С днём рождения, Лиза! 21 🎂</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600;700&display=swap');
 
@@ -34,7 +34,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Падающие блёстки */
         .sparkle {
             position: fixed;
             pointer-events: none;
@@ -97,7 +96,6 @@
             }
         }
 
-        /* Челленджи */
         .challenges {
             width: 100%;
             display: flex;
@@ -183,7 +181,6 @@
             transform: scale(0.96);
         }
 
-        /* Drag & Drop зона */
         .drag-area {
             display: flex;
             justify-content: space-around;
@@ -220,7 +217,6 @@
             100% { transform: scale(1); }
         }
 
-        /* Эмодзи выбор */
         .emoji-options {
             display: flex;
             gap: 20px;
@@ -255,7 +251,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        /* Финальная кнопка */
         .final-btn {
             background: linear-gradient(135deg, #ff6f00, #e91e63);
             color: white;
@@ -280,7 +275,6 @@
             box-shadow: 0 20px 40px rgba(233, 30, 99, 0.7);
         }
 
-        /* Открытка */
         .card-modal {
             position: fixed;
             top: 0;
@@ -366,7 +360,6 @@
         <p class="subtitle">Пройди челленджи, чтобы открыть послание 💌</p>
 
         <div class="challenges">
-            <!-- Челлендж 1: Сердечки -->
             <div class="challenge-card" id="challenge1">
                 <h3>❤️ Челлендж 1: Подари 5 сердец</h3>
                 <div class="challenge-content">
@@ -375,7 +368,6 @@
                 </div>
             </div>
 
-            <!-- Челлендж 2: Секретное слово -->
             <div class="challenge-card" id="challenge2">
                 <h3>🔐 Челлендж 2: Секретное слово</h3>
                 <div class="challenge-content">
@@ -385,7 +377,6 @@
                 </div>
             </div>
 
-            <!-- Челлендж 3: Перетащи ключ -->
             <div class="challenge-card" id="challenge3">
                 <h3>🗝️ Челлендж 3: Открой замок</h3>
                 <div class="challenge-content">
@@ -397,7 +388,6 @@
                 </div>
             </div>
 
-            <!-- Челлендж 4: Выбери эмодзи -->
             <div class="challenge-card" id="challenge4">
                 <h3>🤔 Челлендж 4: Эмодзи дружбы</h3>
                 <div class="challenge-content">
@@ -413,7 +403,6 @@
         <button class="final-btn" id="openCardBtn">🎁 Открыть открытку</button>
     </div>
 
-    <!-- Модальное окно открытки -->
     <div class="card-modal hidden" id="cardModal">
         <div class="card-inner">
             <h2>С днём рождения! 🎂</h2>
@@ -426,7 +415,6 @@
 
     <script>
         (function() {
-            // ----- Блёстки -----
             function createSparkle() {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
@@ -443,7 +431,6 @@
             for (let i = 0; i < 30; i++) setTimeout(createSparkle, i * 150);
             setInterval(createSparkle, 2000);
 
-            // ----- Челленджи -----
             const challenges = {
                 heart: { completed: false, count: 0 },
                 word: { completed: false },
@@ -477,7 +464,6 @@
                 }
             }
 
-            // 1. Сердечки
             const heartIcon = document.getElementById('heartIcon');
             const heartCounter = document.getElementById('heartCounter');
             heartIcon.addEventListener('click', () => {
@@ -490,7 +476,6 @@
                 }
             });
 
-            // 2. Секретное слово
             const secretInput = document.getElementById('secretWord');
             const checkWordBtn = document.getElementById('checkWordBtn');
             checkWordBtn.addEventListener('click', () => {
@@ -506,14 +491,13 @@
                 }
             });
 
-            // 3. Drag & Drop ключа
             const key = document.getElementById('key');
             const lock = document.getElementById('lock');
             const dragArea = document.getElementById('dragArea');
             let dragging = false;
             let startX, startY, initialLeft, initialTop;
-            const keyOriginalLeft = 20; // проценты
-            const keyOriginalTop = 20; // px
+            const keyOriginalLeft = 20;
+            const keyOriginalTop = 20;
 
             function getPercentLeft(px) {
                 return (px / dragArea.clientWidth) * 100;
@@ -540,7 +524,6 @@
                 const areaRect = dragArea.getBoundingClientRect();
                 let newLeft = initialLeft + (e.clientX - startX);
                 let newTop = initialTop + (e.clientY - startY);
-                // ограничения
                 newLeft = Math.max(0, Math.min(newLeft, areaRect.width - 50));
                 newTop = Math.max(0, Math.min(newTop, areaRect.height - 50));
                 key.style.left = newLeft + 'px';
@@ -552,14 +535,12 @@
                 dragging = false;
                 key.releasePointerCapture(e.pointerId);
                 key.style.transition = 'left 0.3s, top 0.3s';
-                // Проверка попадания на замок
                 const keyRect = key.getBoundingClientRect();
                 const lockRect = lock.getBoundingClientRect();
                 const keyCenterX = keyRect.left + keyRect.width/2;
                 const keyCenterY = keyRect.top + keyRect.height/2;
                 if (keyCenterX > lockRect.left && keyCenterX < lockRect.right &&
                     keyCenterY > lockRect.top && keyCenterY < lockRect.bottom) {
-                    // Успех!
                     if (!challenges.drag.completed) {
                         lock.textContent = '🔓';
                         lock.classList.add('unlocked');
@@ -567,14 +548,12 @@
                         key.style.pointerEvents = 'none';
                     }
                 }
-                // Возврат на место, если не завершено
                 if (!challenges.drag.completed) {
                     key.style.left = keyOriginalLeft + '%';
                     key.style.top = keyOriginalTop + 'px';
                 }
             });
 
-            // 4. Эмодзи
             const emojiOptions = document.querySelectorAll('.emoji-option');
             emojiOptions.forEach(opt => {
                 opt.addEventListener('click', () => {
@@ -589,7 +568,6 @@
                 });
             });
 
-            // ----- Финальная кнопка и открытка -----
             const openCardBtn = document.getElementById('openCardBtn');
             const cardModal = document.getElementById('cardModal');
             const closeCardBtn = document.getElementById('closeCardBtn');
@@ -604,7 +582,6 @@
                 cardModal.classList.add('hidden');
             });
 
-            // ----- Canvas фейерверк (полноэкранный) -----
             const canvas = document.getElementById('fireworkCanvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
@@ -681,7 +658,6 @@
             }
             animate();
 
-            // Сброс позиции ключа при изменении размера окна
             window.addEventListener('resize', () => {
                 if (!challenges.drag.completed) {
                     key.style.left = keyOriginalLeft + '%';
