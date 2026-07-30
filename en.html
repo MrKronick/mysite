@@ -244,7 +244,6 @@
     .btn:hover::after { left:100%; }
     .btn:hover { background:#6c63ff; border-color:#6c63ff; box-shadow:0 12px 35px #6c63ffcc; transform:translateX(6px); }
 
-    /* Улучшенные карточки соцсетей */
     .social-grid { display:flex; flex-wrap:wrap; gap:1.8rem; margin:3rem 0; }
     .social-card {
       background: rgba(255,255,255,0.03); border-radius:2rem; padding:1.3rem 2.8rem;
@@ -262,14 +261,17 @@
       opacity: 0; transition: opacity 0.4s;
     }
     .social-card:hover::after { opacity: 1; }
-    .social-card i { font-size:2.4rem; transition: transform 0.4s; }
+    /* Размеры для Font Awesome иконок */
+    .social-card i { font-size: 2.4rem; transition: transform 0.4s; }
+    /* Размеры для кастомных картинок */
+    .social-card img { width: 2.4rem; height: 2.4rem; transition: transform 0.4s; object-fit: contain; }
     .social-card:hover {
       background: rgba(108,99,255,0.2); border-color:#6c63ff;
       transform: translateY(-8px) scale(1.02);
       box-shadow: 0 20px 40px rgba(108,99,255,0.4), 0 0 0 1px rgba(108,99,255,0.5);
       color: #fff;
     }
-    .social-card:hover i { transform: scale(1.2) rotate(5deg); }
+    .social-card:hover i, .social-card:hover img { transform: scale(1.2) rotate(5deg); }
 
     footer {
       text-align:center; padding:3rem 0; border-top:1px solid rgba(255,255,255,0.05);
@@ -335,7 +337,6 @@
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
               <a href="https://site.foggyland.ru/" target="_blank" class="btn scroll-reveal reveal-fade-up delay-500"><i class="fas fa-server"></i> FoggyLand</a>
               <a href="https://customtpa.mrkronick.ru/" target="_blank" class="btn scroll-reveal reveal-fade-up delay-600"><i class="fas fa-puzzle-piece"></i> CustomTPA</a>
-              <a href="https://www.roblox.com/users/4792145553/profile" target="_blank" class="btn scroll-reveal reveal-fade-up delay-700"><i class="fas fa-robot"></i> Roblox Profile</a>
             </div>
           </div>
           <div class="hero-visual scroll-reveal reveal-blur delay-400">
@@ -385,13 +386,25 @@
               <i class="fab fa-vk" style="color:#4a76a8;"></i>
               <div><strong>VK</strong><br><small>alexanderkronik</small></div>
             </a>
-            <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-300">
+            <a href="https://x.com/MrKronick_MC" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-250">
+              <img src="https://i.ibb.co/4ZLhJT39/twitter-x-logo-png-seeklogo-492396.png" alt="X (Twitter)">
+              <div><strong>X (Twitter)</strong><br><small>@MrKronick_MC</small></div>
+            </a>
+            <a href="https://www.tiktok.com/@mrkronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-300">
+              <i class="fab fa-tiktok" style="color:#ff0050;"></i>
+              <div><strong>TikTok</strong><br><small>@mrkronick</small></div>
+            </a>
+            <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-350">
               <i class="fas fa-cube" style="color:#1bd96a;"></i>
               <div><strong>Modrinth</strong><br><small>MrKronick</small></div>
             </a>
             <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-400">
               <i class="fas fa-plug" style="color:#ed8106;"></i>
               <div><strong>SpigotMC</strong><br><small>MrKronick</small></div>
+            </a>
+            <a href="https://www.roblox.com/users/4792145553/profile" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-450">
+              <img src="https://i.ibb.co/BH7zWbBh/roblox-Tilt-Red.png" alt="Roblox">
+              <div><strong>Roblox</strong><br><small>Profile</small></div>
             </a>
           </div>
         </div>
