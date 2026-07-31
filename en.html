@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>MrKronick | Information site (EN)</title>
+  <title>MrKronick | Official Website</title>
+  <link rel="icon" href="https://i.ibb.co/tMnFJXN6/2-3.png">
   <meta name="description" content="Official website of MrKronick (Alexander Mochalov). Who is MrKronick? Creator of FoggyLand server, CustomTPA plugin. Socials, projects, Roblox.">
   <meta name="keywords" content="MrKronick, Alexander Mochalov, FoggyLand, CustomTPA, who is MrKronick, MrKronick site, MrKronick official website, MrKronick Roblox">
-  <link rel="icon" href="https://i.ibb.co/tMnFJXN6/2-3.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -262,9 +262,7 @@
       opacity: 0; transition: opacity 0.4s;
     }
     .social-card:hover::after { opacity: 1; }
-    /* Размеры для Font Awesome иконок */
     .social-card i { font-size: 2.4rem; transition: transform 0.4s; }
-    /* Размеры для кастомных картинок */
     .social-card img { width: 2.4rem; height: 2.4rem; transition: transform 0.4s; object-fit: contain; }
     .social-card:hover {
       background: rgba(108,99,255,0.2); border-color:#6c63ff;
@@ -279,11 +277,27 @@
       color:#7a7f9a; font-size:1rem;
     }
 
+    /* Адаптив для планшетов и телефонов */
     @media (max-width: 768px) {
-      h1 { font-size:3rem; min-height:4rem; }
+      h1 { font-size:2.8rem; min-height:3.5rem; }
       .hero { flex-direction:column; text-align:center; }
       .subtitle { border-left:none; padding-left:0; }
-      .avatar-frame { width:240px; height:240px; }
+      .avatar-frame { width:220px; height:220px; }
+      .container { padding:0 1.2rem; }
+      .glass-panel { border-radius:2rem; }
+      .projects-grid { grid-template-columns: 1fr; gap:1.5rem; }
+      .social-grid { gap:1rem; }
+      .social-card { padding:1rem 1.8rem; }
+      .tab-button { padding:0.6rem 1.8rem; font-size:1rem; }
+      .btn { padding:0.7rem 1.8rem; font-size:0.9rem; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size:2.2rem; }
+      .subtitle { font-size:1.2rem; }
+      .badge { padding:0.5rem 1.2rem; font-size:0.8rem; }
+      .social-card { padding:0.8rem 1.5rem; }
+      .social-card i { font-size:1.8rem; }
+      .social-card img { width:1.8rem; height:1.8rem; }
     }
   </style>
 </head>
@@ -349,7 +363,7 @@
 
         <div class="about-section glass-panel scroll-reveal reveal-combo delay-100" style="padding: 3rem;">
           <h2 style="font-size: 2.5rem; margin-bottom: 1.8rem;"><i class="fas fa-heart" style="color: #b388ff;"></i> About Me</h2>
-          <p style="font-size: 1.3rem; margin-bottom: 1.2rem;">I'm just an ordinary guy, very curious, and I love helping everyone.</p>
+          <p style="font-size: 1.3rem; margin-bottom: 1.2rem;">I'm just an ordinary guy, very curious, and I love helping everyone. People often ask <strong>who is MrKronick</strong> — this is my official site.</p>
           <div class="quote-block">
             ✨ «I want this world to have only friendly and good people.»
           </div>
@@ -391,6 +405,10 @@
               <img src="https://i.ibb.co/4ZLhJT39/twitter-x-logo-png-seeklogo-492396.png" alt="X (Twitter)">
               <div><strong>X (Twitter)</strong><br><small>@MrKronick_MC</small></div>
             </a>
+            <a href="https://www.instagram.com/mrkronick/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-275">
+              <i class="fab fa-instagram" style="color:#e1306c;"></i>
+              <div><strong>Instagram</strong><br><small>@mrkronick</small></div>
+            </a>
             <a href="https://www.tiktok.com/@mrkronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-300">
               <i class="fab fa-tiktok" style="color:#ff0050;"></i>
               <div><strong>TikTok</strong><br><small>@mrkronick</small></div>
@@ -412,7 +430,7 @@
       </div>
 
       <footer class="scroll-reveal reveal-fade-up">
-        <p>© 2026 MrKronick — Alexander Mochalov. FoggyLand & CustomTPA.</p>
+        <p>© 2026 MrKronick — Alexander Mochalov. Official MrKronick website. FoggyLand & CustomTPA.</p>
         <p style="margin-top: 0.8rem; opacity: 0.6; font-size: 0.95rem;">Information site</p>
       </footer>
     </div>
