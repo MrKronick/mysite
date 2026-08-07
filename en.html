@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>MrKronick | Official Website</title>
   <link rel="icon" href="favicon.png">
-  <meta name="description" content="Official website of MrKronick. Who is MrKronick? Creator of FoggyLand server, CustomTPA plugin. Socials, projects, usw.">
+  <meta name="description" content="Official website of MrKronick (Alexander Mochalov). Who is MrKronick? Creator of FoggyLand server, CustomTPA plugin. Socials, projects, usw.">
   <meta name="keywords" content="MrKronick, Alexander Mochalov, FoggyLand, CustomTPA, who is MrKronick, MrKronick site, MrKronick official website, MrKronick Roblox">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="https://i.ibb.co/pvCQBxnZ/2.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -275,6 +276,12 @@
     }
 
     @media (max-width: 1024px) {
+      #loader { display: none; }
+      .site-content { opacity: 1; }
+      .name-letter { transform: none; filter: none; opacity: 1; }
+      .name-letter.show { transform: none; }
+      .scroll-reveal { opacity: 1; transform: none; filter: none; transition: none; will-change: auto; }
+      #bgCanvas { display: none; }
       h1 { font-size:2.8rem; min-height:3.5rem; }
       .hero { flex-direction:column; text-align:center; min-height: auto; }
       .subtitle { border-left:none; padding-left:0; font-size:1.3rem; }
@@ -286,10 +293,6 @@
       .social-card { padding:1rem 1.8rem; }
       .tab-button { padding:0.6rem 1.8rem; font-size:1rem; }
       .btn { padding:0.7rem 1.8rem; font-size:0.9rem; }
-      .name-letter { transform: none; filter: none; opacity: 1; }
-      .name-letter.show { transform: none; }
-      #bgCanvas { display: none; }
-      .scroll-reveal { opacity: 1; transform: none; filter: none; transition: none; will-change: auto; }
     }
   </style>
 </head>
@@ -310,11 +313,11 @@
       <header class="scroll-reveal reveal-fade-down">
         <div class="logo">MrKronick</div>
         <div class="social-links">
-          <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-icon scroll-reveal reveal-scale delay-100" title="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-icon scroll-reveal reveal-scale delay-150" title="Rutube"><img src="https://i.ibb.co/5hfWTWbq/Rutube-icon-svg.webp" alt="Rutube"></a>
-          <a href="https://vk.com/alexanderkronik" target="_blank" class="social-icon scroll-reveal reveal-scale delay-200" title="VK"><i class="fab fa-vk"></i></a>
-          <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-icon scroll-reveal reveal-scale delay-300" title="Modrinth"><i class="fas fa-cube"></i></a>
-          <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-icon scroll-reveal reveal-scale delay-400" title="SpigotMC"><i class="fas fa-plug"></i></a>
+          <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-icon" title="Rutube"><img src="https://i.ibb.co/5hfWTWbq/Rutube-icon-svg.webp" alt="Rutube" width="24" height="24"></a>
+          <a href="https://vk.com/alexanderkronik" target="_blank" class="social-icon" title="VK"><i class="fab fa-vk"></i></a>
+          <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-icon" title="Modrinth"><i class="fas fa-cube"></i></a>
+          <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-icon" title="SpigotMC"><i class="fas fa-plug"></i></a>
         </div>
       </header>
 
@@ -327,25 +330,25 @@
         <section class="hero">
           <div class="hero-content">
             <h1 id="nameContainer"></h1>
-            <div class="subtitle scroll-reveal reveal-fade-left delay-200">MrKronick · Creator of FoggyLand<br>Developer of CustomTPA</div>
+            <div class="subtitle">MrKronick · Creator of FoggyLand<br>Developer of CustomTPA</div>
             <div class="badge-container">
-              <span class="badge scroll-reveal reveal-scale delay-300">⚡ Minecraft Developer</span>
-              <span class="badge scroll-reveal reveal-scale delay-400">🌐 Server Owner</span>
-              <span class="badge scroll-reveal reveal-scale delay-500">🔌 Spigot Plugins</span>
+              <span class="badge">⚡ Minecraft Developer</span>
+              <span class="badge">🌐 Server Owner</span>
+              <span class="badge">🔌 Spigot Plugins</span>
             </div>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-              <a href="https://site.foggyland.ru/" target="_blank" class="btn scroll-reveal reveal-fade-up delay-500"><i class="fas fa-server"></i> FoggyLand</a>
-              <a href="https://customtpa.mrkronick.ru/" target="_blank" class="btn scroll-reveal reveal-fade-up delay-600"><i class="fas fa-puzzle-piece"></i> CustomTPA</a>
+              <a href="https://site.foggyland.ru/" target="_blank" class="btn"><i class="fas fa-server"></i> FoggyLand</a>
+              <a href="https://customtpa.mrkronick.ru/" target="_blank" class="btn"><i class="fas fa-puzzle-piece"></i> CustomTPA</a>
             </div>
           </div>
-          <div class="hero-visual scroll-reveal reveal-blur delay-400">
+          <div class="hero-visual">
             <div class="avatar-frame">
-              <img src="https://i.ibb.co/pvCQBxnZ/2.png" alt="Alexander">
+              <img src="https://i.ibb.co/pvCQBxnZ/2.png" alt="Alexander" width="300" height="300">
             </div>
           </div>
         </section>
 
-        <div class="about-section glass-panel scroll-reveal reveal-combo delay-100" style="padding: 3rem;">
+        <div class="about-section glass-panel" style="padding: 3rem;">
           <h2 style="font-size: 2.5rem; margin-bottom: 1.8rem; color:#fff;"><i class="fas fa-heart" style="color: #b388ff;"></i> About Me</h2>
           <p style="font-size: 1.3rem; margin-bottom: 1.2rem; color:#e0e3f0;">I'm just an ordinary guy, very curious, and I love helping everyone. People often ask <strong>who is MrKronick</strong> — this is my official site.</p>
           <div class="quote-block">
@@ -355,15 +358,15 @@
         </div>
 
         <div class="glass-panel" style="padding: 3rem; margin: 3rem 0;">
-          <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color:#fff;" class="scroll-reveal reveal-fade-left"><i class="fas fa-crown" style="color: #b388ff;"></i> Projects</h2>
+          <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color:#fff;"><i class="fas fa-crown" style="color: #b388ff;"></i> Projects</h2>
           <div class="projects-grid">
-            <div class="project-card scroll-reveal reveal-rotate delay-200">
+            <div class="project-card">
               <div class="project-icon"><i class="fas fa-cloud-moon"></i></div>
               <h3 style="font-size: 2rem; color:#fff;">FoggyLand</h3>
               <p>A unique Minecraft server with a cozy atmosphere. Friendly community, custom mechanics and regular events.</p>
               <a href="https://site.foggyland.ru/" target="_blank" class="btn">Visit website <i class="fas fa-arrow-right"></i></a>
             </div>
-            <div class="project-card scroll-reveal reveal-rotate delay-400">
+            <div class="project-card">
               <div class="project-icon"><i class="fas fa-code-branch"></i></div>
               <h3 style="font-size: 2rem; color:#fff;">CustomTPA</h3>
               <p>A teleportation plugin with deep customization. Flexible requests, cooldowns, and a clear GUI. Available on SpigotMC and Modrinth.</p>
@@ -375,49 +378,49 @@
 
       <div id="tab-social" class="tab-content">
         <div style="margin: 4rem 0;">
-          <h2 style="font-size: 2.5rem; margin-bottom: 2rem;" class="scroll-reveal reveal-fade-left"><span class="gradient-text">Social Networks</span></h2>
+          <h2 style="font-size: 2.5rem; margin-bottom: 2rem;"><span class="gradient-text">Social Networks</span></h2>
           <div class="social-grid">
-            <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-100">
+            <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-card">
               <i class="fab fa-youtube" style="color:#ff4444;"></i>
               <div><strong>YouTube</strong><br><small>@mrkronickyt</small></div>
             </a>
-            <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-120">
-              <img src="https://i.ibb.co/5hfWTWbq/Rutube-icon-svg.webp" alt="Rutube">
+            <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-card">
+              <img src="https://i.ibb.co/5hfWTWbq/Rutube-icon-svg.webp" alt="Rutube" width="42" height="42">
               <div><strong>Rutube</strong><br><small>Channel</small></div>
             </a>
-            <a href="https://vk.com/alexanderkronik" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-200">
+            <a href="https://vk.com/alexanderkronik" target="_blank" class="social-card">
               <i class="fab fa-vk" style="color:#4a76a8;"></i>
               <div><strong>VK</strong><br><small>alexanderkronik</small></div>
             </a>
-            <a href="https://x.com/MrKronick_MC" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-250">
-              <img src="https://i.ibb.co/4ZLhJT39/twitter-x-logo-png-seeklogo-492396.png" alt="X (Twitter)">
+            <a href="https://x.com/MrKronick_MC" target="_blank" class="social-card">
+              <img src="https://i.ibb.co/4ZLhJT39/twitter-x-logo-png-seeklogo-492396.png" alt="X (Twitter)" width="42" height="42">
               <div><strong>X (Twitter)</strong><br><small>@MrKronick_MC</small></div>
             </a>
-            <a href="https://www.instagram.com/mrkronick/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-275">
+            <a href="https://www.instagram.com/mrkronick/" target="_blank" class="social-card">
               <i class="fab fa-instagram" style="color:#e1306c;"></i>
               <div><strong>Instagram</strong><br><small>@mrkronick</small></div>
             </a>
-            <a href="https://www.tiktok.com/@mrkronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-300">
+            <a href="https://www.tiktok.com/@mrkronick" target="_blank" class="social-card">
               <i class="fab fa-tiktok" style="color:#ff0050;"></i>
               <div><strong>TikTok</strong><br><small>@mrkronick</small></div>
             </a>
-            <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-350">
+            <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-card">
               <i class="fas fa-cube" style="color:#1bd96a;"></i>
               <div><strong>Modrinth</strong><br><small>MrKronick</small></div>
             </a>
-            <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-400">
+            <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-card">
               <i class="fas fa-plug" style="color:#ed8106;"></i>
               <div><strong>SpigotMC</strong><br><small>MrKronick</small></div>
             </a>
-            <a href="https://www.roblox.com/users/4792145553/profile" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-450">
-              <img src="https://i.ibb.co/BH7zWbBh/roblox-Tilt-Red.png" alt="Roblox">
+            <a href="https://www.roblox.com/users/4792145553/profile" target="_blank" class="social-card">
+              <img src="https://i.ibb.co/BH7zWbBh/roblox-Tilt-Red.png" alt="Roblox" width="42" height="42">
               <div><strong>Roblox</strong><br><small>Profile</small></div>
             </a>
           </div>
         </div>
       </div>
 
-      <footer class="scroll-reveal reveal-fade-up">
+      <footer>
         <p>© 2026 MrKronick — Alexander Mochalov. Official MrKronick website. FoggyLand & CustomTPA.</p>
         <p style="margin-top: 0.8rem; opacity: 0.6; font-size: 0.95rem;">Information site</p>
       </footer>
@@ -427,6 +430,20 @@
   <script>
     (function() {
       const isMobile = window.innerWidth < 1025;
+      if (isMobile) {
+        document.getElementById('siteContent').classList.add('visible');
+        const loader = document.getElementById('loader');
+        if (loader) loader.remove();
+        const nameContainer = document.getElementById('nameContainer');
+        if (nameContainer) {
+          nameContainer.innerHTML = 'Alexander';
+          nameContainer.className = 'gradient-text';
+        }
+        const canvas = document.getElementById('bgCanvas');
+        if (canvas) canvas.style.display = 'none';
+        return;
+      }
+
       const loader = document.getElementById('loader');
       const loaderRing = document.getElementById('loaderRing');
       const loaderMessage = document.getElementById('loaderMessage');
@@ -452,13 +469,8 @@
       function startTransition() {
         clearInterval(messageInterval);
         loaderMessage.classList.add('fade-out');
-        if (!isMobile) {
-          loaderParticleEls.forEach((p, i) => setTimeout(() => p.classList.add('fly'), i * 50));
-          setTimeout(() => loaderRing.classList.add('expanding'), 300);
-        } else {
-          loaderRing.style.display = 'none';
-          setTimeout(() => loader.classList.add('hidden'), 200);
-        }
+        loaderParticleEls.forEach((p, i) => setTimeout(() => p.classList.add('fly'), i * 50));
+        setTimeout(() => loaderRing.classList.add('expanding'), 300);
         setTimeout(() => siteContent.classList.add('visible'), 500);
         setTimeout(() => loader.classList.add('hidden'), 900);
         setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 1800);
@@ -477,13 +489,12 @@
               nameContainer.appendChild(span);
               setTimeout(() => span.classList.add('show'), i * 70);
             });
-            if (!isMobile) setTimeout(handleScrollReveal, 300);
+            setTimeout(handleScrollReveal, 300);
           }, 1000);
         }, 3000);
       });
 
       function handleScrollReveal() {
-        if (isMobile) return;
         const reveals = document.querySelectorAll('.scroll-reveal');
         reveals.forEach(el => {
           const windowHeight = window.innerHeight;
@@ -492,11 +503,9 @@
         });
       }
 
-      if (!isMobile) {
-        window.addEventListener('scroll', handleScrollReveal);
-        window.addEventListener('resize', handleScrollReveal);
-        setTimeout(handleScrollReveal, 1500);
-      }
+      window.addEventListener('scroll', handleScrollReveal);
+      window.addEventListener('resize', handleScrollReveal);
+      setTimeout(handleScrollReveal, 1500);
 
       const tabButtons = document.querySelectorAll('.tab-button');
       const tabs = document.querySelectorAll('.tab-content');
@@ -509,12 +518,12 @@
           const activeTab = document.getElementById('tab-' + tabId);
           if (activeTab) {
             activeTab.classList.add('active');
-            if (!isMobile) setTimeout(handleScrollReveal, 50);
+            setTimeout(handleScrollReveal, 50);
           }
         });
       });
 
-      if (!isMobile && canvas) {
+      if (canvas) {
         const ctx = canvas.getContext('2d');
         let width, height;
         let bgParticles = [];
@@ -532,10 +541,7 @@
             this.speedX = (Math.random() - 0.5) * 0.4; this.speedY = (Math.random() - 0.5) * 0.4;
             this.opacity = Math.random() * 0.7 + 0.2;
           }
-          update() {
-            this.x += this.speedX; this.y += this.speedY;
-            if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
-          }
+          update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset(); }
           draw(ctx) {
             ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
             const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius*2.5);
@@ -574,8 +580,6 @@
             if (Math.sqrt(dx*dx+dy*dy) < 110) { p.speedX += dx*0.004; p.speedY += dy*0.004; }
           });
         });
-      } else if (canvas) {
-        canvas.style.display = 'none';
       }
     })();
   </script>
