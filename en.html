@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>MrKronick | Official Website</title>
-  <link rel="icon" href="favicon.svg">
-  <meta name="description" content="Official website of MrKronick (Alexander Mochalov). Who is MrKronick? Creator of FoggyLand server, CustomTPA plugin. Socials, projects, usw.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Official website of MrKronick (Alexander Mochalov). Who is MrKronick? Creator of FoggyLand server, CustomTPA plugin. Socials, projects, uws.">
   <meta name="keywords" content="MrKronick, Alexander Mochalov, FoggyLand, CustomTPA, who is MrKronick, MrKronick site, MrKronick official website, MrKronick Roblox">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,20 +102,36 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    @media (min-width: 1025px) {
+    .scroll-reveal {
+      opacity:0;
+      transition: opacity 0.9s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.9s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.9s ease;
+      will-change: transform, opacity, filter;
+    }
+    .scroll-reveal.revealed { opacity:1; transform: translate(0,0) scale(1) rotate(0); filter: blur(0); }
+    .reveal-fade-up { transform: translateY(80px); }
+    .reveal-fade-down { transform: translateY(-80px); }
+    .reveal-fade-left { transform: translateX(-80px); }
+    .reveal-fade-right { transform: translateX(80px); }
+    .reveal-scale { transform: scale(0.7); }
+    .reveal-rotate { transform: perspective(800px) rotateY(30deg) translateZ(-60px); }
+    .reveal-blur { filter: blur(20px); transform: scale(1.05); }
+    .reveal-combo { transform: translateY(60px) scale(0.8) rotate(-5deg); filter: blur(8px); }
+
+    @media (max-width: 1024px) {
       .scroll-reveal {
-        opacity:0; transition: opacity 0.9s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.9s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.9s ease;
-        will-change: transform, opacity, filter;
+        opacity:0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+        will-change: auto;
       }
-      .scroll-reveal.revealed { opacity:1; transform: translate(0,0) scale(1) rotate(0); filter: blur(0); }
-      .reveal-fade-up { transform: translateY(80px); }
-      .reveal-fade-down { transform: translateY(-80px); }
-      .reveal-fade-left { transform: translateX(-80px); }
-      .reveal-fade-right { transform: translateX(80px); }
-      .reveal-scale { transform: scale(0.7); }
-      .reveal-rotate { transform: perspective(800px) rotateY(30deg) translateZ(-60px); }
-      .reveal-blur { filter: blur(20px); transform: scale(1.05); }
-      .reveal-combo { transform: translateY(60px) scale(0.8) rotate(-5deg); filter: blur(8px); }
+      .scroll-reveal.revealed {
+        opacity:1;
+        transform: translateY(0);
+      }
+      .reveal-blur, .reveal-scale, .reveal-rotate, .reveal-combo {
+        transform: translateY(30px);
+        filter: none;
+      }
     }
 
     .glass-panel {
@@ -280,7 +296,6 @@
       .site-content { opacity: 1; }
       .name-letter { transform: none; filter: none; opacity: 1; }
       .name-letter.show { transform: none; }
-      .scroll-reveal { opacity: 1; transform: none; filter: none; transition: none; will-change: auto; }
       #bgCanvas { display: none; }
       h1 { font-size:2.8rem; min-height:3.5rem; }
       .hero { flex-direction:column; text-align:center; min-height: auto; }
@@ -313,11 +328,11 @@
       <header class="scroll-reveal reveal-fade-down">
         <div class="logo">MrKronick</div>
         <div class="social-links">
-          <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-icon" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube" width="24" height="24"></a>
-          <a href="https://vk.com/alexanderkronik" target="_blank" class="social-icon" title="VK"><i class="fab fa-vk"></i></a>
-          <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-icon" title="Modrinth"><i class="fas fa-cube"></i></a>
-          <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-icon" title="SpigotMC"><i class="fas fa-plug"></i></a>
+          <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-icon scroll-reveal reveal-scale delay-100" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-icon scroll-reveal reveal-scale delay-150" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube" width="24" height="24"></a>
+          <a href="https://vk.com/alexanderkronik" target="_blank" class="social-icon scroll-reveal reveal-scale delay-200" title="VK"><i class="fab fa-vk"></i></a>
+          <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-icon scroll-reveal reveal-scale delay-300" title="Modrinth"><i class="fas fa-cube"></i></a>
+          <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-icon scroll-reveal reveal-scale delay-400" title="SpigotMC"><i class="fas fa-plug"></i></a>
         </div>
       </header>
 
@@ -330,25 +345,25 @@
         <section class="hero">
           <div class="hero-content">
             <h1 id="nameContainer"></h1>
-            <div class="subtitle">MrKronick · Creator of FoggyLand<br>Developer of CustomTPA</div>
+            <div class="subtitle scroll-reveal reveal-fade-left delay-200">MrKronick · Creator of FoggyLand<br>Developer of CustomTPA</div>
             <div class="badge-container">
-              <span class="badge">⚡ Minecraft Developer</span>
-              <span class="badge">🌐 Server Owner</span>
-              <span class="badge">🔌 Spigot Plugins</span>
+              <span class="badge scroll-reveal reveal-scale delay-300">⚡ Minecraft Developer</span>
+              <span class="badge scroll-reveal reveal-scale delay-400">🌐 Server Owner</span>
+              <span class="badge scroll-reveal reveal-scale delay-500">🔌 Spigot Plugins</span>
             </div>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-              <a href="https://site.foggyland.ru/" target="_blank" class="btn"><i class="fas fa-server"></i> FoggyLand</a>
-              <a href="https://customtpa.mrkronick.ru/" target="_blank" class="btn"><i class="fas fa-puzzle-piece"></i> CustomTPA</a>
+              <a href="https://site.foggyland.ru/" target="_blank" class="btn scroll-reveal reveal-fade-up delay-500"><i class="fas fa-server"></i> FoggyLand</a>
+              <a href="https://customtpa.mrkronick.ru/" target="_blank" class="btn scroll-reveal reveal-fade-up delay-600"><i class="fas fa-puzzle-piece"></i> CustomTPA</a>
             </div>
           </div>
-          <div class="hero-visual">
+          <div class="hero-visual scroll-reveal reveal-blur delay-400">
             <div class="avatar-frame">
               <img src="images/avatar.webp" alt="Alexander" width="300" height="300">
             </div>
           </div>
         </section>
 
-        <div class="about-section glass-panel" style="padding: 3rem;">
+        <div class="about-section glass-panel scroll-reveal reveal-combo delay-100" style="padding: 3rem;">
           <h2 style="font-size: 2.5rem; margin-bottom: 1.8rem; color:#fff;"><i class="fas fa-heart" style="color: #b388ff;"></i> About Me</h2>
           <p style="font-size: 1.3rem; margin-bottom: 1.2rem; color:#e0e3f0;">I'm just an ordinary guy, very curious, and I love helping everyone. People often ask <strong>who is MrKronick</strong> — this is my official site.</p>
           <div class="quote-block">
@@ -358,15 +373,15 @@
         </div>
 
         <div class="glass-panel" style="padding: 3rem; margin: 3rem 0;">
-          <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color:#fff;"><i class="fas fa-crown" style="color: #b388ff;"></i> Projects</h2>
+          <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color:#fff;" class="scroll-reveal reveal-fade-left"><i class="fas fa-crown" style="color: #b388ff;"></i> Projects</h2>
           <div class="projects-grid">
-            <div class="project-card">
+            <div class="project-card scroll-reveal reveal-rotate delay-200">
               <div class="project-icon"><i class="fas fa-cloud-moon"></i></div>
               <h3 style="font-size: 2rem; color:#fff;">FoggyLand</h3>
               <p>A unique Minecraft server with a cozy atmosphere. Friendly community, custom mechanics and regular events.</p>
               <a href="https://site.foggyland.ru/" target="_blank" class="btn">Visit website <i class="fas fa-arrow-right"></i></a>
             </div>
-            <div class="project-card">
+            <div class="project-card scroll-reveal reveal-rotate delay-400">
               <div class="project-icon"><i class="fas fa-code-branch"></i></div>
               <h3 style="font-size: 2rem; color:#fff;">CustomTPA</h3>
               <p>A teleportation plugin with deep customization. Flexible requests, cooldowns, and a clear GUI. Available on SpigotMC and Modrinth.</p>
@@ -378,41 +393,45 @@
 
       <div id="tab-social" class="tab-content">
         <div style="margin: 4rem 0;">
-          <h2 style="font-size: 2.5rem; margin-bottom: 2rem;"><span class="gradient-text">Social Networks</span></h2>
+          <h2 style="font-size: 2.5rem; margin-bottom: 2rem;" class="scroll-reveal reveal-fade-left"><span class="gradient-text">Social Networks</span></h2>
           <div class="social-grid">
-            <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-card">
+            <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-100">
               <i class="fab fa-youtube" style="color:#ff4444;"></i>
               <div><strong>YouTube</strong><br><small>@mrkronickyt</small></div>
             </a>
-            <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-card">
+            <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-120">
               <img src="images/rutube-icon.webp" alt="Rutube" width="42" height="42">
               <div><strong>Rutube</strong><br><small>Channel</small></div>
             </a>
-            <a href="https://vk.com/alexanderkronik" target="_blank" class="social-card">
+            <a href="https://dalink.to/mrkronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-140">
+              <img src="images/dalink.png" alt="DALink" width="42" height="42">
+              <div><strong>DALink</strong><br><small>Support</small></div>
+            </a>
+            <a href="https://vk.com/alexanderkronik" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-200">
               <i class="fab fa-vk" style="color:#4a76a8;"></i>
               <div><strong>VK</strong><br><small>alexanderkronik</small></div>
             </a>
-            <a href="https://x.com/MrKronick_MC" target="_blank" class="social-card">
+            <a href="https://x.com/MrKronick_MC" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-250">
               <img src="images/x-logo.png" alt="X (Twitter)" width="42" height="42">
               <div><strong>X (Twitter)</strong><br><small>@MrKronick_MC</small></div>
             </a>
-            <a href="https://www.instagram.com/mrkronick/" target="_blank" class="social-card">
+            <a href="https://www.instagram.com/mrkronick/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-275">
               <i class="fab fa-instagram" style="color:#e1306c;"></i>
               <div><strong>Instagram</strong><br><small>@mrkronick</small></div>
             </a>
-            <a href="https://www.tiktok.com/@mrkronick" target="_blank" class="social-card">
+            <a href="https://www.tiktok.com/@mrkronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-300">
               <i class="fab fa-tiktok" style="color:#ff0050;"></i>
               <div><strong>TikTok</strong><br><small>@mrkronick</small></div>
             </a>
-            <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-card">
+            <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-350">
               <i class="fas fa-cube" style="color:#1bd96a;"></i>
               <div><strong>Modrinth</strong><br><small>MrKronick</small></div>
             </a>
-            <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-card">
+            <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-400">
               <i class="fas fa-plug" style="color:#ed8106;"></i>
               <div><strong>SpigotMC</strong><br><small>MrKronick</small></div>
             </a>
-            <a href="https://www.roblox.com/users/4792145553/profile" target="_blank" class="social-card">
+            <a href="https://www.roblox.com/users/4792145553/profile" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-450">
               <img src="images/roblox-icon.png" alt="Roblox" width="42" height="42">
               <div><strong>Roblox</strong><br><small>Profile</small></div>
             </a>
@@ -420,7 +439,7 @@
         </div>
       </div>
 
-      <footer>
+      <footer class="scroll-reveal reveal-fade-up">
         <p>© 2026 MrKronick — Alexander Mochalov. Official MrKronick website. FoggyLand & CustomTPA.</p>
         <p style="margin-top: 0.8rem; opacity: 0.6; font-size: 0.95rem;">Information site</p>
       </footer>
@@ -430,6 +449,7 @@
   <script>
     (function() {
       const isMobile = window.innerWidth < 1025;
+
       if (isMobile) {
         document.getElementById('siteContent').classList.add('visible');
         const loader = document.getElementById('loader');
@@ -441,58 +461,117 @@
         }
         const canvas = document.getElementById('bgCanvas');
         if (canvas) canvas.style.display = 'none';
-        return;
-      }
+        setTimeout(handleScrollReveal, 100);
+      } else {
+        const loader = document.getElementById('loader');
+        const loaderRing = document.getElementById('loaderRing');
+        const loaderMessage = document.getElementById('loaderMessage');
+        const loaderParticles = document.getElementById('loaderParticles');
+        const siteContent = document.getElementById('siteContent');
+        const loaderParticleEls = document.querySelectorAll('.loader-particle');
+        const nameContainer = document.getElementById('nameContainer');
+        const canvas = document.getElementById('bgCanvas');
 
-      const loader = document.getElementById('loader');
-      const loaderRing = document.getElementById('loaderRing');
-      const loaderMessage = document.getElementById('loaderMessage');
-      const loaderParticles = document.getElementById('loaderParticles');
-      const siteContent = document.getElementById('siteContent');
-      const loaderParticleEls = document.querySelectorAll('.loader-particle');
-      const nameContainer = document.getElementById('nameContainer');
-      const canvas = document.getElementById('bgCanvas');
-
-      const messages = ["loading text", "loading animations", "loading data"];
-      let msgIndex = 0;
-      const messageInterval = setInterval(() => {
-        msgIndex = (msgIndex + 1) % messages.length;
-        loaderMessage.style.opacity = '0';
-        loaderMessage.style.transform = 'translateY(-10px)';
-        setTimeout(() => {
-          loaderMessage.textContent = messages[msgIndex];
-          loaderMessage.style.opacity = '1';
-          loaderMessage.style.transform = 'translateY(0)';
-        }, 200);
-      }, 1000);
-
-      function startTransition() {
-        clearInterval(messageInterval);
-        loaderMessage.classList.add('fade-out');
-        loaderParticleEls.forEach((p, i) => setTimeout(() => p.classList.add('fly'), i * 50));
-        setTimeout(() => loaderRing.classList.add('expanding'), 300);
-        setTimeout(() => siteContent.classList.add('visible'), 500);
-        setTimeout(() => loader.classList.add('hidden'), 900);
-        setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 1800);
-      }
-
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          startTransition();
+        const messages = ["loading text", "loading animations", "loading data"];
+        let msgIndex = 0;
+        const messageInterval = setInterval(() => {
+          msgIndex = (msgIndex + 1) % messages.length;
+          loaderMessage.style.opacity = '0';
+          loaderMessage.style.transform = 'translateY(-10px)';
           setTimeout(() => {
-            const name = 'Alexander';
-            nameContainer.innerHTML = '';
-            name.split('').forEach((char, i) => {
-              const span = document.createElement('span');
-              span.className = 'name-letter gradient-text';
-              span.textContent = char;
-              nameContainer.appendChild(span);
-              setTimeout(() => span.classList.add('show'), i * 70);
+            loaderMessage.textContent = messages[msgIndex];
+            loaderMessage.style.opacity = '1';
+            loaderMessage.style.transform = 'translateY(0)';
+          }, 200);
+        }, 1000);
+
+        function startTransition() {
+          clearInterval(messageInterval);
+          loaderMessage.classList.add('fade-out');
+          loaderParticleEls.forEach((p, i) => setTimeout(() => p.classList.add('fly'), i * 50));
+          setTimeout(() => loaderRing.classList.add('expanding'), 300);
+          setTimeout(() => siteContent.classList.add('visible'), 500);
+          setTimeout(() => loader.classList.add('hidden'), 900);
+          setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 1800);
+        }
+
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            startTransition();
+            setTimeout(() => {
+              const name = 'Alexander';
+              nameContainer.innerHTML = '';
+              name.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.className = 'name-letter gradient-text';
+                span.textContent = char;
+                nameContainer.appendChild(span);
+                setTimeout(() => span.classList.add('show'), i * 70);
+              });
+              setTimeout(handleScrollReveal, 300);
+            }, 1000);
+          }, 3000);
+        });
+
+        if (canvas) {
+          const ctx = canvas.getContext('2d');
+          let width, height;
+          let bgParticles = [];
+          const PARTICLE_COUNT = 90;
+
+          function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+          window.addEventListener('resize', resizeCanvas);
+          resizeCanvas();
+
+          class Particle {
+            constructor() { this.reset(); }
+            reset() {
+              this.x = Math.random() * width; this.y = Math.random() * height;
+              this.radius = Math.random() * 2.8 + 0.8;
+              this.speedX = (Math.random() - 0.5) * 0.4; this.speedY = (Math.random() - 0.5) * 0.4;
+              this.opacity = Math.random() * 0.7 + 0.2;
+            }
+            update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset(); }
+            draw(ctx) {
+              ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+              const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius*2.5);
+              gradient.addColorStop(0, `rgba(179,136,255,${this.opacity})`);
+              gradient.addColorStop(1, 'rgba(108,99,255,0)');
+              ctx.fillStyle = gradient; ctx.fill();
+            }
+          }
+          for (let i = 0; i < PARTICLE_COUNT; i++) bgParticles.push(new Particle());
+
+          function connectParticles(ctx) {
+            for (let i = 0; i < bgParticles.length; i++) {
+              for (let j = i+1; j < bgParticles.length; j++) {
+                const dx = bgParticles[i].x - bgParticles[j].x;
+                const dy = bgParticles[i].y - bgParticles[j].y;
+                const dist = Math.sqrt(dx*dx+dy*dy);
+                if (dist < 150) {
+                  ctx.beginPath(); ctx.moveTo(bgParticles[i].x, bgParticles[i].y); ctx.lineTo(bgParticles[j].x, bgParticles[j].y);
+                  ctx.strokeStyle = `rgba(138,120,255,${0.12 * (1 - dist/150)})`;
+                  ctx.lineWidth = 0.9; ctx.stroke();
+                }
+              }
+            }
+          }
+          function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            for (let p of bgParticles) { p.update(); p.draw(ctx); }
+            connectParticles(ctx);
+            requestAnimationFrame(animateParticles);
+          }
+          animateParticles();
+
+          window.addEventListener('mousemove', (e) => {
+            bgParticles.forEach(p => {
+              const dx = p.x - e.clientX, dy = p.y - e.clientY;
+              if (Math.sqrt(dx*dx+dy*dy) < 110) { p.speedX += dx*0.004; p.speedY += dy*0.004; }
             });
-            setTimeout(handleScrollReveal, 300);
-          }, 1000);
-        }, 3000);
-      });
+          });
+        }
+      }
 
       function handleScrollReveal() {
         const reveals = document.querySelectorAll('.scroll-reveal');
@@ -505,7 +584,8 @@
 
       window.addEventListener('scroll', handleScrollReveal);
       window.addEventListener('resize', handleScrollReveal);
-      setTimeout(handleScrollReveal, 1500);
+      if (!isMobile) setTimeout(handleScrollReveal, 1500);
+      else handleScrollReveal();
 
       const tabButtons = document.querySelectorAll('.tab-button');
       const tabs = document.querySelectorAll('.tab-content');
@@ -523,64 +603,6 @@
         });
       });
 
-      if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let bgParticles = [];
-        const PARTICLE_COUNT = 90;
-
-        function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-          constructor() { this.reset(); }
-          reset() {
-            this.x = Math.random() * width; this.y = Math.random() * height;
-            this.radius = Math.random() * 2.8 + 0.8;
-            this.speedX = (Math.random() - 0.5) * 0.4; this.speedY = (Math.random() - 0.5) * 0.4;
-            this.opacity = Math.random() * 0.7 + 0.2;
-          }
-          update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset(); }
-          draw(ctx) {
-            ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
-            const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius*2.5);
-            gradient.addColorStop(0, `rgba(179,136,255,${this.opacity})`);
-            gradient.addColorStop(1, 'rgba(108,99,255,0)');
-            ctx.fillStyle = gradient; ctx.fill();
-          }
-        }
-        for (let i = 0; i < PARTICLE_COUNT; i++) bgParticles.push(new Particle());
-
-        function connectParticles(ctx) {
-          for (let i = 0; i < bgParticles.length; i++) {
-            for (let j = i+1; j < bgParticles.length; j++) {
-              const dx = bgParticles[i].x - bgParticles[j].x;
-              const dy = bgParticles[i].y - bgParticles[j].y;
-              const dist = Math.sqrt(dx*dx+dy*dy);
-              if (dist < 150) {
-                ctx.beginPath(); ctx.moveTo(bgParticles[i].x, bgParticles[i].y); ctx.lineTo(bgParticles[j].x, bgParticles[j].y);
-                ctx.strokeStyle = `rgba(138,120,255,${0.12 * (1 - dist/150)})`;
-                ctx.lineWidth = 0.9; ctx.stroke();
-              }
-            }
-          }
-        }
-        function animateParticles() {
-          ctx.clearRect(0, 0, width, height);
-          for (let p of bgParticles) { p.update(); p.draw(ctx); }
-          connectParticles(ctx);
-          requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-
-        window.addEventListener('mousemove', (e) => {
-          bgParticles.forEach(p => {
-            const dx = p.x - e.clientX, dy = p.y - e.clientY;
-            if (Math.sqrt(dx*dx+dy*dy) < 110) { p.speedX += dx*0.004; p.speedY += dy*0.004; }
-          });
-        });
-      }
     })();
   </script>
 </body>
