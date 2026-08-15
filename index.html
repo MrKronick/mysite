@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>MrKronick | Вся информация</title>
+  <title>MrKronick | Official Hub</title>
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="color-scheme" content="dark">
   <meta name="description" content="Официальный сайт MrKronick (Александр Мочалов). Кто такой MrKronick? Создатель сервера FoggyLand, плагина CustomTPA. Соцсети, проекты, Roblox.">
   <meta name="keywords" content="MrKronick, Мистер Кроник, МрКроник, Александр Мочалов, FoggyLand, CustomTPA, MrKronick кто это, MrKronick сайт, MrKronick официальный сайт, кто такой MrKronick, Alexander Mochalov, FoggyLand, CustomTPA, who is MrKronick, MrKronick site, MrKronick official website, MrKronick Roblox">
   <link rel="icon" href="favicon.png">
@@ -97,12 +99,42 @@
       opacity: 0.5;
     }
   </style>
+
+  <style>
+    body {
+      background:
+        radial-gradient(circle at 15% 15%,rgba(139,124,255,.16),transparent 28%),
+        radial-gradient(circle at 85% 75%,rgba(63,140,255,.11),transparent 28%),#07070b;
+    }
+    .container { max-width:900px !important; }
+    .container::before {
+      content:"";position:absolute;width:420px;height:420px;left:50%;top:50%;
+      transform:translate(-50%,-50%);border:1px solid rgba(139,124,255,.12);
+      border-radius:50%;box-shadow:0 0 120px rgba(108,99,255,.08);pointer-events:none;
+    }
+    .language-grid { gap:1.25rem !important; }
+    .lang-card {
+      width:min(290px,42vw) !important;min-height:230px;justify-content:center;
+      position:relative;overflow:hidden;
+    }
+    .lang-card::after {
+      content:"";position:absolute;width:130px;height:130px;right:-55px;top:-55px;border-radius:50%;
+      background:radial-gradient(circle,rgba(179,136,255,.28),transparent 70%);pointer-events:none;
+    }
+    .lang-card:hover { transform:translateY(-10px) scale(1.025) !important; }
+    .hint { margin-top:1.5rem;color:#8e93aa;font-size:.85rem;letter-spacing:.05em; }
+    @media(max-width:600px){ .lang-card{width:100% !important;} }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation:none !important;transition:none !important}
+    }
+  </style>
 </head>
 <body>
   <canvas id="bgCanvas"></canvas>
   <div class="container">
     <div class="logo">MrKronick</div>
     <p style="font-size: 1.2rem; opacity: 0.7;">Выберите язык / Choose language</p>
+    <div class="hint">MRKRONICK / OFFICIAL HUB</div>
     <div class="language-grid">
       <a href="ru.html" class="lang-card">
         <span class="lang-flag">🇷🇺</span>
