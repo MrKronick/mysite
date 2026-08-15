@@ -2,9 +2,6 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="theme-color" content="#0a0a0f">
-  <meta name="color-scheme" content="dark">
-  <meta name="robots" content="index,follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>MrKronick | Официальный сайт</title>
   <link rel="icon" href="favicon.png">
@@ -14,7 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/avatar.webp">
-<style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Inter', sans-serif;
@@ -316,87 +314,27 @@
       .tab-button { padding:0.6rem 1.8rem; font-size:1rem; }
       .btn { padding:0.7rem 1.8rem; font-size:0.9rem; }
     }
-
-    /* Site UI */
-    :root {
-      --accent:#8b7cff;
-      --accent-2:#b388ff;
-      --line-soft:rgba(255,255,255,.10);
+  
+    .live-online {
+      width: fit-content;
+      margin: -0.6rem auto 2rem;
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      color: #bfc3d8;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
-    body {
-      background:
-        radial-gradient(circle at 8% 8%,rgba(139,124,255,.10),transparent 24%),
-        radial-gradient(circle at 92% 30%,rgba(63,140,255,.08),transparent 22%),
-        #0a0a0f;
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 10px rgba(52,211,153,.75);
     }
-    body::before {
-      content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.035;
-      background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),
-                       linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);
-      background-size:42px 42px;
-      mask-image:linear-gradient(to bottom,black,transparent 80%);
-    }
-    .skip-link {
-      position:fixed; left:16px; top:-60px; z-index:10001;
-      padding:10px 14px; border-radius:12px; background:#fff; color:#09090f;
-      font-weight:800; transition:top .2s ease;
-    }
-    .skip-link:focus { top:16px; }
-    .site-header {
-      position:sticky; top:12px; z-index:100; padding:12px 16px; margin:12px 0 4px;
-      border:1px solid var(--line-soft); border-radius:22px;
-      background:rgba(10,10,15,.62); backdrop-filter:blur(20px) saturate(140%);
-      box-shadow:0 18px 50px rgba(0,0,0,.28);
-    }
-    .site-header .logo { text-decoration:none; }
-    .quick-bar {
-      width:max-content; max-width:100%; margin:-1rem auto 2.5rem; padding:9px 13px;
-      display:flex; align-items:center; gap:9px; border:1px solid var(--line-soft);
-      border-radius:999px; background:rgba(255,255,255,.045); backdrop-filter:blur(16px);
-      color:#bfc3d8; font-size:.76rem; letter-spacing:.08em; font-weight:800;
-    }
-    .status-dot { width:7px; height:7px; border-radius:50%; background:#34d399;
-      box-shadow:0 0 12px #34d399; animation:statusPulse 1.8s ease-in-out infinite; }
-    @keyframes statusPulse { 50%{opacity:.45;transform:scale(.75)} }
-    .highlights { margin:3rem 0; padding:2.5rem; position:relative; overflow:hidden; }
-    .highlights::after {
-      content:""; position:absolute; width:260px;height:260px;right:-90px;top:-90px;border-radius:50%;
-      background:radial-gradient(circle,rgba(139,124,255,.24),transparent 68%);pointer-events:none;
-    }
-    .highlight-head { display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-bottom:2rem; }
-    .highlight-head h2 { margin-top:.35rem; }
-    .highlight-head>p { max-width:430px;color:#aeb3c9;line-height:1.7; }
-    .highlight-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1rem; }
-    .highlight-grid article {
-      min-height:150px;padding:1.35rem;border:1px solid rgba(255,255,255,.07);
-      border-radius:20px;background:rgba(255,255,255,.035);
-      transition:transform .3s ease,border-color .3s ease,background .3s ease;
-    }
-    .highlight-grid article:hover {
-      transform:translateY(-6px);border-color:rgba(139,124,255,.42);background:rgba(139,124,255,.08);
-    }
-    .highlight-grid span { display:block;color:#9e91ff;font:700 .72rem/1 'Space Grotesk',sans-serif;
-      letter-spacing:.14em;margin-bottom:1rem; }
-    .highlight-grid strong { font-size:1.15rem; }
-    .highlight-grid p { color:#9ca1b8;font-size:.9rem;line-height:1.55;margin-top:.5rem; }
-    :focus-visible { outline:2px solid #b388ff; outline-offset:4px; }
-    body.high-contrast { filter:saturate(1.08) contrast(1.04); }
-    body.high-contrast .glass-panel,body.high-contrast .project-card,body.high-contrast .social-card {
-      border-color:rgba(179,136,255,.22);
-    }
-    @media(max-width:1024px){
-      .site-header{position:relative;top:0}.quick-bar{margin-top:1rem}
-      .highlight-head{display:block}.highlight-head>p{margin-top:1rem}.highlight-grid{grid-template-columns:1fr}
-    }
-    @media(max-width:600px){
-      .site-header{padding:10px 12px}.quick-bar{width:100%;justify-content:center;flex-wrap:wrap}
-      .highlights{padding:1.5rem}
-    }
-    @media(prefers-reduced-motion:reduce){
-      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
-      scroll-behavior:auto!important;transition-duration:.01ms!important}
-    }
-
+    
   </style>
 </head>
 <body>
@@ -414,9 +352,8 @@
   <main class="site-content" id="siteContent">
     <canvas id="bgCanvas"></canvas>
     <div class="container">
-      <a class="skip-link" href="#main-content">Перейти к содержимому</a>
-<header class="scroll-reveal reveal-fade-down site-header">
-        <a class="logo" href="#" aria-label="MrKronick">MrKronick</a>
+      <header class="scroll-reveal reveal-fade-down">
+        <div class="logo">MrKronick</div>
         <div class="social-links">
           <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-icon scroll-reveal reveal-scale delay-100" title="YouTube"><i class="fab fa-youtube"></i></a>
           <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-icon scroll-reveal reveal-scale delay-150" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube" width="24" height="24"></a>
@@ -430,10 +367,11 @@
         <button class="tab-button active" data-tab="main">Главная</button>
         <button class="tab-button" data-tab="social">Соц сети</button>
       </div>
-
-      <div class="quick-bar scroll-reveal reveal-fade-up" aria-label="Online status">
-        <span class="status-dot" aria-hidden="true"></span><span id="onlineCount">ONLINE</span>
+      <div class="live-online" aria-label="Online">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span id="onlineCount">ONLINE</span>
       </div>
+
 
       <div id="tab-main" class="tab-content active">
         <section class="hero">
@@ -540,7 +478,8 @@
           </div>
         </div>
       </div>
-<footer class="scroll-reveal reveal-fade-up">
+
+      <footer class="scroll-reveal reveal-fade-up">
         <p>© 2026 MrKronick — Александр Мочалов. Официальный сайт MrKronick. FoggyLand & CustomTPA.</p>
         <p style="margin-top: 0.8rem; opacity: 0.6; font-size: 0.95rem;">Информационный сайт</p>
       </footer>
@@ -709,73 +648,46 @@
         });
       });
 
-
-      /* Live online status */
-      (() => {
-        const label = document.querySelector('.quick-bar .status-dot')?.nextElementSibling;
-        if (!label || !window.MRKRONICK_ONLINE_URL) return;
-
-        const offlineText = 'ONLINE';
-        let socket = null;
-        let retry = 0;
-        let reconnectTimer = null;
-
-        function setOnline(count) {
-          const n = Number(count);
-          if (!Number.isFinite(n) || n < 0) return;
-          label.textContent = `${n} ONLINE`;
-          label.title = 'Сейчас на сайте';
-        }
-
-        function setOffline() {
-          label.textContent = offlineText;
-          label.title = 'Сервис онлайн-счётчика временно недоступен';
-        }
-
-        function connect() {
-          if (socket && (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING)) return;
-
-          try {
-            socket = new WebSocket(window.MRKRONICK_ONLINE_URL);
-          } catch {
-            scheduleReconnect();
-            return;
-          }
-
-          socket.addEventListener('open', () => {
-            retry = 0;
-          });
-
-          socket.addEventListener('message', event => {
-            try {
-              const data = JSON.parse(event.data);
-              if (data.type === 'online') setOnline(data.count);
-            } catch {}
-          });
-
-          socket.addEventListener('close', () => {
-            setOffline();
-            scheduleReconnect();
-          });
-
-          socket.addEventListener('error', () => {
-            try { socket.close(); } catch {}
-          });
-        }
-
-        function scheduleReconnect() {
-          if (reconnectTimer) return;
-          const delay = Math.min(30000, 1000 * Math.pow(2, retry++));
-          reconnectTimer = setTimeout(() => {
-            reconnectTimer = null;
-            connect();
-          }, delay);
-        }
-
-        connect();
-      })();
-
     })();
   </script>
+
+  <script>
+    (() => {
+      const label = document.getElementById("onlineCount");
+      const url = window.MRKRONICK_ONLINE_URL;
+      if (!label || !url) return;
+
+      let ws;
+      let retry = 0;
+
+      function connect() {
+        try {
+          ws = new WebSocket(url);
+        } catch {
+          return setTimeout(connect, Math.min(30000, 1000 * 2 ** retry++));
+        }
+
+        ws.addEventListener("open", () => { retry = 0; });
+        ws.addEventListener("message", (event) => {
+          try {
+            const data = JSON.parse(event.data);
+            if (data.type === "online" && Number.isFinite(data.count)) {
+              label.textContent = `${data.count} ONLINE`;
+            }
+          } catch {}
+        });
+        ws.addEventListener("close", () => {
+          label.textContent = "ONLINE";
+          setTimeout(connect, Math.min(30000, 1000 * 2 ** retry++));
+        });
+        ws.addEventListener("error", () => {
+          try { ws.close(); } catch {}
+        });
+      }
+
+      connect();
+    })();
+  </script>
+
 </body>
 </html>
