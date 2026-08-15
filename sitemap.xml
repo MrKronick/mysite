@@ -11,16 +11,4 @@
     <loc>https://mrkronick.ru/en.html</loc>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://customtpa.mrkronick.ru/</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://customtpa.mrkronick.ru/ru/</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://customtpa.mrkronick.ru/en/</loc>
-    <priority>0.5</priority>
-  </url>
 </urlset>
