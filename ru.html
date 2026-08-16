@@ -719,34 +719,69 @@
     })();
   </script>
 
-  <script>
-    (() => {
-      const label = document.getElementById("onlineCount");
-      const url = window.MRKRONICK_ONLINE_URL;
-      if (!label || !url) return;
-      let ws, retry = 0;
+<script>
+  (() => {
+    const label = document.getElementById("onlineCount");
+    const url = window.MRKRONICK_ONLINE_URL;
 
-      function connect() {
-        try { ws = new WebSocket(url); }
-        catch { return setTimeout(connect, Math.min(30000, 1000 * 2 ** retry++)); }
+    if (!label || !url) return;
 
-        ws.onopen = () => { retry = 0; };
-        ws.onmessage = event => {
-          try {
-            const data = JSON.parse(event.data);
-            if (data.type === "online" && Number.isFinite(data.count))
-              label.textContent = `${data.count} ONLINE`;
-          } catch {}
-        };
-        ws.onclose = () => {
-          label.textContent = "ONLINE";
-          setTimeout(connect, Math.min(30000, 1000 * 2 ** retry++));
-        };
-        ws.onerror = () => { try { ws.close(); } catch {} };
+    let ws = null;
+    let retry = 0;
+
+    function connect() {
+      try {
+        ws = new WebSocket(url);
+      } catch {
+        return setTimeout(
+          connect,
+          Math.min(30000, 1000 * 2 ** retry++)
+        );
       }
-      connect();
-    })();
-  </script>
+
+      ws.onopen = () => {
+        retry = 0;
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+
+          if (
+            data.type === "online" &&
+            Number.isFinite(data.count)
+          ) {
+            label.textContent = `${data.count} ONLINE`;
+          }
+        } catch {}
+      };
+
+      ws.onclose = () => {
+        label.textContent = "ONLINE";
+
+        setTimeout(
+          connect,
+          Math.min(30000, 1000 * 2 ** retry++)
+        );
+      };
+
+      ws.onerror = () => {
+        try {
+          ws.close();
+        } catch {}
+      };
+    }
+
+    connect();
+
+    // Проверяем состояние WebSocket каждые 10 мс.
+    setInterval(() => {
+      if (!ws || ws.readyState === WebSocket.CLOSED) {
+        connect();
+      }
+    }, 1000);
+  })();
+</script>
 
 </body>
 </html>
