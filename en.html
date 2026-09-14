@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>MrKronick | Official Website</title>
-  <meta name="description" content="Official website of MrKronick (Alexander Mochalov). Who is MrKronick? Creator of FoggyLand server, CustomTPA plugin. Socials, projects, uws.">
+  <title>MrKronick — Official Website | Alexander Mochalov (Who is MrKronick)</title>
+  <meta name="description" content="Official website of MrKronick (Alexander Mochalov). Who is MrKronick? Creator of FoggyLand server, CustomTPA plugin. Socials, projects and more.">
   <meta name="keywords" content="MrKronick, Alexander Mochalov, FoggyLand, CustomTPA, who is MrKronick, MrKronick site, MrKronick official website, MrKronick Roblox">
-  <script
-    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-    async
-    defer>
-  </script>
+  <meta name="theme-color" content="#0a0a0f">
+  <link rel="canonical" href="https://mrkronick.ru/en.html">
+  <link rel="alternate" hreflang="ru" href="https://mrkronick.ru/ru.html">
+  <link rel="alternate" hreflang="en" href="https://mrkronick.ru/en.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MrKronick — Official Website">
+  <meta property="og:description" content="Creator of FoggyLand and CustomTPA. All socials and projects in one place.">
+  <meta property="og:url" content="https://mrkronick.ru/en.html">
+  <meta property="og:image" content="https://mrkronick.ru/images/avatar.webp">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
@@ -24,20 +28,40 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       background: #0a0a0f;
       color: #e8e9f0;
       line-height: 1.5;
       overflow-x: hidden;
+      position: relative;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
     @media (hover: hover) and (pointer: fine) {
       body { cursor: url("images/cursor-sword.png") 16 2, auto; }
-      a, button, .btn, .social-icon, .social-card, .badge, .project-card, .tab-button, .logo, input, select, textarea, [role="button"] {
+      a, button, .btn, .social-icon, .social-card, .badge, .project-card, .tab-button, .logo, input, select, textarea, [role="button"], .back-to-top {
         cursor: url("images/cursor-pickaxe.png") 14 4, pointer;
       }
       #loader { cursor: url("images/cursor-sword.png") 16 2, auto; }
+    }
+
+    .scroll-progress {
+      position: fixed; top: 0; left: 0;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, #6c63ff, #b388ff, #3f8cff);
+      z-index: 10000;
+      transition: width 0.1s ease-out;
+      box-shadow: 0 0 12px #6c63ffcc;
     }
 
     #loader {
@@ -90,6 +114,25 @@
     .site-content.visible { opacity:1; }
     .container { max-width:1300px; margin:0 auto; padding:0 2rem; position:relative; z-index:2; }
 
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(108,99,255,0.85);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff; font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(108,99,255,0.5);
+      opacity: 0; pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 9998;
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: auto; }
+    .back-to-top:hover {
+      background: #6c63ff; transform: translateY(-6px) scale(1.08);
+      box-shadow: 0 15px 40px #6c63ffcc;
+    }
+
     .tab-nav {
       display: flex; justify-content: center; gap: 1rem;
       margin: 2rem 0 2.5rem; flex-wrap: wrap;
@@ -99,6 +142,7 @@
       padding: 0.8rem 2.5rem; border-radius: 3rem; color: #fff;
       font-weight: 600; font-size: 1.1rem; backdrop-filter: blur(12px);
       transition: all 0.3s ease; letter-spacing: 0.5px;
+      display: inline-flex; align-items: center; gap: 0.7rem;
     }
     .tab-button.active {
       background: #6c63ff; border-color: #6c63ff;
@@ -110,7 +154,8 @@
     }
 
     .tab-content { display: none; }
-    .tab-content.active { display: block; }
+    .tab-content.active { display: block; animation: tabFadeIn 0.5s ease; }
+    @keyframes tabFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     .scroll-reveal {
       opacity:0;
@@ -134,14 +179,21 @@
         transition: opacity 0.7s ease, transform 0.7s ease;
         will-change: auto;
       }
-      .scroll-reveal.revealed {
-        opacity:1;
-        transform: translateY(0);
-      }
+      .scroll-reveal.revealed { opacity:1; transform: translateY(0); }
       .reveal-blur, .reveal-scale, .reveal-rotate, .reveal-combo {
         transform: translateY(30px);
         filter: none;
       }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .scroll-reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
     }
 
     .glass-panel {
@@ -196,6 +248,13 @@
       background: radial-gradient(circle at 30% 30%, #b388ff, #3f2b96);
       padding:6px; box-shadow:0 0 100px #6c63ff99;
       animation: float 6s ease-in-out infinite, pulseGlow 3s infinite;
+      position: relative;
+    }
+    .avatar-frame::before {
+      content:''; position: absolute; inset: -20px;
+      border-radius: 50%; z-index: -1;
+      background: radial-gradient(circle, #6c63ff33 0%, transparent 70%);
+      filter: blur(20px);
     }
     @keyframes pulseGlow { 0%,100%{ box-shadow:0 0 70px #6c63ff66; } 50%{ box-shadow:0 0 140px #b388ffdd; } }
     .avatar-frame img { width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; }
@@ -300,6 +359,17 @@
       text-align:center; padding:3rem 0; border-top:1px solid rgba(255,255,255,0.05);
       color:#b0b5cc; font-size:1rem;
     }
+    .lang-switch {
+      display: inline-flex; gap: 0.6rem; margin-bottom: 1rem;
+      align-items: center; justify-content: center;
+    }
+    .lang-switch a {
+      padding: 0.4rem 1rem; border-radius: 2rem; text-decoration: none;
+      color: #cfc8ff; border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.3s ease; font-size: 0.9rem;
+    }
+    .lang-switch a.active { background: #6c63ff; border-color: #6c63ff; color: #fff; }
+    .lang-switch a:hover:not(.active) { background: rgba(108,99,255,0.25); border-color: #6c63ff; }
 
     @media (max-width: 1024px) {
       #loader { display: none; }
@@ -318,10 +388,13 @@
       .social-card { padding:1rem 1.8rem; }
       .tab-button { padding:0.6rem 1.8rem; font-size:1rem; }
       .btn { padding:0.7rem 1.8rem; font-size:0.9rem; }
+      .back-to-top { width: 46px; height: 46px; bottom: 1.2rem; right: 1.2rem; }
     }
   </style>
 </head>
 <body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <div id="loader">
     <div class="loader-ring-container">
       <div class="loader-ring" id="loaderRing"></div>
@@ -347,8 +420,8 @@
       </header>
 
       <div class="tab-nav">
-        <button class="tab-button active" data-tab="main">Home</button>
-        <button class="tab-button" data-tab="social">Socials</button>
+        <button class="tab-button active" data-tab="main"><i class="fas fa-home"></i> Home</button>
+        <button class="tab-button" data-tab="social"><i class="fas fa-share-alt"></i> Socials</button>
       </div>
 
       <div id="tab-main" class="tab-content active">
@@ -435,7 +508,7 @@
             </a>
             <a href="https://t.me/bazakronika" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-320">
               <i class="fab fa-telegram" style="color:#26A5E4;"></i>
-              <div><strong>Telegram Канал</strong><br><small>@bazakronika</small></div>
+              <div><strong>Telegram Channel</strong><br><small>@bazakronika</small></div>
             </a>
             <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-350">
               <i class="fas fa-cube" style="color:#1bd96a;"></i>
@@ -458,17 +531,38 @@
       </div>
 
       <footer class="scroll-reveal reveal-fade-up">
+        <div class="lang-switch">
+          <a href="ru.html">🇷🇺 Русский</a>
+          <a href="en.html" class="active">🇬🇧 English</a>
+        </div>
         <p>© 2026 MrKronick — Alexander Mochalov. Official MrKronick website. FoggyLand & CustomTPA.</p>
         <p style="margin-top: 0.8rem; opacity: 0.6; font-size: 0.95rem;">Information site</p>
       </footer>
     </div>
   </main>
 
+  <button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
   <script>
     (function() {
-      const isMobile = window.innerWidth < 1025;
+      const isMobile = window.matchMedia('(max-width: 1024px)').matches;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      if (isMobile) {
+      const progressBar = document.getElementById('scrollProgress');
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement;
+        const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        progressBar.style.width = scrolled + '%';
+      }, { passive: true });
+
+      const backBtn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) backBtn.classList.add('visible');
+        else backBtn.classList.remove('visible');
+      }, { passive: true });
+      backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      if (isMobile || prefersReduced) {
         document.getElementById('siteContent').classList.add('visible');
         const loader = document.getElementById('loader');
         if (loader) loader.remove();
@@ -479,12 +573,10 @@
         }
         const canvas = document.getElementById('bgCanvas');
         if (canvas) canvas.style.display = 'none';
-        setTimeout(handleScrollReveal, 100);
       } else {
         const loader = document.getElementById('loader');
         const loaderRing = document.getElementById('loaderRing');
         const loaderMessage = document.getElementById('loaderMessage');
-        const loaderParticles = document.getElementById('loaderParticles');
         const siteContent = document.getElementById('siteContent');
         const loaderParticleEls = document.querySelectorAll('.loader-particle');
         const nameContainer = document.getElementById('nameContainer');
@@ -526,7 +618,6 @@
                 nameContainer.appendChild(span);
                 setTimeout(() => span.classList.add('show'), i * 70);
               });
-              setTimeout(handleScrollReveal, 300);
             }, 1000);
           }, 3000);
         });
@@ -591,19 +682,20 @@
         }
       }
 
-      function handleScrollReveal() {
-        const reveals = document.querySelectorAll('.scroll-reveal');
-        reveals.forEach(el => {
-          const windowHeight = window.innerHeight;
-          const elementTop = el.getBoundingClientRect().top;
-          if (elementTop < windowHeight - 120) el.classList.add('revealed');
-        });
-      }
+      if (!prefersReduced) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-      window.addEventListener('scroll', handleScrollReveal);
-      window.addEventListener('resize', handleScrollReveal);
-      if (!isMobile) setTimeout(handleScrollReveal, 1500);
-      else handleScrollReveal();
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+      } else {
+        document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('revealed'));
+      }
 
       const tabButtons = document.querySelectorAll('.tab-button');
       const tabs = document.querySelectorAll('.tab-content');
@@ -614,13 +706,9 @@
           btn.classList.add('active');
           tabs.forEach(tab => tab.classList.remove('active'));
           const activeTab = document.getElementById('tab-' + tabId);
-          if (activeTab) {
-            activeTab.classList.add('active');
-            setTimeout(handleScrollReveal, 50);
-          }
+          if (activeTab) activeTab.classList.add('active');
         });
       });
-
     })();
   </script>
 </body>
