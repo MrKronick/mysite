@@ -2,50 +2,68 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="theme-color" content="#0a0a0f">
-  <meta name="color-scheme" content="dark">
-  <meta name="robots" content="index,follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>MrKronick | Официальный сайт</title>
-  <script
-    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-    async
-    defer>
-  </script>
+  <title>MrKronick — Официальный сайт | Александр Мочалов (Мистер Кроник, МрКроник)</title>
+  <meta name="description" content="Официальный сайт MrKronick (Александр Мочалов). Кто такой MrKronick? Создатель сервера FoggyLand, плагина CustomTPA. Соцсети, проекты и другое.">
+  <meta name="keywords" content="MrKronick, Мистер Кроник, МрКроник, Александр Мочалов, FoggyLand, CustomTPA, MrKronick кто это, MrKronick сайт, MrKronick официальный сайт, кто такой MrKronick">
+  <meta name="theme-color" content="#0a0a0f">
+  <link rel="canonical" href="https://mrkronick.ru/ru.html">
+  <link rel="alternate" hreflang="ru" href="https://mrkronick.ru/ru.html">
+  <link rel="alternate" hreflang="en" href="https://mrkronick.ru/en.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MrKronick — Официальный сайт">
+  <meta property="og:description" content="Создатель FoggyLand и CustomTPA. Все соцсети и проекты в одном месте.">
+  <meta property="og:url" content="https://mrkronick.ru/ru.html">
+  <meta property="og:image" content="https://mrkronick.ru/images/avatar.webp">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="description" content="Официальный сайт MrKronick (Александр Мочалов). Кто такой MrKronick? Создатель сервера FoggyLand, плагина CustomTPA. Соцсети, проекты, и тд.">
-  <meta name="keywords" content="MrKronick, Мистер Кроник, МрКроник, Александр Мочалов, FoggyLand, CustomTPA, MrKronick кто это, MrKronick сайт, MrKronick официальный сайт, кто такой MrKronick">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/avatar.webp">
-<style>
-  <div
-    class="cf-turnstile"
-    data-sitekey="0x4AAAAAAEaVxo5sk5HWjR5w"
-    data-action="online">
-  </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
     * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       background: #0a0a0f;
       color: #e8e9f0;
       line-height: 1.5;
       overflow-x: hidden;
+      position: relative;
+    }
+    /* Шумовая текстура поверх фона */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* Кастомные курсоры только для десктопа */
     @media (hover: hover) and (pointer: fine) {
       body { cursor: url("images/cursor-sword.png") 16 2, auto; }
-      a, button, .btn, .social-icon, .social-card, .badge, .project-card, .tab-button, .logo, input, select, textarea, [role="button"] {
+      a, button, .btn, .social-icon, .social-card, .badge, .project-card, .tab-button, .logo, input, select, textarea, [role="button"], .back-to-top {
         cursor: url("images/cursor-pickaxe.png") 14 4, pointer;
       }
       #loader { cursor: url("images/cursor-sword.png") 16 2, auto; }
+    }
+
+    /* Scroll progress */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, #6c63ff, #b388ff, #3f8cff);
+      z-index: 10000;
+      transition: width 0.1s ease-out;
+      box-shadow: 0 0 12px #6c63ffcc;
     }
 
     #loader {
@@ -98,6 +116,26 @@
     .site-content.visible { opacity:1; }
     .container { max-width:1300px; margin:0 auto; padding:0 2rem; position:relative; z-index:2; }
 
+    /* Кнопка наверх */
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(108,99,255,0.85);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff; font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(108,99,255,0.5);
+      opacity: 0; pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 9998;
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: auto; }
+    .back-to-top:hover {
+      background: #6c63ff; transform: translateY(-6px) scale(1.08);
+      box-shadow: 0 15px 40px #6c63ffcc;
+    }
+
     .tab-nav {
       display: flex; justify-content: center; gap: 1rem;
       margin: 2rem 0 2.5rem; flex-wrap: wrap;
@@ -107,6 +145,7 @@
       padding: 0.8rem 2.5rem; border-radius: 3rem; color: #fff;
       font-weight: 600; font-size: 1.1rem; backdrop-filter: blur(12px);
       transition: all 0.3s ease; letter-spacing: 0.5px;
+      display: inline-flex; align-items: center; gap: 0.7rem;
     }
     .tab-button.active {
       background: #6c63ff; border-color: #6c63ff;
@@ -118,9 +157,9 @@
     }
 
     .tab-content { display: none; }
-    .tab-content.active { display: block; }
+    .tab-content.active { display: block; animation: tabFadeIn 0.5s ease; }
+    @keyframes tabFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Анимации при скролле – работают на всех устройствах, но на мобильных облегчённые */
     .scroll-reveal {
       opacity:0;
       transition: opacity 0.9s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.9s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.9s ease;
@@ -136,7 +175,6 @@
     .reveal-blur { filter: blur(20px); transform: scale(1.05); }
     .reveal-combo { transform: translateY(60px) scale(0.8) rotate(-5deg); filter: blur(8px); }
 
-    /* Для мобильных – лёгкие анимации без тяжёлых эффектов */
     @media (max-width: 1024px) {
       .scroll-reveal {
         opacity:0;
@@ -144,15 +182,22 @@
         transition: opacity 0.7s ease, transform 0.7s ease;
         will-change: auto;
       }
-      .scroll-reveal.revealed {
-        opacity:1;
-        transform: translateY(0);
-      }
-      /* Убираем blur и scale на мобильных */
+      .scroll-reveal.revealed { opacity:1; transform: translateY(0); }
       .reveal-blur, .reveal-scale, .reveal-rotate, .reveal-combo {
         transform: translateY(30px);
         filter: none;
       }
+    }
+
+    /* Уважение к настройке "уменьшить движение" */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .scroll-reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
     }
 
     .glass-panel {
@@ -207,6 +252,13 @@
       background: radial-gradient(circle at 30% 30%, #b388ff, #3f2b96);
       padding:6px; box-shadow:0 0 100px #6c63ff99;
       animation: float 6s ease-in-out infinite, pulseGlow 3s infinite;
+      position: relative;
+    }
+    .avatar-frame::before {
+      content:''; position: absolute; inset: -20px;
+      border-radius: 50%; z-index: -1;
+      background: radial-gradient(circle, #6c63ff33 0%, transparent 70%);
+      filter: blur(20px);
     }
     @keyframes pulseGlow { 0%,100%{ box-shadow:0 0 70px #6c63ff66; } 50%{ box-shadow:0 0 140px #b388ffdd; } }
     .avatar-frame img { width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; }
@@ -311,8 +363,18 @@
       text-align:center; padding:3rem 0; border-top:1px solid rgba(255,255,255,0.05);
       color:#b0b5cc; font-size:1rem;
     }
+    .lang-switch {
+      display: inline-flex; gap: 0.6rem; margin-bottom: 1rem;
+      align-items: center; justify-content: center;
+    }
+    .lang-switch a {
+      padding: 0.4rem 1rem; border-radius: 2rem; text-decoration: none;
+      color: #cfc8ff; border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.3s ease; font-size: 0.9rem;
+    }
+    .lang-switch a.active { background: #6c63ff; border-color: #6c63ff; color: #fff; }
+    .lang-switch a:hover:not(.active) { background: rgba(108,99,255,0.25); border-color: #6c63ff; }
 
-    /* Остальные мобильные стили */
     @media (max-width: 1024px) {
       #loader { display: none; }
       .site-content { opacity: 1; }
@@ -330,93 +392,13 @@
       .social-card { padding:1rem 1.8rem; }
       .tab-button { padding:0.6rem 1.8rem; font-size:1rem; }
       .btn { padding:0.7rem 1.8rem; font-size:0.9rem; }
+      .back-to-top { width: 46px; height: 46px; bottom: 1.2rem; right: 1.2rem; }
     }
-
-    /* ===== UPGRADE LAYER ===== */
-    :root {
-      --accent:#8b7cff;
-      --accent-2:#b388ff;
-      --line-soft:rgba(255,255,255,.10);
-    }
-    body {
-      background:
-        radial-gradient(circle at 8% 8%,rgba(139,124,255,.10),transparent 24%),
-        radial-gradient(circle at 92% 30%,rgba(63,140,255,.08),transparent 22%),
-        #0a0a0f;
-    }
-    body::before {
-      content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.035;
-      background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),
-                       linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);
-      background-size:42px 42px;
-      mask-image:linear-gradient(to bottom,black,transparent 80%);
-    }
-    .skip-link {
-      position:fixed; left:16px; top:-60px; z-index:10001;
-      padding:10px 14px; border-radius:12px; background:#fff; color:#09090f;
-      font-weight:800; transition:top .2s ease;
-    }
-    .skip-link:focus { top:16px; }
-    .site-header {
-      position:sticky; top:12px; z-index:100; padding:12px 16px; margin:12px 0 4px;
-      border:1px solid var(--line-soft); border-radius:22px;
-      background:rgba(10,10,15,.62); backdrop-filter:blur(20px) saturate(140%);
-      box-shadow:0 18px 50px rgba(0,0,0,.28);
-    }
-    .site-header .logo { text-decoration:none; }
-    .quick-bar {
-      width:max-content; max-width:100%; margin:-1rem auto 2.5rem; padding:9px 13px;
-      display:flex; align-items:center; gap:9px; border:1px solid var(--line-soft);
-      border-radius:999px; background:rgba(255,255,255,.045); backdrop-filter:blur(16px);
-      color:#bfc3d8; font-size:.76rem; letter-spacing:.08em; font-weight:800;
-    }
-    .status-dot { width:7px; height:7px; border-radius:50%; background:#34d399;
-      box-shadow:0 0 12px #34d399; animation:statusPulse 1.8s ease-in-out infinite; }
-    @keyframes statusPulse { 50%{opacity:.45;transform:scale(.75)} }
-    .highlights { margin:3rem 0; padding:2.5rem; position:relative; overflow:hidden; }
-    .highlights::after {
-      content:""; position:absolute; width:260px;height:260px;right:-90px;top:-90px;border-radius:50%;
-      background:radial-gradient(circle,rgba(139,124,255,.24),transparent 68%);pointer-events:none;
-    }
-    .highlight-head { display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-bottom:2rem; }
-    .highlight-head h2 { margin-top:.35rem; }
-    .highlight-head>p { max-width:430px;color:#aeb3c9;line-height:1.7; }
-    .highlight-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1rem; }
-    .highlight-grid article {
-      min-height:150px;padding:1.35rem;border:1px solid rgba(255,255,255,.07);
-      border-radius:20px;background:rgba(255,255,255,.035);
-      transition:transform .3s ease,border-color .3s ease,background .3s ease;
-    }
-    .highlight-grid article:hover {
-      transform:translateY(-6px);border-color:rgba(139,124,255,.42);background:rgba(139,124,255,.08);
-    }
-    .highlight-grid span { display:block;color:#9e91ff;font:700 .72rem/1 'Space Grotesk',sans-serif;
-      letter-spacing:.14em;margin-bottom:1rem; }
-    .highlight-grid strong { font-size:1.15rem; }
-    .highlight-grid p { color:#9ca1b8;font-size:.9rem;line-height:1.55;margin-top:.5rem; }
-    :focus-visible { outline:2px solid #b388ff; outline-offset:4px; }
-    body.high-contrast { filter:saturate(1.08) contrast(1.04); }
-    body.high-contrast .glass-panel,body.high-contrast .project-card,body.high-contrast .social-card {
-      border-color:rgba(179,136,255,.22);
-    }
-    @media(max-width:1024px){
-      .site-header{position:relative;top:0}.quick-bar{margin-top:1rem}
-      .highlight-head{display:block}.highlight-head>p{margin-top:1rem}.highlight-grid{grid-template-columns:1fr}
-    }
-    @media(max-width:600px){
-      .site-header{padding:10px 12px}.quick-bar{width:100%;justify-content:center;flex-wrap:wrap}
-      .highlights{padding:1.5rem}
-    }
-    @media(prefers-reduced-motion:reduce){
-      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
-      scroll-behavior:auto!important;transition-duration:.01ms!important}
-    }
-
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <script src="online-config.js"></script>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <div id="loader">
     <div class="loader-ring-container">
       <div class="loader-ring" id="loaderRing"></div>
@@ -430,9 +412,8 @@
   <main class="site-content" id="siteContent">
     <canvas id="bgCanvas"></canvas>
     <div class="container">
-      <a class="skip-link" href="#main-content">Перейти к содержимому</a>
-<header class="scroll-reveal reveal-fade-down site-header">
-        <a class="logo" href="#" aria-label="MrKronick">MrKronick</a>
+      <header class="scroll-reveal reveal-fade-down">
+        <div class="logo">MrKronick</div>
         <div class="social-links">
           <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-icon scroll-reveal reveal-scale delay-100" title="YouTube"><i class="fab fa-youtube"></i></a>
           <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-icon scroll-reveal reveal-scale delay-150" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube" width="24" height="24"></a>
@@ -443,12 +424,8 @@
       </header>
 
       <div class="tab-nav">
-        <button class="tab-button active" data-tab="main">Главная</button>
-        <button class="tab-button" data-tab="social">Соц сети</button>
-      </div>
-
-      <div class="quick-bar scroll-reveal reveal-fade-up" aria-label="Online status">
-        <span class="status-dot" aria-hidden="true"></span><span id="onlineCount">ONLINE</span>
+        <button class="tab-button active" data-tab="main"><i class="fas fa-home"></i> Главная</button>
+        <button class="tab-button" data-tab="social"><i class="fas fa-share-alt"></i> Соц сети</button>
       </div>
 
       <div id="tab-main" class="tab-content active">
@@ -514,7 +491,7 @@
               <div><strong>Rutube</strong><br><small>Канал</small></div>
             </a>
             <a href="https://dalink.to/mrkronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-140">
-              <img src="images/dalink.png" alt="Rutube" width="42" height="42">
+              <img src="images/dalink.png" alt="DALink" width="42" height="42">
               <div><strong>DALink</strong><br><small>Поддержка</small></div>
             </a>
             <a href="https://vk.com/alexanderkronik" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-200">
@@ -535,7 +512,7 @@
             </a>
             <a href="https://t.me/bazakronika" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-320">
               <i class="fab fa-telegram" style="color:#26A5E4;"></i>
-              <div><strong>Telegram Канал</strong><br><small>@bazakronika</small></div>
+              <div><strong>Telegram</strong><br><small>@bazakronika</small></div>
             </a>
             <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-350">
               <i class="fas fa-cube" style="color:#1bd96a;"></i>
@@ -556,20 +533,43 @@
           </div>
         </div>
       </div>
-      
+
       <footer class="scroll-reveal reveal-fade-up">
+        <div class="lang-switch">
+          <a href="ru.html" class="active">🇷🇺 Русский</a>
+          <a href="en.html">🇬🇧 English</a>
+        </div>
         <p>© 2026 MrKronick — Александр Мочалов. Официальный сайт MrKronick. FoggyLand & CustomTPA.</p>
         <p style="margin-top: 0.8rem; opacity: 0.6; font-size: 0.95rem;">Информационный сайт</p>
       </footer>
     </div>
   </main>
 
+  <button class="back-to-top" id="backToTop" title="Наверх" aria-label="Вернуться наверх"><i class="fas fa-arrow-up"></i></button>
+
   <script>
     (function() {
-      const isMobile = window.innerWidth < 1025;
+      const isMobile = window.matchMedia('(max-width: 1024px)').matches;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // Загрузчик работает только на ПК
-      if (isMobile) {
+      // ========= Scroll progress =========
+      const progressBar = document.getElementById('scrollProgress');
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement;
+        const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        progressBar.style.width = scrolled + '%';
+      }, { passive: true });
+
+      // ========= Back to top =========
+      const backBtn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) backBtn.classList.add('visible');
+        else backBtn.classList.remove('visible');
+      }, { passive: true });
+      backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      // ========= Загрузчик только на ПК =========
+      if (isMobile || prefersReduced) {
         document.getElementById('siteContent').classList.add('visible');
         const loader = document.getElementById('loader');
         if (loader) loader.remove();
@@ -580,14 +580,10 @@
         }
         const canvas = document.getElementById('bgCanvas');
         if (canvas) canvas.style.display = 'none';
-        // На мобильных анимации скролла работают сразу
-        setTimeout(handleScrollReveal, 100);
       } else {
-        // ПК: загрузчик и анимации
         const loader = document.getElementById('loader');
         const loaderRing = document.getElementById('loaderRing');
         const loaderMessage = document.getElementById('loaderMessage');
-        const loaderParticles = document.getElementById('loaderParticles');
         const siteContent = document.getElementById('siteContent');
         const loaderParticleEls = document.querySelectorAll('.loader-particle');
         const nameContainer = document.getElementById('nameContainer');
@@ -629,7 +625,6 @@
                 nameContainer.appendChild(span);
                 setTimeout(() => span.classList.add('show'), i * 70);
               });
-              setTimeout(handleScrollReveal, 300);
             }, 1000);
           }, 3000);
         });
@@ -695,21 +690,23 @@
         }
       }
 
-      // Общий обработчик скролл-анимаций
-      function handleScrollReveal() {
-        const reveals = document.querySelectorAll('.scroll-reveal');
-        reveals.forEach(el => {
-          const windowHeight = window.innerHeight;
-          const elementTop = el.getBoundingClientRect().top;
-          if (elementTop < windowHeight - 120) el.classList.add('revealed');
-        });
+      // ========= IntersectionObserver для scroll-reveal =========
+      if (!prefersReduced) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+      } else {
+        document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('revealed'));
       }
 
-      window.addEventListener('scroll', handleScrollReveal);
-      window.addEventListener('resize', handleScrollReveal);
-      if (!isMobile) setTimeout(handleScrollReveal, 1500);
-      else handleScrollReveal(); // На мобильных сразу
-
+      // ========= Переключение вкладок =========
       const tabButtons = document.querySelectorAll('.tab-button');
       const tabs = document.querySelectorAll('.tab-content');
       tabButtons.forEach(btn => {
@@ -719,79 +716,10 @@
           btn.classList.add('active');
           tabs.forEach(tab => tab.classList.remove('active'));
           const activeTab = document.getElementById('tab-' + tabId);
-          if (activeTab) {
-            activeTab.classList.add('active');
-            setTimeout(handleScrollReveal, 50);
-          }
+          if (activeTab) activeTab.classList.add('active');
         });
       });
-
     })();
   </script>
-
-<script>
-  (() => {
-    const label = document.getElementById("onlineCount");
-    const url = window.MRKRONICK_ONLINE_URL;
-
-    if (!label || !url) return;
-
-    let ws = null;
-    let retry = 0;
-
-    function connect() {
-      try {
-        ws = new WebSocket(url);
-      } catch {
-        return setTimeout(
-          connect,
-          Math.min(30000, 1000 * 2 ** retry++)
-        );
-      }
-
-      ws.onopen = () => {
-        retry = 0;
-      };
-
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-
-          if (
-            data.type === "online" &&
-            Number.isFinite(data.count)
-          ) {
-            label.textContent = `${data.count} ONLINE`;
-          }
-        } catch {}
-      };
-
-      ws.onclose = () => {
-        label.textContent = "ONLINE";
-
-        setTimeout(
-          connect,
-          Math.min(30000, 1000 * 2 ** retry++)
-        );
-      };
-
-      ws.onerror = () => {
-        try {
-          ws.close();
-        } catch {}
-      };
-    }
-
-    connect();
-
-    // Проверяем состояние WebSocket каждые 10 мс.
-    setInterval(() => {
-      if (!ws || ws.readyState === WebSocket.CLOSED) {
-        connect();
-      }
-    }, 1000);
-  })();
-</script>
-
 </body>
 </html>
