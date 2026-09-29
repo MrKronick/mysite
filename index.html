@@ -11,14 +11,14 @@
   <meta property="og:title" content="MrKronick — Official Website">
   <meta property="og:description" content="Creator of FoggyLand and CustomTPA. All socials and projects in one place.">
   <meta property="og:url" content="https://mrkronick.ru/">
-  <meta property="og:image" content="https://mrkronick.ru/images/avatar.webp">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta property="og:image" content="https://mrkronick.ru/avatar.webp">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="images/avatar.webp">
+  <link rel="preload" as="image" href="avatar.webp">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -40,11 +40,11 @@
     }
 
     @media (hover: hover) and (pointer: fine) {
-      body { cursor: url("images/cursor-sword.png") 16 2, auto; }
-      a, button, .btn, .social-icon, .social-card, .badge, .project-card, .tab-button, .logo, input, select, textarea, [role="button"], .back-to-top, .lang-btn {
-        cursor: url("images/cursor-pickaxe.png") 14 4, pointer;
+      body { cursor: url("cursor-sword.png") 16 2, auto; }
+      a, button, .btn, .social-icon, .social-card, .badge, .project-card, .tab-button, .logo, input, select, textarea, [role="button"], .back-to-top, .lang-btn, .popup-btn {
+        cursor: url("cursor-pickaxe.png") 14 4, pointer;
       }
-      #loader { cursor: url("images/cursor-sword.png") 16 2, auto; }
+      #loader { cursor: url("cursor-sword.png") 16 2, auto; }
     }
 
     .scroll-progress {
@@ -56,11 +56,102 @@
       box-shadow: 0 0 12px #6c63ffcc;
     }
 
-    /* ============ ЛИПКАЯ ПЛАШКА ПРИ СКРОЛЛЕ ============ */
-    .sticky-header {
+    /* ============ OFFLINE BANNER ============ */
+    .offline-banner {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%;
+      top: 0; left: 0; right: 0;
+      z-index: 10050;
+      background: linear-gradient(90deg, #c62828, #8e0000);
+      color: #fff;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      transform: translateY(-120%);
+      transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 6px 25px rgba(198, 40, 40, 0.6);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+    .offline-banner.visible { transform: translateY(0); }
+    .offline-banner .offline-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .offline-banner .offline-text { max-width: 900px; }
+    .offline-banner .offline-close {
+      background: rgba(255,255,255,0.2);
+      border: none; color: #fff;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+    .offline-banner .offline-close:hover { background: rgba(255,255,255,0.35); }
+
+    /* ============ REDIRECT POPUP ============ */
+    .redirect-popup {
+      position: fixed; inset: 0;
+      z-index: 10060;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .redirect-popup.visible { opacity: 1; visibility: visible; }
+    .redirect-popup-inner {
+      background: linear-gradient(145deg, #1a1a2e, #16162a);
+      border: 1px solid rgba(108,99,255,0.4);
+      border-radius: 2rem;
+      padding: 2.5rem 2rem;
+      max-width: 520px; width: 100%;
+      box-shadow: 0 30px 80px rgba(108,99,255,0.4);
+      text-align: center;
+      transform: scale(0.85);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .redirect-popup.visible .redirect-popup-inner { transform: scale(1); }
+    .redirect-popup-inner .flag-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .redirect-popup-inner h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem; margin-bottom: 1rem; color: #fff;
+    }
+    .redirect-popup-inner p {
+      color: #cfc8ff; margin-bottom: 1.6rem;
+      font-size: 1rem; line-height: 1.55;
+    }
+    .redirect-popup-inner .popup-buttons {
+      display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center;
+    }
+    .redirect-popup-inner .popup-btn {
+      padding: 0.85rem 1.9rem;
+      border-radius: 3rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: #fff; font-weight: 600; font-size: 0.95rem;
+      transition: all 0.3s ease;
+      font-family: inherit; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .redirect-popup-inner .popup-btn.primary {
+      background: #6c63ff; border-color: #6c63ff;
+      box-shadow: 0 10px 25px #6c63ffaa;
+    }
+    .redirect-popup-inner .popup-btn.primary:hover {
+      transform: translateY(-3px);
+      background: #5647ff;
+      box-shadow: 0 15px 35px #6c63ffdd;
+    }
+    .redirect-popup-inner .popup-btn.secondary:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+
+    .sticky-header {
+      position: fixed; top: 0; left: 0; width: 100%;
       z-index: 9997;
       background: rgba(15, 16, 25, 0.85);
       backdrop-filter: blur(20px);
@@ -68,75 +159,45 @@
       border-bottom: 1px solid rgba(255,255,255,0.08);
       box-shadow: 0 10px 40px rgba(0,0,0,0.5);
       transform: translateY(-100%);
-      opacity: 0;
-      pointer-events: none;
+      opacity: 0; pointer-events: none;
       transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease;
     }
-    .sticky-header.visible {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .sticky-header.visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
     .sticky-inner {
-      max-width: 1300px;
-      margin: 0 auto;
+      max-width: 1300px; margin: 0 auto;
       padding: 0.7rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
     }
     .sticky-logo {
-      font-family:'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.4rem;
+      font-family:'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.4rem;
       background: linear-gradient(135deg, #fff, #b388ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 0 10px rgba(179,136,255,0.5));
-      text-decoration: none;
-      transition: transform 0.3s ease;
-      white-space: nowrap;
+      text-decoration: none; transition: transform 0.3s ease; white-space: nowrap;
     }
     .sticky-logo:hover { transform: scale(1.05); }
     .sticky-right {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      flex-wrap: wrap;
+      display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
       justify-content: flex-end;
     }
     .sticky-socials { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .sticky-icon {
-      color: #e8e9f0;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #e8e9f0; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
       width: 36px; height: 36px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 50%;
+      background: rgba(255,255,255,0.05); border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.12);
-      transition: all 0.3s ease;
-      text-decoration: none;
+      transition: all 0.3s ease; text-decoration: none;
     }
     .sticky-icon img { width: 16px; height: 16px; object-fit: contain; }
     .sticky-icon:hover {
-      color: #fff;
-      transform: translateY(-3px) scale(1.1);
-      background: rgba(108,99,255,0.35);
-      border-color: #6c63ff;
+      color: #fff; transform: translateY(-3px) scale(1.1);
+      background: rgba(108,99,255,0.35); border-color: #6c63ff;
       box-shadow: 0 0 20px #6c63ffaa;
     }
-
-    .sticky-header .lang-switch {
-      padding: 0.2rem;
-    }
-    .sticky-header .lang-btn {
-      padding: 0.35rem 0.7rem;
-      font-size: 0.78rem;
-    }
+    .sticky-header .lang-switch { padding: 0.2rem; }
+    .sticky-header .lang-btn { padding: 0.35rem 0.7rem; font-size: 0.78rem; }
 
     #loader {
       position: fixed; top:0; left:0; width:100%; height:100%;
@@ -178,8 +239,7 @@
       background: linear-gradient(135deg, #b388ff, #6c63ff);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       letter-spacing:2px; transition: all 0.8s ease;
-      text-align: center;
-      padding: 0 1.5rem;
+      text-align: center; padding: 0 1.5rem;
     }
     .loader-text.fade-out { opacity:0; transform:translateY(-30px); filter:blur(12px); }
 
@@ -489,8 +549,6 @@
       .loader-ring-container { width: 80px; height: 80px; }
       .loader-ring { width: 80px; height: 80px; }
       .loader-text { font-size: 1.4rem; letter-spacing: 1px; padding: 0 1.5rem; }
-
-      /* Плашка на мобильных */
       .sticky-inner { padding: 0.6rem 1rem; gap: 0.5rem; }
       .sticky-logo { font-size: 1.1rem; }
       .sticky-icon { width: 32px; height: 32px; font-size: 0.85rem; }
@@ -498,6 +556,12 @@
       .sticky-socials { gap: 0.35rem; }
       .sticky-header .lang-btn { padding: 0.3rem 0.55rem; font-size: 0.7rem; }
       .sticky-header .lang-btn .flag { font-size: 0.9rem; }
+      .offline-banner { padding: 0.8rem 1rem; font-size: 0.85rem; gap: 0.6rem; }
+      .offline-banner .offline-icon { font-size: 1.3rem; }
+      .offline-banner .offline-close { width: 28px; height: 28px; font-size: 0.8rem; }
+      .redirect-popup-inner { padding: 2rem 1.4rem; }
+      .redirect-popup-inner h3 { font-size: 1.25rem; }
+      .redirect-popup-inner p { font-size: 0.92rem; }
     }
 
     @media (max-width: 600px) {
@@ -517,7 +581,26 @@
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- ============ ЛИПКАЯ ПЛАШКА ============ -->
+  <!-- OFFLINE BANNER -->
+  <div class="offline-banner" id="offlineBanner" role="alert">
+    <i class="fas fa-wifi offline-icon" style="opacity:0.6;"></i>
+    <div class="offline-text" id="offlineText"></div>
+    <button class="offline-close" id="offlineClose" aria-label="Close"><i class="fas fa-times"></i></button>
+  </div>
+
+  <!-- REDIRECT POPUP (для мобильных в РФ) -->
+  <div class="redirect-popup" id="redirectPopup" role="dialog" aria-modal="true">
+    <div class="redirect-popup-inner">
+      <div class="flag-icon">🇷🇺</div>
+      <h3 data-i18n="redir_title">Вы находитесь на территории РФ</h3>
+      <p data-i18n="redir_text">Перейдите на сайт, который предназначен для РФ пользователей, чтобы сайт стабильно работал.</p>
+      <div class="popup-buttons">
+        <a href="https://ru.mrkronick.ru" class="popup-btn primary" data-i18n="redir_go">Перейти на сайт</a>
+        <button class="popup-btn secondary" id="redirStay" data-i18n="redir_stay">Остаться здесь</button>
+      </div>
+    </div>
+  </div>
+
   <div class="sticky-header" id="stickyHeader">
     <div class="sticky-inner">
       <a href="#" class="sticky-logo">MrKronick</a>
@@ -525,7 +608,7 @@
         <div class="sticky-socials">
           <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="sticky-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
           <a href="https://www.twitch.tv/mrkronickorig" target="_blank" class="sticky-icon" title="Twitch"><i class="fab fa-twitch"></i></a>
-          <a href="https://rutube.ru/channel/32579876/" target="_blank" class="sticky-icon" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube"></a>
+          <a href="https://rutube.ru/channel/32579876/" target="_blank" class="sticky-icon" title="Rutube"><img src="rutube-icon.webp" alt="Rutube"></a>
           <a href="https://vk.com/alexanderkronik" target="_blank" class="sticky-icon" title="VK"><i class="fab fa-vk"></i></a>
           <a href="https://t.me/bazakronika" target="_blank" class="sticky-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
         </div>
@@ -557,7 +640,7 @@
           <div class="social-links">
             <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="https://www.twitch.tv/mrkronickorig" target="_blank" class="social-icon" title="Twitch"><i class="fab fa-twitch"></i></a>
-            <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-icon" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube" width="22" height="22"></a>
+            <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-icon" title="Rutube"><img src="rutube-icon.webp" alt="Rutube" width="22" height="22"></a>
             <a href="https://vk.com/alexanderkronik" target="_blank" class="social-icon" title="VK"><i class="fab fa-vk"></i></a>
             <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-icon" title="Modrinth"><i class="fas fa-cube"></i></a>
             <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-icon" title="SpigotMC"><i class="fas fa-plug"></i></a>
@@ -593,7 +676,7 @@ Developer of CustomTPA</div>
           </div>
           <div class="hero-visual scroll-reveal reveal-blur delay-400">
             <div class="avatar-frame">
-              <img src="images/avatar.webp" alt="MrKronick" width="300" height="300">
+              <img src="avatar.webp" alt="MrKronick" width="300" height="300">
             </div>
           </div>
         </section>
@@ -637,11 +720,11 @@ Developer of CustomTPA</div>
               <div><strong>Twitch</strong><br><small>@mrkronickorig</small></div>
             </a>
             <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-120">
-              <img src="images/rutube-icon.webp" alt="Rutube" width="42" height="42">
+              <img src="rutube-icon.webp" alt="Rutube" width="42" height="42">
               <div><strong>Rutube</strong><br><small data-i18n="s_channel">Channel</small></div>
             </a>
             <a href="https://dalink.to/mrkronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-140">
-              <img src="images/dalink.png" alt="DALink" width="42" height="42">
+              <img src="dalink.png" alt="DALink" width="42" height="42">
               <div><strong>DALink</strong><br><small data-i18n="s_support">Support</small></div>
             </a>
             <a href="https://vk.com/alexanderkronik" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-200">
@@ -649,7 +732,7 @@ Developer of CustomTPA</div>
               <div><strong>VK</strong><br><small>alexanderkronik</small></div>
             </a>
             <a href="https://x.com/MrKronick_MC" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-250">
-              <img src="images/x-logo.png" alt="X (Twitter)" width="42" height="42">
+              <img src="x-logo.png" alt="X (Twitter)" width="42" height="42">
               <div><strong>X (Twitter)</strong><br><small>@MrKronick_MC</small></div>
             </a>
             <a href="https://www.instagram.com/mrkronick/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-275">
@@ -673,11 +756,11 @@ Developer of CustomTPA</div>
               <div><strong>SpigotMC</strong><br><small>MrKronick</small></div>
             </a>
             <a href="https://www.roblox.com/users/4792145553/profile" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-450">
-              <img src="images/roblox-icon.png" alt="Roblox" width="42" height="42">
+              <img src="roblox-icon.png" alt="Roblox" width="42" height="42">
               <div><strong>Roblox</strong><br><small data-i18n="s_profile">Profile</small></div>
             </a>
             <a href="https://www.roblox.com/games/101982747695467/Easy-Parkour" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-470">
-              <img src="images/roblox-icon.png" alt="Roblox Place" width="42" height="42">
+              <img src="roblox-icon.png" alt="Roblox Place" width="42" height="42">
               <div><strong>Roblox Place</strong><br><small>Easy Parkour</small></div>
             </a>
           </div>
@@ -726,7 +809,11 @@ Developer of CustomTPA</div>
         loader_4: "загрузка данных",
         loader_connecting: "соединяемся с сервером",
         loader_images: "прогружаем картинки",
-        loader_offline: "нет соединения с интернетом"
+        loader_offline: "нет соединения с интернетом",
+        redir_title: "Вы находитесь на территории РФ",
+        redir_text: "Перейдите на сайт, который предназначен для РФ пользователей, чтобы сайт стабильно работал.",
+        redir_go: "Перейти на сайт",
+        redir_stay: "Остаться здесь"
       },
       en: {
         title: "MrKronick — Official Website | Alexander Mochalov",
@@ -759,7 +846,11 @@ Developer of CustomTPA</div>
         loader_4: "loading data",
         loader_connecting: "connecting to server",
         loader_images: "loading images",
-        loader_offline: "no internet connection"
+        loader_offline: "no internet connection",
+        redir_title: "You are in the Russian Federation",
+        redir_text: "Go to the site intended for Russian users so the site works stably.",
+        redir_go: "Go to site",
+        redir_stay: "Stay here"
       },
       zh: {
         title: "MrKronick — 官方网站 | 亚历山大·莫恰洛夫",
@@ -792,7 +883,11 @@ Developer of CustomTPA</div>
         loader_4: "加载数据",
         loader_connecting: "连接服务器中",
         loader_images: "加载图片中",
-        loader_offline: "无网络连接"
+        loader_offline: "无网络连接",
+        redir_title: "您位于俄罗斯境内",
+        redir_text: "请转到为俄罗斯用户准备的网站，以便网站稳定运行。",
+        redir_go: "转到网站",
+        redir_stay: "留在这里"
       }
     };
 
@@ -830,10 +925,10 @@ Developer of CustomTPA</div>
 
       const nameContainer = document.getElementById('nameContainer');
       if (nameContainer) {
-        const isMobile = window.matchMedia('(max-width: 1024px)').matches;
+        const isMobileV = window.matchMedia('(max-width: 1024px)').matches;
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         nameContainer.innerHTML = '';
-        if (isMobile || prefersReduced || animateName === false) {
+        if (isMobileV || prefersReduced || animateName === false) {
           nameContainer.textContent = t.name;
           nameContainer.className = 'gradient-text';
         } else {
@@ -850,44 +945,118 @@ Developer of CustomTPA</div>
       document.querySelectorAll('.lang-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.lang === lang);
       });
+
+      updateOfflineBanner();
     }
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => applyLang(btn.dataset.lang, true));
     });
 
+    // ========== ОПРЕДЕЛЕНИЕ РФ ==========
+    function isRussianTimezone() {
+      try {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const russianTz = [
+          'Europe/Kaliningrad','Europe/Moscow','Europe/Simferopol','Europe/Volgograd',
+          'Europe/Saratov','Europe/Astrakhan','Europe/Ulyanovsk','Europe/Samara',
+          'Asia/Yekaterinburg','Asia/Omsk','Asia/Novosibirsk','Asia/Barnaul',
+          'Asia/Tomsk','Asia/Novokuznetsk','Asia/Krasnoyarsk','Asia/Irkutsk',
+          'Asia/Chita','Asia/Yakutsk','Asia/Khandyga','Asia/Vladivostok',
+          'Asia/Ust-Nera','Asia/Magadan','Asia/Sakhalin','Asia/Srednekolymsk',
+          'Asia/Kamchatka','Asia/Anadyr'
+        ];
+        return russianTz.includes(tz);
+      } catch(e) { return false; }
+    }
+
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(navigator.userAgent);
+    }
+
+    // ========== OFFLINE BANNER ==========
+    const offlineBanner = document.getElementById('offlineBanner');
+    const offlineText = document.getElementById('offlineText');
+    const offlineClose = document.getElementById('offlineClose');
+    let offlineDismissed = false;
+
+    function updateOfflineBanner() {
+      const inRussia = isRussianTimezone();
+      const t = translations[currentLang] || translations.en;
+
+      let text;
+      if (currentLang === 'ru') {
+        text = inRussia
+          ? 'У вас пропало интернет соединение, сайт будет работать оффлайн, и вы не сможете перейти по ссылкам, подключитесь к сети, чтобы всё заработало. А если какой-то сайт не открывается, воспользуйтесь VPN сервисом (желательно платным), иначе заблокированные сервисы в РФ попросту не откроются.'
+          : 'У вас пропало интернет соединение, сайт будет работать оффлайн, и вы не сможете перейти по ссылкам, подключитесь к сети, чтобы всё заработало.';
+      } else if (currentLang === 'zh') {
+        text = '网络连接已断开，网站将以离线模式工作，您将无法点击链接。请重新连接网络以恢复正常。';
+      } else {
+        text = 'Your internet connection was lost. The site will work offline and you won\'t be able to follow links. Reconnect to the network to make everything work again.';
+      }
+
+      offlineText.textContent = text;
+
+      if (!navigator.onLine && !offlineDismissed) {
+        offlineBanner.classList.add('visible');
+      } else {
+        offlineBanner.classList.remove('visible');
+      }
+    }
+
+    offlineClose.addEventListener('click', () => {
+      offlineDismissed = true;
+      offlineBanner.classList.remove('visible');
+    });
+
+    window.addEventListener('online', () => { offlineDismissed = false; updateOfflineBanner(); });
+    window.addEventListener('offline', updateOfflineBanner);
+    updateOfflineBanner();
+
+    // ========== REDIRECT POPUP (только для мобильных в РФ) ==========
+    const redirectPopup = document.getElementById('redirectPopup');
+    const redirStay = document.getElementById('redirStay');
+
+    function checkRedirect() {
+      if (isMobileDevice() && isRussianTimezone()) {
+        const alreadySeen = sessionStorage.getItem('redirect_seen_main');
+        if (!alreadySeen) {
+          setTimeout(() => {
+            redirectPopup.classList.add('visible');
+            sessionStorage.setItem('redirect_seen_main', '1');
+          }, 1500);
+        }
+      }
+    }
+
+    redirStay.addEventListener('click', () => redirectPopup.classList.remove('visible'));
+    redirectPopup.addEventListener('click', (e) => {
+      if (e.target === redirectPopup) redirectPopup.classList.remove('visible');
+    });
+
+    // ========== SCROLL PROGRESS ==========
     const progressBar = document.getElementById('scrollProgress');
     const stickyHeader = document.getElementById('stickyHeader');
     const backBtn = document.getElementById('backToTop');
 
-    let lastScrollY = 0;
-
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
       const h = document.documentElement;
-
-      // Scroll progress
       const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
       progressBar.style.width = scrolled + '%';
 
-      // Sticky header
-      if (y > 200) {
-        stickyHeader.classList.add('visible');
-      } else {
-        stickyHeader.classList.remove('visible');
-      }
+      if (y > 200) stickyHeader.classList.add('visible');
+      else stickyHeader.classList.remove('visible');
 
-      // Back to top
       if (y > 400) backBtn.classList.add('visible');
       else backBtn.classList.remove('visible');
-
-      lastScrollY = y;
     }, { passive: true });
 
     backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+    // ========== ОСНОВНАЯ ЛОГИКА ==========
     (function() {
-      const isMobile = window.matchMedia('(max-width: 1024px)').matches;
+      const isMobileV = window.matchMedia('(max-width: 1024px)').matches;
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       applyLang(currentLang, false);
@@ -904,14 +1073,8 @@ Developer of CustomTPA</div>
       let done = false;
       let networkOnline = navigator.onLine;
 
-      function checkAllImages() {
-        return images.every(img => img.complete);
-      }
-
-      function updateImageStatus() {
-        if (checkAllImages()) allImagesLoaded = true;
-      }
-
+      function checkAllImages() { return images.every(img => img.complete); }
+      function updateImageStatus() { if (checkAllImages()) allImagesLoaded = true; }
       updateImageStatus();
 
       images.forEach(img => {
@@ -954,18 +1117,16 @@ Developer of CustomTPA</div>
 
         loaderMessage.classList.add('fade-out');
 
-        if (!isMobile && !prefersReduced) {
+        if (!isMobileV && !prefersReduced) {
           loaderParticleEls.forEach((p, i) => setTimeout(() => p.classList.add('fly'), i * 50));
           setTimeout(() => loaderRing.classList.add('expanding'), 300);
         }
 
         setTimeout(() => siteContent.classList.add('visible'), 500);
         setTimeout(() => loader.classList.add('hidden'), 900);
-        setTimeout(() => {
-          if (loader.parentNode) loader.parentNode.removeChild(loader);
-        }, 1800);
+        setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 1800);
 
-        if (!isMobile && !prefersReduced) {
+        if (!isMobileV && !prefersReduced) {
           const nameContainer = document.getElementById('nameContainer');
           const name = getT().name;
           nameContainer.innerHTML = '';
@@ -992,22 +1153,13 @@ Developer of CustomTPA</div>
           setMessage(messages[initialIndex]);
 
           if (tickCount >= 4) {
-            if (allImagesLoaded) {
-              finishLoading();
-            } else {
-              msgPhase = 'waiting';
-              tickCount = 0;
-            }
+            if (allImagesLoaded) finishLoading();
+            else { msgPhase = 'waiting'; tickCount = 0; }
           }
         } else if (msgPhase === 'waiting') {
-          if (allImagesLoaded) {
-            finishLoading();
-            return;
-          }
-
-          if (!networkOnline) {
-            setMessage(getT().loader_offline);
-          } else {
+          if (allImagesLoaded) { finishLoading(); return; }
+          if (!networkOnline) setMessage(getT().loader_offline);
+          else {
             waitingIndex = tickCount % 2;
             if (waitingIndex === 0) setMessage(getT().loader_connecting);
             else setMessage(getT().loader_images);
@@ -1015,7 +1167,7 @@ Developer of CustomTPA</div>
         }
       }, 1000);
 
-      if (!isMobile && !prefersReduced && canvas) {
+      if (!isMobileV && !prefersReduced && canvas) {
         const ctx = canvas.getContext('2d');
         let width, height;
         let bgParticles = [];
@@ -1085,7 +1237,6 @@ Developer of CustomTPA</div>
             }
           });
         }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-
         document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
       } else {
         document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('revealed'));
@@ -1103,6 +1254,9 @@ Developer of CustomTPA</div>
           if (activeTab) activeTab.classList.add('active');
         });
       });
+
+      // Проверка на редирект — после загрузки
+      setTimeout(checkRedirect, 2500);
     })();
   </script>
 </body>
