@@ -616,7 +616,7 @@ Developer of CustomTPA</div>
     const redirStay = document.getElementById('redirStay');
 
     function checkRedirect() {
-      if (isMobileDevice() && isRussianTimezone()) {
+      if (isRussianTimezone()) {
         const alreadySeen = sessionStorage.getItem('redirect_seen_main');
         if (!alreadySeen) {
           setTimeout(() => {
