@@ -26,18 +26,18 @@
     body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background: #0a0a0f; color: #e8e9f0; line-height: 1.5; overflow-x: hidden; position: relative; }
     html[lang="zh"] body { font-family: 'Noto Sans SC', 'Inter', sans-serif; }
     body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.035; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); }
-    @media (hover: hover) and (pointer: fine) {
-      body { cursor: url("images/cursor-sword.png") 16 2, auto; }
-      a, button, .btn, .social-icon, .social-card, .badge, .project-card, .tab-button, .logo, input, select, textarea, [role="button"], .back-to-top, .lang-btn, .popup-btn { cursor: url("images/cursor-pickaxe.png") 14 4, pointer; }
-      #loader { cursor: url("images/cursor-sword.png") 16 2, auto; }
-    }
+
     .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, #6c63ff, #b388ff, #3f8cff); z-index: 10000; transition: width 0.1s ease-out; box-shadow: 0 0 12px #6c63ffcc; }
+    
+    /* OFFLINE BANNER */
     .offline-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 10050; background: linear-gradient(90deg, #c62828, #8e0000); color: #fff; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: center; gap: 1rem; transform: translateY(-120%); transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 6px 25px rgba(198, 40, 40, 0.6); font-size: 0.95rem; line-height: 1.45; }
     .offline-banner.visible { transform: translateY(0); }
     .offline-banner .offline-icon { font-size: 1.6rem; flex-shrink: 0; }
     .offline-banner .offline-text { max-width: 900px; }
     .offline-banner .offline-close { background: rgba(255,255,255,0.2); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; font-size: 0.95rem; flex-shrink: 0; transition: background 0.3s; cursor: pointer; }
     .offline-banner .offline-close:hover { background: rgba(255,255,255,0.35); }
+
+    /* REDIRECT POPUP (RU) */
     .redirect-popup { position: fixed; inset: 0; z-index: 10060; background: rgba(0, 0, 0, 0.78); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
     .redirect-popup.visible { opacity: 1; visibility: visible; }
     .redirect-popup-inner { background: linear-gradient(145deg, #1a1a2e, #16162a); border: 1px solid rgba(108,99,255,0.4); border-radius: 2rem; padding: 2.5rem 2rem; max-width: 520px; width: 100%; box-shadow: 0 30px 80px rgba(108,99,255,0.4); text-align: center; transform: scale(0.85); transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -50,6 +50,8 @@
     .redirect-popup-inner .popup-btn.primary { background: #6c63ff; border-color: #6c63ff; box-shadow: 0 10px 25px #6c63ffaa; }
     .redirect-popup-inner .popup-btn.primary:hover { transform: translateY(-3px); background: #5647ff; box-shadow: 0 15px 35px #6c63ffdd; }
     .redirect-popup-inner .popup-btn.secondary:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+
+    /* STICKY HEADER */
     .sticky-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 9997; background: rgba(15, 16, 25, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.5); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease; }
     .sticky-header.visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
     .sticky-inner { max-width: 1300px; margin: 0 auto; padding: 0.7rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
@@ -62,6 +64,8 @@
     .sticky-icon:hover { color: #fff; transform: translateY(-3px) scale(1.1); background: rgba(108,99,255,0.35); border-color: #6c63ff; box-shadow: 0 0 20px #6c63ffaa; }
     .sticky-header .lang-switch { padding: 0.2rem; }
     .sticky-header .lang-btn { padding: 0.35rem 0.7rem; font-size: 0.78rem; }
+
+    /* LOADER */
     #loader { position: fixed; top:0; left:0; width:100%; height:100%; background: #0a0a0f; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.8s ease, visibility 0.8s ease; }
     #loader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
     .loader-ring-container { position:relative; width:100px; height:100px; margin-bottom:2rem; }
@@ -73,20 +77,25 @@
     .loader-particle.fly { opacity:0; transform:translate(var(--tx), var(--ty)) scale(0); }
     .loader-text { font-family:'Space Grotesk', 'Noto Sans SC', sans-serif; font-size:1.8rem; font-weight:600; background: linear-gradient(135deg, #b388ff, #6c63ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing:2px; transition: all 0.8s ease; text-align: center; padding: 0 1.5rem; }
     .loader-text.fade-out { opacity:0; transform:translateY(-30px); filter:blur(12px); }
+
     #bgCanvas { position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:0; pointer-events:none; opacity:0.6; }
     .site-content { opacity:0; transition: opacity 0.6s ease; }
     .site-content.visible { opacity:1; }
     .container { max-width:1300px; margin:0 auto; padding:0 2rem; position:relative; z-index:2; }
+
     .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 52px; height: 52px; border-radius: 50%; background: rgba(108,99,255,0.85); border: 1px solid rgba(255,255,255,0.25); color: #fff; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(14px); box-shadow: 0 10px 30px rgba(108,99,255,0.5); opacity: 0; pointer-events: none; transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 9998; }
     .back-to-top.visible { opacity: 1; pointer-events: auto; }
     .back-to-top:hover { background: #6c63ff; transform: translateY(-6px) scale(1.08); box-shadow: 0 15px 40px #6c63ffcc; }
+
     .tab-nav { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0 2.5rem; flex-wrap: wrap; }
     .tab-button { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); padding: 0.8rem 2.5rem; border-radius: 3rem; color: #fff; font-weight: 600; font-size: 1.1rem; backdrop-filter: blur(12px); transition: all 0.3s ease; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.7rem; font-family: inherit; }
     .tab-button.active { background: #6c63ff; border-color: #6c63ff; box-shadow: 0 8px 25px #6c63ffaa; }
     .tab-button:hover:not(.active) { background: rgba(108,99,255,0.3); border-color: #6c63ff; transform: translateY(-3px); }
+
     .tab-content { display: none; }
     .tab-content.active { display: block; animation: tabFadeIn 0.5s ease; }
     @keyframes tabFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
     .scroll-reveal { opacity:0; transition: opacity 0.9s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.9s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.9s ease; will-change: transform, opacity, filter; }
     .scroll-reveal.revealed { opacity:1; transform: translate(0,0) scale(1) rotate(0); filter: blur(0); }
     .reveal-fade-up { transform: translateY(80px); }
@@ -97,6 +106,7 @@
     .reveal-rotate { transform: perspective(800px) rotateY(30deg) translateZ(-60px); }
     .reveal-blur { filter: blur(20px); transform: scale(1.05); }
     .reveal-combo { transform: translateY(60px) scale(0.8) rotate(-5deg); filter: blur(8px); }
+    
     @media (max-width: 1024px) {
       .scroll-reveal { opacity:0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; will-change: auto; }
       .scroll-reveal.revealed { opacity:1; transform: translateY(0); }
@@ -106,8 +116,10 @@
       *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
       .scroll-reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
     }
+
     .glass-panel { background: rgba(18,20,28,0.65); backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.08); border-radius:2.5rem; box-shadow:0 20px 45px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.03); }
     .gradient-text { background: linear-gradient(135deg, #b388ff, #6c63ff, #3f8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
     header { display:flex; justify-content:space-between; align-items:center; padding:1.8rem 0; flex-wrap:wrap; gap: 1rem; }
     .logo { font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:2.2rem; background: linear-gradient(135deg, #fff, #b388ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 15px rgba(179,136,255,0.7)); transition: transform 0.3s; }
     .logo:hover { transform: scale(1.05); }
@@ -116,11 +128,13 @@
     .social-icon { color:#e8e9f0; font-size:1.5rem; transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.3); display:flex; align-items:center; justify-content:center; width:46px; height:46px; background:rgba(255,255,255,0.06); border-radius:50%; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.15); }
     .social-icon img { width:22px; height:22px; object-fit:contain; }
     .social-icon:hover { color:#fff; transform:translateY(-6px) scale(1.18); background:rgba(108,99,255,0.35); border-color:#6c63ff; box-shadow:0 0 35px #6c63ffcc; }
+
     .lang-switch { display: flex; gap: 0.4rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 3rem; padding: 0.3rem; backdrop-filter: blur(10px); }
     .lang-btn { background: transparent; border: none; color: #cfc8ff; font-family: inherit; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 3rem; transition: all 0.3s ease; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.4rem; }
     .lang-btn:hover:not(.active) { background: rgba(108,99,255,0.2); color: #fff; }
     .lang-btn.active { background: #6c63ff; color: #fff; box-shadow: 0 4px 15px #6c63ffaa; }
     .lang-btn .flag { font-size: 1.05rem; line-height: 1; }
+
     .hero { display:flex; flex-direction:row; align-items:center; justify-content:space-between; min-height:70vh; padding:2rem 0 2rem; gap:2rem; flex-wrap:wrap; }
     .hero-content { flex:1 1 500px; }
     .hero-visual { flex:1 1 400px; display:flex; justify-content:center; align-items:center; position:relative; }
@@ -129,28 +143,34 @@
     @keyframes pulseGlow { 0%,100%{ box-shadow:0 0 70px #6c63ff66; } 50%{ box-shadow:0 0 140px #b388ffdd; } }
     .avatar-frame img { width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; }
     @keyframes float { 0%{ transform:translateY(0px); } 50%{ transform:translateY(-20px); } 100%{ transform:translateY(0px); } }
+
     h1 { font-size:4.5rem; font-weight:700; line-height:1.2; margin-bottom:1rem; font-family:'Space Grotesk', 'Noto Sans SC', sans-serif; min-height:5.5rem; }
     .name-letter { display:inline-block; opacity:0; transform: translateY(60px) rotateX(-120deg) scale(0.4); transition: opacity 0.7s cubic-bezier(0.34,1.56,0.64,1), transform 0.8s cubic-bezier(0.34,1.56,0.64,1), filter 0.7s ease; filter: blur(14px); }
     .name-letter.show { opacity:1; transform: translateY(0) rotateX(0deg) scale(1); filter: blur(0); }
+
     .subtitle { font-size:1.5rem; color:#e0e3f0; margin-bottom:2.5rem; border-left:5px solid #6c63ff; padding-left:2rem; animation: borderPulse 2s infinite; white-space: pre-line; }
     @keyframes borderPulse { 0%,100%{ border-color:#6c63ff; } 50%{ border-color:#b388ff; } }
     .badge-container { display:flex; flex-wrap:wrap; gap:1rem; margin:2rem 0; }
     .badge { background:rgba(108,99,255,0.2); border:1px solid rgba(108,99,255,0.6); padding:0.7rem 1.8rem; border-radius:3rem; font-weight:500; backdrop-filter:blur(10px); color:#f0edff; transition: all 0.3s ease; }
     .badge:hover { background:rgba(108,99,255,0.35); transform:translateY(-4px); box-shadow:0 8px 20px rgba(108,99,255,0.3); }
+
     .about-section { margin:4rem 0; }
     .quote-block { background:rgba(108,99,255,0.08); border-left:6px solid #b388ff; border-radius:0 2rem 2rem 0; padding:2.2rem 2.8rem; font-size:1.35rem; font-style:italic; backdrop-filter:blur(12px); margin:2.5rem 0; transition: all 0.35s ease; }
     .quote-block:hover { background:rgba(108,99,255,0.15); transform:scale(1.02); border-left-color:#fff; }
-    .projects-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap:2.5rem; margin:3.5rem 0 5rem; }
-    .project-card { background:rgba(20,22,36,0.75); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.07); border-radius:2.5rem; padding:2.5rem 2rem; transition: all 0.45s cubic-bezier(0.25,0.8,0.25,1.3); display:flex; flex-direction:column; gap:1.4rem; position:relative; overflow:hidden; }
+
+    .projects-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap:2.5rem; margin:3.5rem 0 2rem; }
+    .project-card { background:rgba(20,22,36,0.75); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.07); border-radius:2.5rem; padding:2.5rem 2rem; transition: all 0.45s cubic-bezier(0.25,0.8,0.25,1.3); display:flex; flex-direction:column; gap:1.4rem; position:relative; overflow:hidden; transform-style: preserve-3d; }
     .project-card::before { content:''; position:absolute; inset:0; border-radius:2.5rem; padding:1px; background:linear-gradient(135deg, #b388ff, #6c63ff); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:0; transition: opacity 0.4s; }
     .project-card:hover::before { opacity:1; }
-    .project-card:hover { transform:translateY(-16px) scale(1.03); box-shadow:0 40px 65px -15px #6c63ff90, 0 0 0 1px rgba(108,99,255,0.6); background:rgba(25,28,44,0.8); }
-    .project-icon { font-size:3rem; color:#b388ff; transition:0.4s; }
-    .project-card:hover .project-icon { transform:rotate(10deg) scale(1.15); }
-    .btn { display:inline-flex; align-items:center; gap:0.7rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.25); padding:0.9rem 2.2rem; border-radius:3rem; color:white; font-weight:600; text-decoration:none; transition: all 0.35s ease; backdrop-filter:blur(12px); margin-top:0.8rem; align-self:flex-start; position:relative; overflow:hidden; font-family: inherit; }
+    .project-card:hover { box-shadow:0 40px 65px -15px #6c63ff90, 0 0 0 1px rgba(108,99,255,0.6); background:rgba(25,28,44,0.8); }
+    .project-icon { font-size:3rem; color:#b388ff; transition:0.4s; transform: translateZ(30px); }
+    .project-card:hover .project-icon { transform:rotate(10deg) scale(1.15) translateZ(30px); }
+
+    .btn { display:inline-flex; align-items:center; gap:0.7rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.25); padding:0.9rem 2.2rem; border-radius:3rem; color:white; font-weight:600; text-decoration:none; transition: all 0.35s ease; backdrop-filter:blur(12px); margin-top:0.8rem; align-self:flex-start; position:relative; overflow:hidden; font-family: inherit; transform: translateZ(20px); }
     .btn::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.6s; }
     .btn:hover::after { left:100%; }
-    .btn:hover { background:#6c63ff; border-color:#6c63ff; box-shadow:0 12px 35px #6c63ffcc; transform:translateX(6px); }
+    .btn:hover { background:#6c63ff; border-color:#6c63ff; box-shadow:0 12px 35px #6c63ffcc; transform:translateX(6px) translateZ(20px); }
+
     .social-grid { display:flex; flex-wrap:wrap; gap:1.8rem; margin:3rem 0; }
     .social-card { background: rgba(255,255,255,0.05); border-radius:2rem; padding:1.3rem 2.8rem; display:flex; align-items:center; gap:1.4rem; backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,0.1); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); text-decoration:none; color:#f0f0f0; position:relative; overflow:hidden; }
     .social-card::after { content: ''; position: absolute; inset: 0; border-radius: 2rem; padding: 1px; background: linear-gradient(135deg, #b388ff, #6c63ff); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.4s; }
@@ -159,7 +179,9 @@
     .social-card img { width: 2.4rem; height: 2.4rem; transition: transform 0.4s; object-fit: contain; }
     .social-card:hover { background: rgba(108,99,255,0.25); border-color:#6c63ff; transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(108,99,255,0.5), 0 0 0 1px rgba(108,99,255,0.6); color: #fff; }
     .social-card:hover i, .social-card:hover img { transform: scale(1.2) rotate(5deg); }
+
     footer { text-align:center; padding:3rem 0; border-top:1px solid rgba(255,255,255,0.05); color:#b0b5cc; font-size:1rem; }
+
     @media (max-width: 1024px) {
       #bgCanvas { display: none; }
       .name-letter { transform: none; filter: none; opacity: 1; }
@@ -200,6 +222,7 @@
       .redirect-popup-inner h3 { font-size: 1.25rem; }
       .redirect-popup-inner p { font-size: 0.92rem; }
     }
+
     @media (max-width: 600px) { .sticky-socials { display: none; } }
     @media (max-width: 480px) {
       h1 { font-size: 2.2rem; }
@@ -324,15 +347,43 @@ Developer of CustomTPA</div>
           <div class="projects-grid">
             <div class="project-card scroll-reveal reveal-rotate delay-200">
               <div class="project-icon"><i class="fas fa-cloud-moon"></i></div>
-              <h3 style="font-size: 2rem; color:#fff;">FoggyLand</h3>
-              <p data-i18n="foggyland_desc"></p>
-              <a href="https://site.foggyland.ru/" target="_blank" class="btn"><span data-i18n="foggyland_btn">Visit website</span> <i class="fas fa-arrow-right"></i></a>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                <h3 style="font-size: 2rem; color:#fff; margin: 0;">FoggyLand</h3>
+                <span style="background: rgba(211, 47, 47, 0.2); border: 1px solid rgba(211, 47, 47, 0.6); color: #ff8a8a; padding: 0.3rem 0.8rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 700;" data-i18n="foggyland_status">Закрыт</span>
+              </div>
+              <p style="font-size: 0.95rem; color: #e0e3f0; line-height: 1.6;" data-i18n="foggyland_reason"></p>
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                <a href="https://dalink.to/mrkronick" target="_blank" class="btn" style="background: rgba(76, 175, 80, 0.2); border-color: rgba(76, 175, 80, 0.6); color: #a5d6a7;"><i class="fas fa-heart"></i> <span data-i18n="foggyland_support">Поддержать проект</span></a>
+              </div>
             </div>
             <div class="project-card scroll-reveal reveal-rotate delay-400">
               <div class="project-icon"><i class="fas fa-code-branch"></i></div>
               <h3 style="font-size: 2rem; color:#fff;">CustomTPA</h3>
               <p data-i18n="customtpa_desc"></p>
               <a href="https://customtpa.mrkronick.ru/" target="_blank" class="btn"><span data-i18n="customtpa_btn">Learn more</span> <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div class="faq-section glass-panel scroll-reveal reveal-fade-up" style="padding: 3rem; margin: 3rem 0;">
+          <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color:#fff;"><i class="fas fa-question-circle" style="color: #b388ff;"></i> <span data-i18n="faq_title">FAQ</span></h2>
+          <div class="faq-grid">
+            <div class="faq-item">
+              <div class="faq-question"><span data-i18n="faq_q1">Who is MrKronick?</span> <i class="fas fa-chevron-down"></i></div>
+              <div class="faq-answer"><span data-i18n="faq_a1">MrKronick (Alexander Mochalov) is a Minecraft developer, creator of the FoggyLand server and the CustomTPA plugin.</span></div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question"><span data-i18n="faq_q2">How to join FoggyLand?</span> <i class="fas fa-chevron-down"></i></div>
+              <div class="faq-answer"><span data-i18n="faq_a2">FoggyLand is currently closed. We are raising funds to reopen it. You can support the project via DALink.</span></div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question"><span data-i18n="faq_q3">Where can I download CustomTPA?</span> <i class="fas fa-chevron-down"></i></div>
+              <div class="faq-answer"><span data-i18n="faq_a3">CustomTPA is available on SpigotMC and Modrinth. You can find links in the "Projects" section above.</span></div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question"><span data-i18n="faq_q4">How to contact MrKronick?</span> <i class="fas fa-chevron-down"></i></div>
+              <div class="faq-answer"><span data-i18n="faq_a4">You can reach out via Telegram (@bazakronika), VK, or Discord. Links are in the "Socials" tab.</span></div>
             </div>
           </div>
         </div>
@@ -424,10 +475,20 @@ Developer of CustomTPA</div>
         about_quote: "✨ «Хочу, чтобы в этом мире, были только дружелюбные, и хорошие люди.»",
         about_p2: "Каждый день стараюсь делать сообщество вокруг моих проектов немного добрее. FoggyLand и CustomTPA созданы с заботой о людях.",
         projects_title: "Проекты",
-        foggyland_desc: "Уникальный Minecraft сервер с ламповой атмосферой. Дружное комьюнити, кастомные механики и регулярные ивенты.",
-        foggyland_btn: "Перейти на сайт",
+        foggyland_status: "Закрыт",
+        foggyland_reason: "У меня есть мотивация дальше развивать свой проект FoggyLand, но для этого мне нужны деньги. Я просто уже устал каждыми днями вставать в 8:00 по МСК, из-за этого пропала мотивация, но она у меня появилась. Для открытия сервера мне нужно 5к рублей, но я не знаю откуда мне их взять. Если не сложно, поддержите меня, и давайте вместе соберём 5 тыс. руб. Просто пожертвуйте любую сумму мне на DALink, спасибо.",
+        foggyland_support: "Поддержать проект",
         customtpa_desc: "Плагин для телепортации с тонкой настройкой. Гибкие запросы, кулдауны, понятный GUI. Доступен на SpigotMC и Modrinth.",
         customtpa_btn: "Подробнее",
+        faq_title: "Частые вопросы (FAQ)",
+        faq_q1: "Кто такой MrKronick?",
+        faq_a1: "MrKronick (Александр Мочалов) — разработчик Minecraft, создатель сервера FoggyLand и плагина CustomTPA.",
+        faq_q2: "Как зайти на FoggyLand?",
+        faq_a2: "Сервер FoggyLand временно закрыт. Мы собираем средства на его открытие. Вы можете поддержать проект через DALink.",
+        faq_q3: "Где скачать CustomTPA?",
+        faq_a3: "CustomTPA доступен на SpigotMC и Modrinth. Ссылки можно найти в разделе «Проекты» выше.",
+        faq_q4: "Как связаться с MrKronick?",
+        faq_a4: "Ты можешь написать мне в Telegram (@bazakronika), ВК или Discord. Ссылки есть во вкладке «Соц сети».",
         social_title: "Социальные сети",
         s_channel: "Канал",
         s_support: "Поддержка",
@@ -461,10 +522,20 @@ Developer of CustomTPA</div>
         about_quote: "✨ «I want this world to have only friendly and good people.»",
         about_p2: "Every day I try to make the community around my projects a little kinder. FoggyLand and CustomTPA were created with care for people.",
         projects_title: "Projects",
-        foggyland_desc: "A unique Minecraft server with a cozy atmosphere. Friendly community, custom mechanics and regular events.",
-        foggyland_btn: "Visit website",
+        foggyland_status: "Closed",
+        foggyland_reason: "I have the motivation to further develop my FoggyLand project, but I need money for that. I'm just tired of waking up at 8:00 AM MSK every day, which killed my motivation, but it's back now. To open the server, I need 5,000 rubles, but I don't know where to get them. If it's not too much trouble, please support me, and let's raise 5,000 rubles together. Just donate any amount to me on DALink, thank you.",
+        foggyland_support: "Support project",
         customtpa_desc: "A teleportation plugin with deep customization. Flexible requests, cooldowns, and a clear GUI. Available on SpigotMC and Modrinth.",
         customtpa_btn: "Learn more",
+        faq_title: "Frequently Asked Questions",
+        faq_q1: "Who is MrKronick?",
+        faq_a1: "MrKronick (Alexander Mochalov) is a Minecraft developer, creator of the FoggyLand server and the CustomTPA plugin.",
+        faq_q2: "How to join FoggyLand?",
+        faq_a2: "FoggyLand is currently closed. We are raising funds to reopen it. You can support the project via DALink.",
+        faq_q3: "Where can I download CustomTPA?",
+        faq_a3: "CustomTPA is available on SpigotMC and Modrinth. You can find links in the 'Projects' section above.",
+        faq_q4: "How to contact MrKronick?",
+        faq_a4: "You can reach out via Telegram (@bazakronika), VK, or Discord. Links are in the 'Socials' tab.",
         social_title: "Social Networks",
         s_channel: "Channel",
         s_support: "Support",
@@ -498,10 +569,20 @@ Developer of CustomTPA</div>
         about_quote: "✨ «我希望这个世界上只有友好和善良的人。»",
         about_p2: "每一天我都努力让我的项目周围的社区变得更友善。FoggyLand 和 CustomTPA 都是用关爱之心创建的。",
         projects_title: "项目",
-        foggyland_desc: "一个有着温馨氛围的独特 Minecraft 服务器。友好的社区、自定义机制和定期活动。",
-        foggyland_btn: "访问网站",
+        foggyland_status: "已关闭",
+        foggyland_reason: "我有动力继续开发我的 FoggyLand 项目，但这需要钱。我只是厌倦了每天莫斯科时间早上 8 点起床，这让我失去了动力，但现在动力又回来了。开服需要 5000 卢布，但我不知道去哪里弄。如果不麻烦的话，请支持我，让我们一起筹集 5000 卢布。只需在 DALink 上给我捐任意金额，谢谢。",
+        foggyland_support: "支持项目",
         customtpa_desc: "一款具有深度自定义的传送插件。灵活的请求、冷却时间和清晰的 GUI。在 SpigotMC 和 Modrinth 上可用。",
         customtpa_btn: "了解更多",
+        faq_title: "常见问题",
+        faq_q1: "MrKronick 是谁？",
+        faq_a1: "MrKronick（亚历山大·莫恰洛夫）是一名 Minecraft 开发者，FoggyLand 服务器和 CustomTPA 插件的创作者。",
+        faq_q2: "如何加入 FoggyLand？",
+        faq_a2: "FoggyLand 目前处于关闭状态。我们正在筹集资金重新开放它。您可以通过 DALink 支持该项目。",
+        faq_q3: "在哪里下载 CustomTPA？",
+        faq_a3: "CustomTPA 可在 SpigotMC 和 Modrinth 上获取。您可以在上面的“项目”部分找到链接。",
+        faq_q4: "如何联系 MrKronick？",
+        faq_a4: "您可以通过 Telegram（@bazakronika）、VK 或 Discord 联系我。链接在“社交媒体”选项卡中。",
         social_title: "社交媒体",
         s_channel: "频道",
         s_support: "支持",
@@ -581,8 +662,22 @@ Developer of CustomTPA</div>
       } catch(e) { return false; }
     }
 
-    function isMobileDevice() {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(navigator.userAgent);
+    async function isRussianIP() {
+      const apis = [
+        { url: 'https://ipwho.is/', field: 'country_code' },
+        { url: 'https://ipapi.co/json/', field: 'country_code' },
+        { url: 'https://freeipapi.com/api/json', field: 'countryCode' }
+      ];
+      for (const api of apis) {
+        try {
+          const res = await fetch(api.url, { cache: 'no-store' });
+          if (!res.ok) continue;
+          const data = await res.json();
+          const code = data[api.field];
+          if (code) return code === 'RU';
+        } catch (e) { /* ignore */ }
+      }
+      return isRussianTimezone();
     }
 
     const offlineBanner = document.getElementById('offlineBanner');
@@ -615,8 +710,9 @@ Developer of CustomTPA</div>
     const redirectPopup = document.getElementById('redirectPopup');
     const redirStay = document.getElementById('redirStay');
 
-    function checkRedirect() {
-      if (isRussianTimezone()) {
+    async function checkRedirect() {
+      const isRU = await isRussianIP();
+      if (isRU) {
         const alreadySeen = sessionStorage.getItem('redirect_seen_main');
         if (!alreadySeen) {
           setTimeout(() => {
@@ -792,6 +888,39 @@ Developer of CustomTPA</div>
           tabs.forEach(tab => tab.classList.remove('active'));
           const activeTab = document.getElementById('tab-' + tabId);
           if (activeTab) activeTab.classList.add('active');
+        });
+      });
+
+      // ========== 3D Tilt Effect on Cards ==========
+      if (!isMobileV && !prefersReduced) {
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+          card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -10;
+            const rotateY = ((x - centerX) / centerX) * 10;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+          });
+        });
+      }
+
+      // ========== FAQ Accordion Logic ==========
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+          faqItems.forEach(i => i.classList.remove('active'));
+          if (!isActive) {
+            item.classList.add('active');
+          }
         });
       });
 
