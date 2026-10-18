@@ -180,6 +180,16 @@
     .social-card:hover { background: rgba(108,99,255,0.25); border-color:#6c63ff; transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(108,99,255,0.5), 0 0 0 1px rgba(108,99,255,0.6); color: #fff; }
     .social-card:hover i, .social-card:hover img { transform: scale(1.2) rotate(5deg); }
 
+    /* Stream tab */
+    .stream-wrapper { max-width: 900px; margin: 0 auto; }
+    .stream-player { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 1.5rem; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 0 60px rgba(108,99,255,0.3); }
+    .stream-player iframe { width: 100%; height: 100%; border: none; }
+    .stream-info { text-align: center; }
+    .stream-schedule { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.4); padding: 0.6rem 1.5rem; border-radius: 3rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .notify-btn { display: inline-flex; align-items: center; gap: 0.7rem; background: linear-gradient(135deg, #6c63ff, #b388ff); border: none; padding: 0.9rem 2.2rem; border-radius: 3rem; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.35s ease; box-shadow: 0 10px 30px rgba(108,99,255,0.5); margin-top: 1rem; }
+    .notify-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(108,99,255,0.7); }
+    .notify-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
     footer { text-align:center; padding:3rem 0; border-top:1px solid rgba(255,255,255,0.05); color:#b0b5cc; font-size:1rem; }
 
     @media (max-width: 1024px) {
@@ -310,6 +320,7 @@
       <div class="tab-nav">
         <button class="tab-button active" data-tab="main"><i class="fas fa-home"></i> <span data-i18n="tab_main">Home</span></button>
         <button class="tab-button" data-tab="social"><i class="fas fa-share-alt"></i> <span data-i18n="tab_social">Socials</span></button>
+        <button class="tab-button" data-tab="stream"><i class="fab fa-twitch"></i> <span data-i18n="tab_stream">Streams</span></button>
       </div>
 
       <div id="tab-main" class="tab-content active">
@@ -349,11 +360,11 @@ Developer of CustomTPA</div>
               <div class="project-icon"><i class="fas fa-cloud-moon"></i></div>
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
                 <h3 style="font-size: 2rem; color:#fff; margin: 0;">FoggyLand</h3>
-                <span style="background: rgba(211, 47, 47, 0.2); border: 1px solid rgba(211, 47, 47, 0.6); color: #ff8a8a; padding: 0.3rem 0.8rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 700;" data-i18n="foggyland_status">Закрыт</span>
+                <span style="background: rgba(211, 47, 47, 0.2); border: 1px solid rgba(211, 47, 47, 0.6); color: #ff8a8a; padding: 0.3rem 0.8rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 700;" data-i18n="foggyland_status">Closed</span>
               </div>
               <p style="font-size: 0.95rem; color: #e0e3f0; line-height: 1.6;" data-i18n="foggyland_reason"></p>
               <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-                <a href="https://dalink.to/mrkronick" target="_blank" class="btn" style="background: rgba(76, 175, 80, 0.2); border-color: rgba(76, 175, 80, 0.6); color: #a5d6a7;"><i class="fas fa-heart"></i> <span data-i18n="foggyland_support">Поддержать проект</span></a>
+                <a href="https://dalink.to/mrkronick" target="_blank" class="btn" style="background: rgba(76, 175, 80, 0.2); border-color: rgba(76, 175, 80, 0.6); color: #a5d6a7;"><i class="fas fa-heart"></i> <span data-i18n="foggyland_support">Support project</span></a>
               </div>
             </div>
             <div class="project-card scroll-reveal reveal-rotate delay-400">
@@ -365,7 +376,6 @@ Developer of CustomTPA</div>
           </div>
         </div>
 
-        <!-- FAQ SECTION -->
         <div class="faq-section glass-panel scroll-reveal reveal-fade-up" style="padding: 3rem; margin: 3rem 0;">
           <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color:#fff;"><i class="fas fa-question-circle" style="color: #b388ff;"></i> <span data-i18n="faq_title">FAQ</span></h2>
           <div class="faq-grid">
@@ -449,6 +459,22 @@ Developer of CustomTPA</div>
         </div>
       </div>
 
+      <div id="tab-stream" class="tab-content">
+        <div style="margin: 4rem 0;">
+          <h2 style="font-size: 2.5rem; margin-bottom: 2rem;" class="scroll-reveal reveal-fade-left"><span class="gradient-text" data-i18n="stream_title">Live Streams</span></h2>
+          <div class="glass-panel stream-wrapper" style="padding: 2rem;">
+            <div class="stream-player" id="twitch-embed"></div>
+            <div class="stream-info">
+              <div class="stream-schedule"><i class="fas fa-calendar-alt"></i> <span data-i18n="stream_schedule">Every Saturday · Roblox</span></div>
+              <p style="color:#c0c5e0; margin-bottom: 1.5rem;" data-i18n="stream_desc">Join the stream directly on the website!</p>
+              <button class="notify-btn" id="notifyBtn"><i class="fas fa-bell"></i> <span data-i18n="stream_notify">Notify me about streams</span></button>
+              <br>
+              <a href="https://www.twitch.tv/mrkronickorig" target="_blank" class="btn" style="margin-top: 1rem;"><i class="fab fa-twitch"></i> <span data-i18n="stream_open">Open in Twitch</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <footer class="scroll-reveal reveal-fade-up">
         <p data-i18n="footer1">© 2026 MrKronick — Alexander Mochalov. Official MrKronick website. FoggyLand & CustomTPA.</p>
         <p style="margin-top: 0.8rem; opacity: 0.6; font-size: 0.95rem;" data-i18n="footer2">Information site</p>
@@ -466,6 +492,7 @@ Developer of CustomTPA</div>
         name: "Александр",
         tab_main: "Главная",
         tab_social: "Соц сети",
+        tab_stream: "Стримы",
         subtitle: "MrKronick · Создатель FoggyLand\nРазработчик CustomTPA",
         badge_dev: "⚡ Minecraft разработчик",
         badge_owner: "🌐 Владелец сервера",
@@ -505,7 +532,12 @@ Developer of CustomTPA</div>
         redir_title: "Вы находитесь на территории РФ",
         redir_text: "Перейдите на сайт, который предназначен для РФ пользователей, чтобы сайт стабильно работал.",
         redir_go: "Перейти на сайт",
-        redir_stay: "Остаться здесь"
+        redir_stay: "Остаться здесь",
+        stream_title: "Прямые трансляции",
+        stream_schedule: "Каждую субботу · Roblox",
+        stream_desc: "Смотри трансляцию прямо на сайте!",
+        stream_notify: "Уведомить о стримах",
+        stream_open: "Открыть в Twitch"
       },
       en: {
         title: "MrKronick — Official Website | Alexander Mochalov",
@@ -513,6 +545,7 @@ Developer of CustomTPA</div>
         name: "Alexander",
         tab_main: "Home",
         tab_social: "Socials",
+        tab_stream: "Streams",
         subtitle: "MrKronick · Creator of FoggyLand\nDeveloper of CustomTPA",
         badge_dev: "⚡ Minecraft Developer",
         badge_owner: "🌐 Server Owner",
@@ -552,7 +585,12 @@ Developer of CustomTPA</div>
         redir_title: "You are in the Russian Federation",
         redir_text: "Go to the site intended for Russian users so the site works stably.",
         redir_go: "Go to site",
-        redir_stay: "Stay here"
+        redir_stay: "Stay here",
+        stream_title: "Live Streams",
+        stream_schedule: "Every Saturday · Roblox",
+        stream_desc: "Watch the stream directly on the website!",
+        stream_notify: "Notify me about streams",
+        stream_open: "Open in Twitch"
       },
       zh: {
         title: "MrKronick — 官方网站 | 亚历山大·莫恰洛夫",
@@ -560,6 +598,7 @@ Developer of CustomTPA</div>
         name: "亚历山大",
         tab_main: "首页",
         tab_social: "社交媒体",
+        tab_stream: "直播",
         subtitle: "MrKronick · FoggyLand 创始人\nCustomTPA 开发者",
         badge_dev: "⚡ Minecraft 开发者",
         badge_owner: "🌐 服务器所有者",
@@ -599,7 +638,12 @@ Developer of CustomTPA</div>
         redir_title: "您位于俄罗斯境内",
         redir_text: "请转到为俄罗斯用户准备的网站，以便网站稳定运行。",
         redir_go: "转到网站",
-        redir_stay: "留在这里"
+        redir_stay: "留在这里",
+        stream_title: "直播",
+        stream_schedule: "每周六 · Roblox",
+        stream_desc: "直接在网站上观看直播！",
+        stream_notify: "通知我直播",
+        stream_open: "在 Twitch 中打开"
       }
     };
 
@@ -891,6 +935,48 @@ Developer of CustomTPA</div>
         });
       });
 
+      // ========== Twitch Embed ==========
+      new Twitch.Embed("twitch-embed", {
+        width: "100%",
+        height: "100%",
+        channel: "mrkronickorig",
+        parent: ["mrkronick.ru"]
+      });
+
+      // ========== Push Notifications ==========
+      const notifyBtn = document.getElementById('notifyBtn');
+      if (notifyBtn) {
+        notifyBtn.addEventListener('click', async () => {
+          if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+            alert('Ваш браузер не поддерживает уведомления.');
+            return;
+          }
+          const permission = await Notification.requestPermission();
+          if (permission !== 'granted') {
+            alert('Вы отклонили уведомления.');
+            return;
+          }
+          try {
+            const registration = await navigator.serviceWorker.register('/sw.js');
+            const subscription = await registration.pushManager.subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: 'YOUR_VAPID_PUBLIC_KEY' // Замените!
+            });
+            // Отправка subscription на Cloudflare Worker (замените URL)
+            await fetch('https://YOUR_WORKER_URL/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(subscription)
+            });
+            notifyBtn.textContent = '✅ Вы подписаны!';
+            notifyBtn.disabled = true;
+          } catch (e) {
+            console.error(e);
+            alert('Ошибка подписки: ' + e.message);
+          }
+        });
+      }
+
       // ========== 3D Tilt Effect on Cards ==========
       if (!isMobileV && !prefersReduced) {
         const cards = document.querySelectorAll('.project-card');
@@ -911,21 +997,26 @@ Developer of CustomTPA</div>
         });
       }
 
-      // ========== FAQ Accordion Logic ==========
+      // ========== FAQ Accordion ==========
       const faqItems = document.querySelectorAll('.faq-item');
       faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         question.addEventListener('click', () => {
           const isActive = item.classList.contains('active');
           faqItems.forEach(i => i.classList.remove('active'));
-          if (!isActive) {
-            item.classList.add('active');
-          }
+          if (!isActive) item.classList.add('active');
         });
       });
 
       setTimeout(checkRedirect, 2500);
     })();
+  </script>
+  <script src="https://embed.twitch.tv/embed/v1.js"></script>
+  <script>
+    // Service Worker для push-уведомлений (регистрация)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+    }
   </script>
 </body>
 </html>
