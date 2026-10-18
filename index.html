@@ -20,10 +20,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/avatar.webp">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
-  <!-- Скрипт Twitch перенесен сюда, чтобы ошибка Twitch is not defined исчезла -->
-  <script src="https://embed.twitch.tv/embed/v1.js"></script>
-
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
@@ -185,9 +181,9 @@
     .social-card:hover i, .social-card:hover img { transform: scale(1.2) rotate(5deg); }
 
     /* Stream tab */
-    .stream-wrapper { max-width: 900px; margin: 0 auto; }
-    .stream-player { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 1.5rem; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 0 60px rgba(108,99,255,0.3); }
-    .stream-player iframe { width: 100%; height: 100%; border: none; }
+    .stream-wrapper { max-width: 1000px; margin: 0 auto; }
+    .stream-player { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 1.5rem; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 0 60px rgba(108,99,255,0.3); }
+    .stream-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     .stream-info { text-align: center; }
     .stream-schedule { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.4); padding: 0.6rem 1.5rem; border-radius: 3rem; font-weight: 600; margin-bottom: 1.5rem; }
     .notify-btn { display: inline-flex; align-items: center; gap: 0.7rem; background: linear-gradient(135deg, #6c63ff, #b388ff); border: none; padding: 0.9rem 2.2rem; border-radius: 3rem; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.35s ease; box-shadow: 0 10px 30px rgba(108,99,255,0.5); margin-top: 1rem; font-family: inherit; }
@@ -467,7 +463,12 @@ Developer of CustomTPA</div>
         <div style="margin: 4rem 0;">
           <h2 style="font-size: 2.5rem; margin-bottom: 2rem;" class="scroll-reveal reveal-fade-left"><span class="gradient-text" data-i18n="stream_title">Live Streams</span></h2>
           <div class="glass-panel stream-wrapper" style="padding: 2rem;">
-            <div class="stream-player" id="twitch-embed"></div>
+            
+            <!-- Встроенный плеер без чата, с поддержкой фуллскрина -->
+            <div class="stream-player">
+              <iframe src="https://player.twitch.tv/?channel=mrkronickorig&parent=mrkronick.ru&autoplay=false&chat=disabled" allowfullscreen="true" scrolling="no"></iframe>
+            </div>
+
             <div class="stream-info">
               <div class="stream-schedule"><i class="fas fa-calendar-alt"></i> <span data-i18n="stream_schedule">Every Saturday · Roblox</span></div>
               <p style="color:#c0c5e0; margin-bottom: 1.5rem;" data-i18n="stream_desc">Watch the stream directly on the website!</p>
@@ -489,11 +490,9 @@ Developer of CustomTPA</div>
   <button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
   <script>
-    // --- ВАШИ КЛЮЧИ ---
     const VAPID_PUBLIC_KEY = 'BEQUS1Qg5HToCnZT5L1SeTmolZ2KYoMm70Sm48oUxzxXIVwSg_r5X-iu9VVJr8BEBwFy02ZOKn6DhxEDuiE7n1A';
     const WORKER_URL = 'https://pushforge.mrkronick.workers.dev';
 
-    // Конвертация ключа из base64 в Uint8Array (нужно для подписки на пуши)
     function urlBase64ToUint8Array(base64String) {
       const padding = '='.repeat((4 - base64String.length % 4) % 4);
       const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
@@ -955,14 +954,6 @@ Developer of CustomTPA</div>
         });
       });
 
-      // ========== Twitch Embed ==========
-      new Twitch.Embed("twitch-embed", {
-        width: "100%",
-        height: "100%",
-        channel: "mrkronickorig",
-        parent: ["mrkronick.ru"]
-      });
-
       // ========== Push Notifications ==========
       const notifyBtn = document.getElementById('notifyBtn');
       if (notifyBtn) {
@@ -1033,7 +1024,6 @@ Developer of CustomTPA</div>
     })();
   </script>
   <script>
-    // Регистрация Service Worker для пушей
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
     }
