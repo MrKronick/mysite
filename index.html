@@ -960,10 +960,10 @@ Developer of CustomTPA</div>
             const registration = await navigator.serviceWorker.register('/sw.js');
             const subscription = await registration.pushManager.subscribe({
               userVisibleOnly: true,
-              applicationServerKey: 'YOUR_VAPID_PUBLIC_KEY' // Замените!
+              applicationServerKey: 'BEQUS1Qg5HToCnZT5L1SeTmolZ2KYoMm70Sm48oUxzxXIVwSg_r5X-iu9VVJr8BEBwFy02ZOKn6DhxEDuiE7n1A' // Замените!
             });
             // Отправка subscription на Cloudflare Worker (замените URL)
-            await fetch('https://YOUR_WORKER_URL/subscribe', {
+            await fetch('https://pushforge.mrkronick.workers.dev/subscribe', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(subscription)
