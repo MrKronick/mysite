@@ -954,7 +954,7 @@ Developer of CustomTPA</div>
         });
       });
 
-      // ========== Push Notifications ==========
+      // ========== Push Notifications (ИСПРАВЛЕНО ДЛЯ МОБИЛОК) ==========
       const notifyBtn = document.getElementById('notifyBtn');
       if (notifyBtn) {
         notifyBtn.addEventListener('click', async () => {
@@ -967,13 +967,13 @@ Developer of CustomTPA</div>
             alert('Вы отклонили уведомления.');
             return;
           }
-try {
-  await navigator.serviceWorker.register('/sw.js');
-  // Ждём, пока Service Worker полностью активируется
-  const registration = await navigator.serviceWorker.ready; 
-
-  const applicationServerKey = urlBase64ToUint8Array(VAPID_PUBLIC_KEY);
-  const subscription = await registration.pushManager.subscribe({ ... });
+          try {
+            await navigator.serviceWorker.register('/sw.js');
+            // Ждем полной активации Service Worker перед подпиской
+            const registration = await navigator.serviceWorker.ready; 
+            
+            const applicationServerKey = urlBase64ToUint8Array(VAPID_PUBLIC_KEY);
+            const subscription = await registration.pushManager.subscribe({
               userVisibleOnly: true,
               applicationServerKey: applicationServerKey
             });
