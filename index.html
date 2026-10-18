@@ -20,6 +20,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/avatar.webp">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Скрипт Twitch перенесен сюда, чтобы ошибка Twitch is not defined исчезла -->
+  <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
@@ -186,7 +190,7 @@
     .stream-player iframe { width: 100%; height: 100%; border: none; }
     .stream-info { text-align: center; }
     .stream-schedule { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.4); padding: 0.6rem 1.5rem; border-radius: 3rem; font-weight: 600; margin-bottom: 1.5rem; }
-    .notify-btn { display: inline-flex; align-items: center; gap: 0.7rem; background: linear-gradient(135deg, #6c63ff, #b388ff); border: none; padding: 0.9rem 2.2rem; border-radius: 3rem; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.35s ease; box-shadow: 0 10px 30px rgba(108,99,255,0.5); margin-top: 1rem; }
+    .notify-btn { display: inline-flex; align-items: center; gap: 0.7rem; background: linear-gradient(135deg, #6c63ff, #b388ff); border: none; padding: 0.9rem 2.2rem; border-radius: 3rem; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.35s ease; box-shadow: 0 10px 30px rgba(108,99,255,0.5); margin-top: 1rem; font-family: inherit; }
     .notify-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(108,99,255,0.7); }
     .notify-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 
@@ -466,7 +470,7 @@ Developer of CustomTPA</div>
             <div class="stream-player" id="twitch-embed"></div>
             <div class="stream-info">
               <div class="stream-schedule"><i class="fas fa-calendar-alt"></i> <span data-i18n="stream_schedule">Every Saturday · Roblox</span></div>
-              <p style="color:#c0c5e0; margin-bottom: 1.5rem;" data-i18n="stream_desc">Join the stream directly on the website!</p>
+              <p style="color:#c0c5e0; margin-bottom: 1.5rem;" data-i18n="stream_desc">Watch the stream directly on the website!</p>
               <button class="notify-btn" id="notifyBtn"><i class="fas fa-bell"></i> <span data-i18n="stream_notify">Notify me about streams</span></button>
               <br>
               <a href="https://www.twitch.tv/mrkronickorig" target="_blank" class="btn" style="margin-top: 1rem;"><i class="fab fa-twitch"></i> <span data-i18n="stream_open">Open in Twitch</span></a>
@@ -485,6 +489,22 @@ Developer of CustomTPA</div>
   <button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
   <script>
+    // --- ВАШИ КЛЮЧИ ---
+    const VAPID_PUBLIC_KEY = 'BEQUS1Qg5HToCnZT5L1SeTmolZ2KYoMm70Sm48oUxzxXIVwSg_r5X-iu9VVJr8BEBwFy02ZOKn6DhxEDuiE7n1A';
+    const WORKER_URL = 'https://pushforge.mrkronick.workers.dev';
+
+    // Конвертация ключа из base64 в Uint8Array (нужно для подписки на пуши)
+    function urlBase64ToUint8Array(base64String) {
+      const padding = '='.repeat((4 - base64String.length % 4) % 4);
+      const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+      const rawData = window.atob(base64);
+      const outputArray = new Uint8Array(rawData.length);
+      for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+      }
+      return outputArray;
+    }
+
     const translations = {
       ru: {
         title: "MrKronick — Официальный сайт | Александр Мочалов",
@@ -958,12 +978,13 @@ Developer of CustomTPA</div>
           }
           try {
             const registration = await navigator.serviceWorker.register('/sw.js');
+            const applicationServerKey = urlBase64ToUint8Array(VAPID_PUBLIC_KEY);
             const subscription = await registration.pushManager.subscribe({
               userVisibleOnly: true,
-              applicationServerKey: 'BEQUS1Qg5HToCnZT5L1SeTmolZ2KYoMm70Sm48oUxzxXIVwSg_r5X-iu9VVJr8BEBwFy02ZOKn6DhxEDuiE7n1A' // Замените!
+              applicationServerKey: applicationServerKey
             });
-            // Отправка subscription на Cloudflare Worker (замените URL)
-            await fetch('https://pushforge.mrkronick.workers.dev/subscribe', {
+            
+            await fetch(WORKER_URL + '/subscribe', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(subscription)
@@ -972,7 +993,7 @@ Developer of CustomTPA</div>
             notifyBtn.disabled = true;
           } catch (e) {
             console.error(e);
-            alert('Ошибка подписки: ' + e.message);
+            alert('Ошибка подписки. Убедитесь, что сайт открыт по HTTPS. Ошибка: ' + e.message);
           }
         });
       }
@@ -1011,9 +1032,8 @@ Developer of CustomTPA</div>
       setTimeout(checkRedirect, 2500);
     })();
   </script>
-  <script src="https://embed.twitch.tv/embed/v1.js"></script>
   <script>
-    // Service Worker для push-уведомлений (регистрация)
+    // Регистрация Service Worker для пушей
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
     }
