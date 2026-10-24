@@ -943,16 +943,35 @@ Developer of CustomTPA</div>
 
       const tabButtons = document.querySelectorAll('.tab-button');
       const tabs = document.querySelectorAll('.tab-content');
+      
+      function switchTab(tabId) {
+        if (!tabId) return;
+        // Переключаем кнопки
+        tabButtons.forEach(b => {
+          if (b.dataset.tab === tabId) b.classList.add('active');
+          else b.classList.remove('active');
+        });
+        // Переключаем контент
+        tabs.forEach(tab => {
+          if (tab.id === 'tab-' + tabId) tab.classList.add('active');
+          else tab.classList.remove('active');
+        });
+      }
+
       tabButtons.forEach(btn => {
         btn.addEventListener('click', () => {
           const tabId = btn.dataset.tab;
-          tabButtons.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          tabs.forEach(tab => tab.classList.remove('active'));
-          const activeTab = document.getElementById('tab-' + tabId);
-          if (activeTab) activeTab.classList.add('active');
+          switchTab(tabId);
+          // Добавляем #social или #stream в адресную строку
+          history.replaceState(null, null, '#' + tabId);
         });
       });
+
+      // Проверяем ссылку при загрузке страницы (если человек перешёл по ссылке с #)
+      const initialHash = window.location.hash.replace('#', '');
+      if (initialHash === 'social' || initialHash === 'stream' || initialHash === 'main') {
+        switchTab(initialHash);
+      }
 
       // ========== Push Notifications (ИСПРАВЛЕНО ДЛЯ МОБИЛОК) ==========
       const notifyBtn = document.getElementById('notifyBtn');
