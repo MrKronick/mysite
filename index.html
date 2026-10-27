@@ -973,6 +973,26 @@ Developer of CustomTPA</div>
         switchTab(initialHash);
       }
 
+      // Проверка подписки при загрузке сайта
+      async function checkSubscriptionState() {
+        const notifyBtn = document.getElementById('notifyBtn');
+        if (!notifyBtn || !('serviceWorker' in navigator)) return;
+        
+        try {
+          const registration = await navigator.serviceWorker.ready;
+          const subscription = await registration.pushManager.getSubscription();
+          
+          if (subscription) {
+            // Если подписка есть, меняем кнопку
+            notifyBtn.innerHTML = '<i class="fas fa-check"></i> Вы подписаны!';
+            notifyBtn.disabled = true;
+          }
+        } catch (e) {
+          console.log('Подписка не найдена или ошибка:', e);
+        }
+      }
+      checkSubscriptionState(); // Запускаем проверку
+
       // ========== Push Notifications (ИСПРАВЛЕНО ДЛЯ МОБИЛОК) ==========
       const notifyBtn = document.getElementById('notifyBtn');
       if (notifyBtn) {
