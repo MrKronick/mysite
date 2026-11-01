@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="images/avatar.webp">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://embed.twitch.tv/embed/v1.js"></script>
+  
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
@@ -29,6 +29,8 @@
     body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.035; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
     .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, #6c63ff, #b388ff, #3f8cff); z-index: 10000; transition: width 0.1s ease-out; box-shadow: 0 0 12px #6c63ffcc; }
+    
+    /* OFFLINE BANNER */
     .offline-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 10050; background: linear-gradient(90deg, #c62828, #8e0000); color: #fff; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: center; gap: 1rem; transform: translateY(-120%); transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 6px 25px rgba(198, 40, 40, 0.6); font-size: 0.95rem; line-height: 1.45; }
     .offline-banner.visible { transform: translateY(0); }
     .offline-banner .offline-icon { font-size: 1.6rem; flex-shrink: 0; }
@@ -36,6 +38,7 @@
     .offline-banner .offline-close { background: rgba(255,255,255,0.2); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; font-size: 0.95rem; flex-shrink: 0; transition: background 0.3s; cursor: pointer; }
     .offline-banner .offline-close:hover { background: rgba(255,255,255,0.35); }
 
+    /* REDIRECT POPUP (RU) */
     .redirect-popup { position: fixed; inset: 0; z-index: 10060; background: rgba(0, 0, 0, 0.78); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
     .redirect-popup.visible { opacity: 1; visibility: visible; }
     .redirect-popup-inner { background: linear-gradient(145deg, #1a1a2e, #16162a); border: 1px solid rgba(108,99,255,0.4); border-radius: 2rem; padding: 2.5rem 2rem; max-width: 520px; width: 100%; box-shadow: 0 30px 80px rgba(108,99,255,0.4); text-align: center; transform: scale(0.85); transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -49,6 +52,7 @@
     .redirect-popup-inner .popup-btn.primary:hover { transform: translateY(-3px); background: #5647ff; box-shadow: 0 15px 35px #6c63ffdd; }
     .redirect-popup-inner .popup-btn.secondary:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
 
+    /* STICKY HEADER */
     .sticky-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 9997; background: rgba(15, 16, 25, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.5); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease; }
     .sticky-header.visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
     .sticky-inner { max-width: 1300px; margin: 0 auto; padding: 0.7rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
@@ -62,6 +66,7 @@
     .sticky-header .lang-switch { padding: 0.2rem; }
     .sticky-header .lang-btn { padding: 0.35rem 0.7rem; font-size: 0.78rem; }
 
+    /* LOADER */
     #loader { position: fixed; top:0; left:0; width:100%; height:100%; background: #0a0a0f; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.8s ease, visibility 0.8s ease; }
     #loader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
     .loader-ring-container { position:relative; width:100px; height:100px; margin-bottom:2rem; }
@@ -84,7 +89,7 @@
     .back-to-top:hover { background: #6c63ff; transform: translateY(-6px) scale(1.08); box-shadow: 0 15px 40px #6c63ffcc; }
 
     .tab-nav { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0 2.5rem; flex-wrap: wrap; }
-    .tab-button { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); padding: 0.8rem 2.5rem; border-radius: 3rem; color: #fff; font-weight: 600; font-size: 1.1rem; backdrop-filter: blur(12px); transition: all 0.3s ease; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.7rem; font-family: inherit; }
+    .tab-button { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); padding: 0.8rem 2.5rem; border-radius: 3rem; color: #fff; font-weight: 600; font-size: 1.1rem; backdrop-filter: blur(12px); transition: all 0.3s ease; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.7rem; font-family: inherit; touch-action: manipulation; }
     .tab-button.active { background: #6c63ff; border-color: #6c63ff; box-shadow: 0 8px 25px #6c63ffaa; }
     .tab-button:hover:not(.active) { background: rgba(108,99,255,0.3); border-color: #6c63ff; transform: translateY(-3px); }
 
@@ -103,16 +108,6 @@
     .reveal-blur { filter: blur(20px); transform: scale(1.05); }
     .reveal-combo { transform: translateY(60px) scale(0.8) rotate(-5deg); filter: blur(8px); }
     
-    @media (max-width: 1024px) {
-      .scroll-reveal { opacity:0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; will-change: auto; }
-      .scroll-reveal.revealed { opacity:1; transform: translateY(0); }
-      .reveal-blur, .reveal-scale, .reveal-rotate, .reveal-combo { transform: translateY(30px); filter: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
-      .scroll-reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
-    }
-
     .glass-panel { background: rgba(18,20,28,0.65); backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.08); border-radius:2.5rem; box-shadow:0 20px 45px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.03); }
     .gradient-text { background: linear-gradient(135deg, #b388ff, #6c63ff, #3f8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
@@ -126,7 +121,7 @@
     .social-icon:hover { color:#fff; transform:translateY(-6px) scale(1.18); background:rgba(108,99,255,0.35); border-color:#6c63ff; box-shadow:0 0 35px #6c63ffcc; }
 
     .lang-switch { display: flex; gap: 0.4rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 3rem; padding: 0.3rem; backdrop-filter: blur(10px); }
-    .lang-btn { background: transparent; border: none; color: #cfc8ff; font-family: inherit; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 3rem; transition: all 0.3s ease; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.4rem; }
+    .lang-btn { background: transparent; border: none; color: #cfc8ff; font-family: inherit; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 3rem; transition: all 0.3s ease; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.4rem; touch-action: manipulation; }
     .lang-btn:hover:not(.active) { background: rgba(108,99,255,0.2); color: #fff; }
     .lang-btn.active { background: #6c63ff; color: #fff; box-shadow: 0 4px 15px #6c63ffaa; }
     .lang-btn .flag { font-size: 1.05rem; line-height: 1; }
@@ -155,20 +150,20 @@
     .quote-block:hover { background:rgba(108,99,255,0.15); transform:scale(1.02); border-left-color:#fff; }
 
     .projects-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap:2.5rem; margin:3.5rem 0 2rem; }
-    .project-card { background:rgba(20,22,36,0.75); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.07); border-radius:2.5rem; padding:2.5rem 2rem; transition: all 0.45s cubic-bezier(0.25,0.8,0.25,1.3); display:flex; flex-direction:column; gap:1.4rem; position:relative; overflow:hidden; transform-style: preserve-3d; }
+    .project-card { background:rgba(20,22,36,0.75); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.07); border-radius:2.5rem; padding:2.5rem 2rem; transition: all 0.45s cubic-bezier(0.25,0.8,0.25,1.3); display:flex; flex-direction:column; gap:1.4rem; position:relative; overflow:hidden; transform-style: preserve-3d; contain: content; }
     .project-card::before { content:''; position:absolute; inset:0; border-radius:2.5rem; padding:1px; background:linear-gradient(135deg, #b388ff, #6c63ff); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:0; transition: opacity 0.4s; }
     .project-card:hover::before { opacity:1; }
     .project-card:hover { box-shadow:0 40px 65px -15px #6c63ff90, 0 0 0 1px rgba(108,99,255,0.6); background:rgba(25,28,44,0.8); }
     .project-icon { font-size:3rem; color:#b388ff; transition:0.4s; transform: translateZ(30px); }
     .project-card:hover .project-icon { transform:rotate(10deg) scale(1.15) translateZ(30px); }
 
-    .btn { display:inline-flex; align-items:center; gap:0.7rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.25); padding:0.9rem 2.2rem; border-radius:3rem; color:white; font-weight:600; text-decoration:none; transition: all 0.35s ease; backdrop-filter:blur(12px); margin-top:0.8rem; align-self:flex-start; position:relative; overflow:hidden; font-family: inherit; transform: translateZ(20px); }
+    .btn { display:inline-flex; align-items:center; gap:0.7rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.25); padding:0.9rem 2.2rem; border-radius:3rem; color:white; font-weight:600; text-decoration:none; transition: all 0.35s ease; backdrop-filter:blur(12px); margin-top:0.8rem; align-self:flex-start; position:relative; overflow:hidden; font-family: inherit; transform: translateZ(20px); touch-action: manipulation; }
     .btn::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.6s; }
     .btn:hover::after { left:100%; }
     .btn:hover { background:#6c63ff; border-color:#6c63ff; box-shadow:0 12px 35px #6c63ffcc; transform:translateX(6px) translateZ(20px); }
 
     .social-grid { display:flex; flex-wrap:wrap; gap:1.8rem; margin:3rem 0; }
-    .social-card { background: rgba(255,255,255,0.05); border-radius:2rem; padding:1.3rem 2.8rem; display:flex; align-items:center; gap:1.4rem; backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,0.1); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); text-decoration:none; color:#f0f0f0; position:relative; overflow:hidden; }
+    .social-card { background: rgba(255,255,255,0.05); border-radius:2rem; padding:1.3rem 2.8rem; display:flex; align-items:center; gap:1.4rem; backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,0.1); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); text-decoration:none; color:#f0f0f0; position:relative; overflow:hidden; contain: content; }
     .social-card::after { content: ''; position: absolute; inset: 0; border-radius: 2rem; padding: 1px; background: linear-gradient(135deg, #b388ff, #6c63ff); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.4s; }
     .social-card:hover::after { opacity: 1; }
     .social-card i { font-size: 2.4rem; transition: transform 0.4s; }
@@ -176,17 +171,19 @@
     .social-card:hover { background: rgba(108,99,255,0.25); border-color:#6c63ff; transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(108,99,255,0.5), 0 0 0 1px rgba(108,99,255,0.6); color: #fff; }
     .social-card:hover i, .social-card:hover img { transform: scale(1.2) rotate(5deg); }
 
-    .stream-wrapper { max-width: 900px; margin: 0 auto; }
+    /* Stream tab */
+    .stream-wrapper { max-width: 1000px; margin: 0 auto; }
     .stream-player { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 1.5rem; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 0 60px rgba(108,99,255,0.3); }
     .stream-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     .stream-info { text-align: center; }
     .stream-schedule { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.4); padding: 0.6rem 1.5rem; border-radius: 3rem; font-weight: 600; margin-bottom: 1.5rem; }
-    .notify-btn { display: inline-flex; align-items: center; gap: 0.7rem; background: linear-gradient(135deg, #6c63ff, #b388ff); border: none; padding: 0.9rem 2.2rem; border-radius: 3rem; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.35s ease; box-shadow: 0 10px 30px rgba(108,99,255,0.5); margin-top: 1rem; font-family: inherit; }
+    .notify-btn { display: inline-flex; align-items: center; gap: 0.7rem; background: linear-gradient(135deg, #6c63ff, #b388ff); border: none; padding: 0.9rem 2.2rem; border-radius: 3rem; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.35s ease; box-shadow: 0 10px 30px rgba(108,99,255,0.5); margin-top: 1rem; font-family: inherit; touch-action: manipulation; }
     .notify-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(108,99,255,0.7); }
     .notify-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; box-shadow: none; background: #2a2a3e; color: #a5d6a7; }
 
     footer { text-align:center; padding:3rem 0; border-top:1px solid rgba(255,255,255,0.05); color:#b0b5cc; font-size:1rem; }
 
+    /* МОБИЛЬНАЯ ОПТИМИЗАЦИЯ */
     @media (max-width: 1024px) {
       #bgCanvas { display: none; }
       .name-letter { transform: none; filter: none; opacity: 1; }
@@ -194,9 +191,12 @@
       h1 { font-size:2.8rem; min-height:3.5rem; }
       .hero { flex-direction:column; text-align:center; min-height: auto; }
       .subtitle { border-left:none; padding-left:0; font-size:1.3rem; }
-      .avatar-frame { width:220px; height:220px; }
+      .avatar-frame { width:220px; height:220px; animation: pulseGlow 3s infinite; }
       .container { padding:0 1.2rem; }
-      .glass-panel { border-radius:2rem; }
+      
+      /* Убираем тяжелый блюр на мобилках, чтобы не лагало */
+      .glass-panel, .project-card, .social-card, .sticky-header, .quote-block { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+      
       .projects-grid { grid-template-columns: 1fr; gap:1.5rem; }
       .social-grid { gap:1rem; }
       .social-card { padding:1rem 1.8rem; }
@@ -267,7 +267,7 @@
         <div class="sticky-socials">
           <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="sticky-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
           <a href="https://www.twitch.tv/mrkronickorig" target="_blank" class="sticky-icon" title="Twitch"><i class="fab fa-twitch"></i></a>
-          <a href="https://rutube.ru/channel/32579876/" target="_blank" class="sticky-icon" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube"></a>
+          <a href="https://rutube.ru/channel/32579876/" target="_blank" class="sticky-icon" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube" loading="lazy"></a>
           <a href="https://vk.com/alexanderkronik" target="_blank" class="sticky-icon" title="VK"><i class="fab fa-vk"></i></a>
           <a href="https://t.me/bazakronika" target="_blank" class="sticky-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
         </div>
@@ -299,7 +299,7 @@
           <div class="social-links">
             <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="https://www.twitch.tv/mrkronickorig" target="_blank" class="social-icon" title="Twitch"><i class="fab fa-twitch"></i></a>
-            <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-icon" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube" width="22" height="22"></a>
+            <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-icon" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube" width="22" height="22" loading="lazy"></a>
             <a href="https://vk.com/alexanderkronik" target="_blank" class="social-icon" title="VK"><i class="fab fa-vk"></i></a>
             <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-icon" title="Modrinth"><i class="fas fa-cube"></i></a>
             <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-icon" title="SpigotMC"><i class="fas fa-plug"></i></a>
@@ -407,11 +407,11 @@ Developer of CustomTPA</div>
               <div><strong>Twitch</strong><br><small>@mrkronickorig</small></div>
             </a>
             <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-120">
-              <img src="images/rutube-icon.webp" alt="Rutube" width="42" height="42">
+              <img src="images/rutube-icon.webp" alt="Rutube" width="42" height="42" loading="lazy">
               <div><strong>Rutube</strong><br><small data-i18n="s_channel">Channel</small></div>
             </a>
             <a href="https://dalink.to/mrkronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-140">
-              <img src="images/dalink.png" alt="DALink" width="42" height="42">
+              <img src="images/dalink.png" alt="DALink" width="42" height="42" loading="lazy">
               <div><strong>DALink</strong><br><small data-i18n="s_support">Support</small></div>
             </a>
             <a href="https://vk.com/alexanderkronik" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-200">
@@ -419,7 +419,7 @@ Developer of CustomTPA</div>
               <div><strong>VK</strong><br><small>alexanderkronik</small></div>
             </a>
             <a href="https://x.com/MrKronick_MC" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-250">
-              <img src="images/x-logo.png" alt="X (Twitter)" width="42" height="42">
+              <img src="images/x-logo.png" alt="X (Twitter)" width="42" height="42" loading="lazy">
               <div><strong>X (Twitter)</strong><br><small>@MrKronick_MC</small></div>
             </a>
             <a href="https://www.instagram.com/mrkronick/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-275">
@@ -443,11 +443,11 @@ Developer of CustomTPA</div>
               <div><strong>SpigotMC</strong><br><small>MrKronick</small></div>
             </a>
             <a href="https://www.roblox.com/users/4792145553/profile" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-450">
-              <img src="images/roblox-icon.png" alt="Roblox" width="42" height="42">
+              <img src="images/roblox-icon.png" alt="Roblox" width="42" height="42" loading="lazy">
               <div><strong>Roblox</strong><br><small data-i18n="s_profile">Profile</small></div>
             </a>
             <a href="https://www.roblox.com/games/101982747695467/Easy-Parkour" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-470">
-              <img src="images/roblox-icon.png" alt="Roblox Place" width="42" height="42">
+              <img src="images/roblox-icon.png" alt="Roblox Place" width="42" height="42" loading="lazy">
               <div><strong>Roblox Place</strong><br><small>Easy Parkour</small></div>
             </a>
           </div>
@@ -459,8 +459,9 @@ Developer of CustomTPA</div>
           <h2 style="font-size: 2.5rem; margin-bottom: 2rem;" class="scroll-reveal reveal-fade-left"><span class="gradient-text" data-i18n="stream_title">Live Streams</span></h2>
           <div class="glass-panel stream-wrapper" style="padding: 2rem;">
             
+            <!-- ИСПРАВЛЕНО: Вместо тяжелого JS-скрипта используется легкий iframe -->
             <div class="stream-player">
-              <iframe src="https://player.twitch.tv/?channel=mrkronickorig&parent=mrkronick.site&parent=mrkronick.ru&autoplay=false&chat=disabled" allowfullscreen="true" scrolling="no"></iframe>
+              <iframe src="https://player.twitch.tv/?channel=mrkronickorig&parent=mrkronick.site&parent=localhost&autoplay=false&chat=disabled&layout=video" allowfullscreen="true" scrolling="no" loading="lazy"></iframe>
             </div>
 
             <div class="stream-info">
@@ -524,7 +525,8 @@ Developer of CustomTPA</div>
         redir_title: "Вы находитесь на территории РФ", redir_text: "Перейдите на сайт, который предназначен для РФ пользователей, чтобы сайт стабильно работал.",
         redir_go: "Перейти на сайт", redir_stay: "Остаться здесь",
         stream_title: "Прямые трансляции", stream_schedule: "Каждую субботу · Roblox", stream_desc: "Смотри трансляцию прямо на сайте!",
-        stream_notify: "Уведомить о стримах", stream_open: "Открыть в Twitch", subscribed: "Вы подписаны!"
+        stream_notify: "Уведомить о стримах", stream_open: "Открыть в Twitch", subscribed: "Вы подписаны!",
+        offline_text: "У вас пропало интернет соединение, сайт будет работать оффлайн, и вы не сможете перейти по ссылкам, подключитесь к сети, чтобы всё заработало. А если какой-то сайт не открывается, воспользуйтесь VPN сервисом (желательно платным), иначе заблокированные сервисы в РФ попросту не откроются."
       },
       en: {
         title: "MrKronick — Official Website | Alexander Mochalov",
@@ -553,7 +555,8 @@ Developer of CustomTPA</div>
         redir_title: "You are in the Russian Federation", redir_text: "Go to the site intended for Russian users so the site works stably.",
         redir_go: "Go to site", redir_stay: "Stay here",
         stream_title: "Live Streams", stream_schedule: "Every Saturday · Roblox", stream_desc: "Watch the stream directly on the website!",
-        stream_notify: "Notify me about streams", stream_open: "Open in Twitch", subscribed: "You are subscribed!"
+        stream_notify: "Notify me about streams", stream_open: "Open in Twitch", subscribed: "You are subscribed!",
+        offline_text: "Your internet connection was lost. The site will work offline and you won't be able to follow links. Reconnect to the network to make everything work again."
       },
       zh: {
         title: "MrKronick — 官方网站 | 亚历山大·莫恰洛夫",
@@ -582,7 +585,8 @@ Developer of CustomTPA</div>
         redir_title: "您位于俄罗斯境内", redir_text: "请转到为俄罗斯用户准备的网站，以便网站稳定运行。",
         redir_go: "转到网站", redir_stay: "留在这里",
         stream_title: "直播", stream_schedule: "每周六 · Roblox", stream_desc: "直接在网站上观看直播！",
-        stream_notify: "通知我直播", stream_open: "在 Twitch 中打开", subscribed: "您已订阅！"
+        stream_notify: "通知我直播", stream_open: "在 Twitch 中打开", subscribed: "您已订阅！",
+        offline_text: "网络连接已断开，网站将以离线模式工作，您将无法点击链接。请重新连接网络以恢复正常。"
       }
     };
 
@@ -636,7 +640,6 @@ Developer of CustomTPA</div>
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
       updateOfflineBanner();
       
-      // Обновляем текст кнопки уведомлений, если она уже нажата
       const notifyBtn = document.getElementById('notifyBtn');
       if (notifyBtn && notifyBtn.disabled) {
           notifyBtn.innerHTML = `<i class="fas fa-check"></i> ${t.subscribed}`;
@@ -677,16 +680,8 @@ Developer of CustomTPA</div>
     let offlineDismissed = false;
 
     function updateOfflineBanner() {
-      const inRussia = isRussianTimezone();
-      let text;
-      if (currentLang === 'ru') {
-        text = inRussia ? 'У вас пропало интернет соединение, сайт будет работать оффлайн, и вы не сможете перейти по ссылкам, подключитесь к сети, чтобы всё заработало. А если какой-то сайт не открывается, воспользуйтесь VPN сервисом (желательно платным), иначе заблокированные сервисы в РФ попросту не откроются.' : 'У вас пропало интернет соединение, сайт будет работать оффлайн, и вы не сможете перейти по ссылкам, подключитесь к сети, чтобы всё заработало.';
-      } else if (currentLang === 'zh') {
-        text = '网络连接已断开，网站将以离线模式工作，您将无法点击链接。请重新连接网络以恢复正常。';
-      } else {
-        text = 'Your internet connection was lost. The site will work offline and you won\'t be able to follow links. Reconnect to the network to make everything work again.';
-      }
-      offlineText.textContent = text;
+      const t = translations[currentLang] || translations.en;
+      offlineText.textContent = t.offline_text;
       if (!navigator.onLine && !offlineDismissed) offlineBanner.classList.add('visible');
       else offlineBanner.classList.remove('visible');
     }
@@ -923,33 +918,33 @@ Developer of CustomTPA</div>
           const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 
           if (isIOS && !isStandalone) {
-            alert('На iPhone уведомления работают только если сайт добавлен на главный экран.\n\n1. Нажми «Поделиться» в Safari\n2. Выбери «На экран «Домой»»\n3. Открой сайт через иконку на главном экране\n4. Нажми эту кнопку снова');
+            alert('On iPhone, notifications only work if the site is added to the Home Screen.\n\n1. Tap "Share" in Safari\n2. Select "Add to Home Screen"\n3. Open the site from the icon\n4. Tap this button again');
             return;
           }
 
           if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
-            alert('Браузер не поддерживает уведомления.');
+            alert('Your browser does not support notifications.');
             return;
           }
           if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
-            alert('Уведомления работают только по HTTPS.');
+            alert('Notifications only work over HTTPS.');
             return;
           }
 
           try {
             const permission = await Notification.requestPermission();
             if (permission !== 'granted') {
-              alert('Ты отклонил уведомления. Разреши их в настройках браузера для этого сайта и попробуй снова.');
+              alert('You denied notifications. Please allow them in your browser settings for this site and try again.');
               return;
             }
 
             notifyBtn.disabled = true;
-            notifyBtn.textContent = '⏳ Подключаем...';
+            notifyBtn.textContent = '⏳ Connecting...';
 
             await navigator.serviceWorker.register('/sw.js');
             const registration = await Promise.race([
               navigator.serviceWorker.ready,
-              new Promise((_, reject) => setTimeout(() => reject(new Error('Service Worker не активировался за 15 секунд. Перезагрузи страницу и попробуй снова.')), 15000))
+              new Promise((_, reject) => setTimeout(() => reject(new Error('Service Worker did not activate within 15 seconds. Please reload the page and try again.')), 15000))
             ]);
 
             let subscription = await registration.pushManager.getSubscription();
@@ -969,7 +964,7 @@ Developer of CustomTPA</div>
 
             if (!response.ok) {
               const errText = await response.text().catch(() => '');
-              throw new Error('Сервер вернул ' + response.status + (errText ? ': ' + errText : ''));
+              throw new Error('Server returned ' + response.status + (errText ? ': ' + errText : ''));
             }
 
             notifyBtn.innerHTML = `<i class="fas fa-check"></i> ${getT().subscribed}`;
@@ -978,7 +973,7 @@ Developer of CustomTPA</div>
             console.error(e);
             notifyBtn.disabled = false;
             notifyBtn.innerHTML = originalText;
-            alert('Ошибка подписки: ' + e.message + '\n\nПроверь:\n• Сайт открыт по HTTPS\n• Не в приватном режиме\n• Браузер поддерживает push');
+            alert('Subscription error: ' + e.message + '\n\nCheck:\n• Site is on HTTPS\n• Not in incognito mode\n• Browser supports push notifications');
           }
         });
       }
@@ -1016,4 +1011,4 @@ Developer of CustomTPA</div>
     })();
   </script>
 </body>
-</html>
+  </html>
