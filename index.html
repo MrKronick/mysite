@@ -758,46 +758,13 @@ Developer of CustomTPA</div>
       let initialIndex = 0;
       let waitingIndex = 0;
 
-      function setMessage(text) {
-        loaderMessage.style.opacity = '0';
-        loaderMessage.style.transform = 'translateY(-10px)';
-        setTimeout(() => {
-          loaderMessage.textContent = text;
-          loaderMessage.style.opacity = '1';
-          loaderMessage.style.transform = 'translateY(0)';
-        }, 200);
-      }
-
-      function getT() { return translations[currentLang] || translations.en; }
-
-      function finishLoading() {
-        if (done) return;
-        done = true;
-        clearInterval(tickInterval);
-        clearInterval(imagePoller);
-        loaderMessage.classList.add('fade-out');
-        if (!isMobileV && !prefersReduced) {
-          loaderParticleEls.forEach((p, i) => setTimeout(() => p.classList.add('fly'), i * 50));
-          setTimeout(() => loaderRing.classList.add('expanding'), 300);
+      // ЖЕЛЕЗОБЕТОННЫЙ ТАЙМАУТ: Если через 7 секунд всё не загрузилось, запускаем сайт принудительно
+      setTimeout(() => {
+        if (!done) {
+          console.warn('Принудительное завершение загрузки (картинки не прогрузились).');
+          finishLoading();
         }
-        setTimeout(() => siteContent.classList.add('visible'), 500);
-        setTimeout(() => loader.classList.add('hidden'), 900);
-        setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 1800);
-        if (!isMobileV && !prefersReduced) {
-          const nameContainer = document.getElementById('nameContainer');
-          const name = getT().name;
-          nameContainer.innerHTML = '';
-          name.split('').forEach((char, i) => {
-            const span = document.createElement('span');
-            span.className = 'name-letter gradient-text';
-            span.textContent = char;
-            nameContainer.appendChild(span);
-            setTimeout(() => span.classList.add('show'), i * 70);
-          });
-        }
-      }
-
-      loaderMessage.textContent = getT().loader_1;
+      }, 7000);
 
       const tickInterval = setInterval(() => {
         if (done) { clearInterval(tickInterval); return; }
