@@ -25,12 +25,10 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
     
-    /* Стилизация полосы прокрутки (Скроллбар) */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #0a0a0f; }
     ::-webkit-scrollbar-thumb { background: #6c63ff; border-radius: 10px; }
     ::-webkit-scrollbar-thumb:hover { background: #b388ff; }
-    /* Для Firefox */
     html { scrollbar-width: thin; scrollbar-color: #6c63ff #0a0a0f; }
 
     body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background: #0a0a0f; color: #e8e9f0; line-height: 1.5; overflow-x: hidden; position: relative; }
@@ -39,6 +37,29 @@
 
     .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, #6c63ff, #b388ff, #3f8cff); z-index: 10000; transition: width 0.1s ease-out; box-shadow: 0 0 12px #6c63ffcc; }
     
+    /* ПЛАШКА КУКИ */
+    .cookie-banner {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(150%);
+      width: calc(100% - 4rem); max-width: 900px;
+      background: rgba(18,20,28,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(108,99,255,0.4); border-radius: 1.5rem; padding: 1.5rem 2rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+      z-index: 99999; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+    .cookie-banner.visible { transform: translateX(-50%) translateY(0); }
+    .cookie-text { font-size: 0.95rem; color: #c0c5e0; line-height: 1.5; }
+    .cookie-text a { color: #b388ff; text-decoration: none; border-bottom: 1px dashed #b388ff; }
+    .cookie-btn {
+      background: #6c63ff; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 3rem;
+      font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; flex-shrink: 0; font-family: inherit;
+    }
+    .cookie-btn:hover { background: #b388ff; color: #000; box-shadow: 0 0 20px rgba(179,136,255,0.5); }
+    
+    @media (max-width: 768px) {
+      .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; width: calc(100% - 2rem); padding: 1.5rem; }
+    }
+
     /* OFFLINE BANNER */
     .offline-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 10050; background: linear-gradient(90deg, #c62828, #8e0000); color: #fff; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: center; gap: 1rem; transform: translateY(-120%); transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 6px 25px rgba(198, 40, 40, 0.6); font-size: 0.95rem; line-height: 1.45; }
     .offline-banner.visible { transform: translateY(0); }
@@ -180,8 +201,7 @@
     .social-card:hover { background: rgba(108,99,255,0.25); border-color:#6c63ff; transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(108,99,255,0.5), 0 0 0 1px rgba(108,99,255,0.6); color: #fff; }
     .social-card:hover i, .social-card:hover img { transform: scale(1.2) rotate(5deg); }
 
-    /* Stream tab */
-    .stream-wrapper { max-width: 1000px; margin: 0 auto; }
+    .stream-wrapper { max-width: 900px; margin: 0 auto; }
     .stream-player { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 1.5rem; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 0 60px rgba(108,99,255,0.3); }
     .stream-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     .stream-info { text-align: center; }
@@ -192,7 +212,6 @@
 
     footer { text-align:center; padding:3rem 0; border-top:1px solid rgba(255,255,255,0.05); color:#b0b5cc; font-size:1rem; }
 
-    /* МОБИЛЬНАЯ ОПТИМИЗАЦИЯ */
     @media (max-width: 1024px) {
       #bgCanvas { display: none; }
       .name-letter { transform: none; filter: none; opacity: 1; }
@@ -202,9 +221,7 @@
       .subtitle { border-left:none; padding-left:0; font-size:1.3rem; }
       .avatar-frame { width:220px; height:220px; animation: pulseGlow 3s infinite; }
       .container { padding:0 1.2rem; }
-      
       .glass-panel, .project-card, .social-card, .sticky-header, .quote-block { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-      
       .projects-grid { grid-template-columns: 1fr; gap:1.5rem; }
       .social-grid { gap:1rem; }
       .social-card { padding:1rem 1.8rem; }
@@ -250,6 +267,14 @@
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
 
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-text" id="cookieText">
+      Hey! We use cookies to keep the site running smoothly, remember your language, and save your settings. By continuing to browse, you agree to this. Read more <a href="cookies.html">here</a>.
+    </div>
+    <button class="cookie-btn" id="acceptCookies">Accept</button>
+  </div>
+
   <div class="offline-banner" id="offlineBanner" role="alert">
     <i class="fas fa-wifi offline-icon" style="opacity:0.6;"></i>
     <div class="offline-text" id="offlineText"></div>
@@ -259,11 +284,11 @@
   <div class="redirect-popup" id="redirectPopup" role="dialog" aria-modal="true">
     <div class="redirect-popup-inner">
       <div class="flag-icon">🇷🇺</div>
-      <h3 data-i18n="redir_title">Вы находитесь на территории РФ</h3>
-      <p data-i18n="redir_text">Перейдите на сайт, который предназначен для РФ пользователей, чтобы сайт стабильно работал.</p>
+      <h3 data-i18n="redir_title">You are in the Russian Federation</h3>
+      <p data-i18n="redir_text">Go to the site intended for Russian users so the site works stably.</p>
       <div class="popup-buttons">
-        <a href="https://mrkronick.ru" class="popup-btn primary" data-i18n="redir_go">Перейти на сайт</a>
-        <button class="popup-btn secondary" id="redirStay" data-i18n="redir_stay">Остаться здесь</button>
+        <a href="https://mrkronick.ru" class="popup-btn primary" data-i18n="redir_go">Go to site</a>
+        <button class="popup-btn secondary" id="redirStay" data-i18n="redir_stay">Stay here</button>
       </div>
     </div>
   </div>
@@ -492,6 +517,19 @@ Developer of CustomTPA</div>
   <button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
   <script>
+    // ЛОГИКА ПЛАШКИ КУКИ
+    const cookieBanner = document.getElementById('cookieBanner');
+    const acceptCookiesBtn = document.getElementById('acceptCookies');
+
+    if (!localStorage.getItem('cookie_consent')) {
+      setTimeout(() => { cookieBanner.classList.add('visible'); }, 1500);
+    }
+
+    acceptCookiesBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie_consent', 'true');
+      cookieBanner.classList.remove('visible');
+    });
+
     const VAPID_PUBLIC_KEY = 'BEQUS1Qg5HToCnZT5L1SeTmolZ2KYoMm70Sm48oUxzxXIVwSg_r5X-iu9VVJr8BEBwFy02ZOKn6DhxEDuiE7n1A';
     const WORKER_URL = 'https://api.mrkronick.site';
 
@@ -533,7 +571,9 @@ Developer of CustomTPA</div>
         redir_go: "Перейти на сайт", redir_stay: "Остаться здесь",
         stream_title: "Прямые трансляции", stream_schedule: "Каждую субботу · Roblox", stream_desc: "Смотри трансляцию прямо на сайте!",
         stream_notify: "Уведомить о стримах", stream_open: "Открыть в Twitch", subscribed: "Вы подписаны!",
-        offline_text: "У вас пропало интернет соединение, сайт будет работать оффлайн, и вы не сможете перейти по ссылкам, подключитесь к сети, чтобы всё заработало. А если какой-то сайт не открывается, воспользуйтесь VPN сервисом (желательно платным), иначе заблокированные сервисы в РФ попросту не откроются."
+        offline_text: "У вас пропало интернет соединение, сайт будет работать оффлайн, и вы не сможете перейти по ссылкам, подключитесь к сети, чтобы всё заработало. А если какой-то сайт не открывается, воспользуйтесь VPN сервисом (желательно платным), иначе заблокированные сервисы в РФ попросту не откроются.",
+        cookie_text: "Привет! Мы используем файлы cookie, чтобы сайт работал стабильно, запоминал твой язык и не сбрасывал настройки. Продолжая просмотр, ты соглашаешься с этим. Подробнее можно почитать <a href='cookies.html'>здесь</a>.",
+        cookie_btn: "Принять"
       },
       en: {
         title: "MrKronick — Official Website | Alexander Mochalov",
@@ -563,7 +603,9 @@ Developer of CustomTPA</div>
         redir_go: "Go to site", redir_stay: "Stay here",
         stream_title: "Live Streams", stream_schedule: "Every Saturday · Roblox", stream_desc: "Watch the stream directly on the website!",
         stream_notify: "Notify me about streams", stream_open: "Open in Twitch", subscribed: "You are subscribed!",
-        offline_text: "Your internet connection was lost. The site will work offline and you won't be able to follow links. Reconnect to the network to make everything work again."
+        offline_text: "Your internet connection was lost. The site will work offline and you won't be able to follow links. Reconnect to the network to make everything work again.",
+        cookie_text: "Hey! We use cookies to keep the site running smoothly, remember your language, and save your settings. By continuing to browse, you agree to this. Read more <a href='cookies.html'>here</a>.",
+        cookie_btn: "Accept"
       },
       zh: {
         title: "MrKronick — 官方网站 | 亚历山大·莫恰洛夫",
@@ -593,7 +635,9 @@ Developer of CustomTPA</div>
         redir_go: "转到网站", redir_stay: "留在这里",
         stream_title: "直播", stream_schedule: "每周六 · Roblox", stream_desc: "直接在网站上观看直播！",
         stream_notify: "通知我直播", stream_open: "在 Twitch 中打开", subscribed: "您已订阅！",
-        offline_text: "网络连接已断开，网站将以离线模式工作，您将无法点击链接。请重新连接网络以恢复正常。"
+        offline_text: "网络连接已断开，网站将以离线模式工作，您将无法点击链接。请重新连接网络以恢复正常。",
+        cookie_text: "嘿！我们使用 cookie 来保持网站平稳运行、记住您的语言并保存您的设置。继续浏览即表示您同意此操作。在此处了解更多信息 <a href='cookies.html'>在此处</a>。",
+        cookie_btn: "接受"
       }
     };
 
@@ -644,6 +688,13 @@ Developer of CustomTPA</div>
           });
         }
       }
+      
+      const cookieText = document.getElementById('cookieText');
+      if (cookieText) cookieText.innerHTML = t.cookie_text;
+      
+      const acceptCookies = document.getElementById('acceptCookies');
+      if (acceptCookies) acceptCookies.textContent = t.cookie_btn;
+
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
       updateOfflineBanner();
       
@@ -765,7 +816,6 @@ Developer of CustomTPA</div>
       let initialIndex = 0;
       let waitingIndex = 0;
 
-      // ЖЕЛЕЗОБЕТОННЫЙ ТАЙМАУТ: Если через 4 секунды всё не загрузилось, запускаем сайт принудительно
       setTimeout(() => {
         if (!done) {
           console.warn('Failsafe: Force finishing loading due to timeout.');
