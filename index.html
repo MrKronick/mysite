@@ -24,6 +24,15 @@
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
+    
+    /* Стилизация полосы прокрутки (Скроллбар) */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0f; }
+    ::-webkit-scrollbar-thumb { background: #6c63ff; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b388ff; }
+    /* Для Firefox */
+    html { scrollbar-width: thin; scrollbar-color: #6c63ff #0a0a0f; }
+
     body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background: #0a0a0f; color: #e8e9f0; line-height: 1.5; overflow-x: hidden; position: relative; }
     html[lang="zh"] body { font-family: 'Noto Sans SC', 'Inter', sans-serif; }
     body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.035; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); }
@@ -194,7 +203,6 @@
       .avatar-frame { width:220px; height:220px; animation: pulseGlow 3s infinite; }
       .container { padding:0 1.2rem; }
       
-      /* Убираем тяжелый блюр на мобилках, чтобы не лагало */
       .glass-panel, .project-card, .social-card, .sticky-header, .quote-block { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
       
       .projects-grid { grid-template-columns: 1fr; gap:1.5rem; }
