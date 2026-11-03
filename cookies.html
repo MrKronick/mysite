@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cookie Policy | MrKronick</title>
+  <meta name="description" content="Information about the use of cookies on the MrKronick website.">
+  <meta name="theme-color" content="#0a0a0f">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0f; }
+    ::-webkit-scrollbar-thumb { background: #6c63ff; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b388ff; }
+    html { scrollbar-width: thin; scrollbar-color: #6c63ff #0a0a0f; }
+
+    body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background: #0a0a0f; color: #e8e9f0; line-height: 1.6; overflow-x: hidden; position: relative; min-height: 100vh; display: flex; flex-direction: column; }
+    html[lang="zh"] body { font-family: 'Noto Sans SC', 'Inter', sans-serif; }
+    body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.035; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; flex: 1; }
+    
+    header { display:flex; justify-content:space-between; align-items:center; padding:1.8rem 0; flex-wrap:wrap; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 2rem; }
+    .logo { font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:2rem; background: linear-gradient(135deg, #fff, #b388ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+    
+    .header-right { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    
+    .lang-switch { display: flex; gap: 0.4rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 3rem; padding: 0.3rem; backdrop-filter: blur(10px); }
+    .lang-btn { background: transparent; border: none; color: #cfc8ff; font-family: inherit; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 3rem; transition: all 0.3s ease; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; touch-action: manipulation; }
+    .lang-btn:hover:not(.active) { background: rgba(108,99,255,0.2); color: #fff; }
+    .lang-btn.active { background: #6c63ff; color: #fff; box-shadow: 0 4px 15px #6c63ffaa; }
+    .lang-btn .flag { font-size: 1.05rem; line-height: 1; }
+
+    .glass-panel { background: rgba(18,20,28,0.65); backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.08); border-radius:2.5rem; box-shadow:0 20px 45px rgba(0,0,0,0.6); padding: 3rem; margin: 2rem 0; }
+    h1 { font-family:'Space Grotesk', 'Noto Sans SC', sans-serif; font-size: 2.5rem; margin-bottom: 1.5rem; color: #fff; }
+    h2 { font-family:'Space Grotesk', 'Noto Sans SC', sans-serif; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; color: #b388ff; }
+    p { margin-bottom: 1rem; color: #c0c5e0; font-size: 1.1rem; }
+    ul { margin-bottom: 1rem; padding-left: 1.5rem; color: #c0c5e0; font-size: 1.1rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: #fff; }
+
+    .btn { display:inline-flex; align-items:center; gap:0.7rem; background:rgba(108,99,255,0.2); border:1px solid rgba(108,99,255,0.5); padding:0.8rem 2rem; border-radius:3rem; color:white; font-weight:600; text-decoration:none; transition: all 0.35s ease; font-family: inherit; cursor: pointer; touch-action: manipulation; }
+    .btn:hover { background:#6c63ff; border-color:#6c63ff; box-shadow:0 10px 25px #6c63ffaa; transform: translateX(-5px); }
+
+    footer { text-align:center; padding:2rem 0; color:#7a7f9a; font-size:0.9rem; border-top: 1px solid rgba(255,255,255,0.05); }
+
+    @media (max-width: 768px) {
+      .glass-panel { padding: 2rem 1.5rem; border-radius: 2rem; }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.3rem; }
+      p, ul { font-size: 1rem; }
+      header { flex-direction: column; text-align: center; gap: 1rem; }
+      .header-right { justify-content: center; width: 100%; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="index.html" class="logo">MrKronick</a>
+      <div class="header-right">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button class="lang-btn" data-lang="ru"><span class="flag">🇷🇺</span> RU</button>
+          <button class="lang-btn" data-lang="en"><span class="flag">🇬🇧</span> EN</button>
+          <button class="lang-btn" data-lang="zh"><span class="flag">🇨🇳</span> 中文</button>
+        </div>
+        <a href="index.html" class="btn"><i class="fas fa-arrow-left"></i> <span data-i18n="back_btn">На главную</span></a>
+      </div>
+    </header>
+
+    <div class="glass-panel">
+      <h1 data-i18n="title"></h1>
+      
+      <p data-i18n="p1"></p>
+      <p><span data-i18n="p2_1"></span> <strong data-i18n="p2_2"></strong> <span data-i18n="p2_3"></span></p>
+
+      <h2 data-i18n="h2_1"></h2>
+      <p data-i18n="p3"></p>
+      <ul>
+        <li><strong data-i18n="li1_1"></strong> <span data-i18n="li1_2"></span></li>
+        <li><strong data-i18n="li2_1"></strong> <span data-i18n="li2_2"></span></li>
+        <li><strong data-i18n="li3_1"></strong> <span data-i18n="li3_2"></span></li>
+      </ul>
+
+      <h2 data-i18n="h2_2"></h2>
+      <p data-i18n="p4"></p>
+      
+      <p data-i18n="p5"></p>
+      
+      <div style="margin-top: 2rem; text-align: center;">
+        <a href="index.html" class="btn" style="transform: none; margin-top: 1rem;"><i class="fas fa-home"></i> <span data-i18n="btn_site">Перейти на сайт</span></a>
+      </div>
+    </div>
+
+    <footer>
+      <p data-i18n="footer"></p>
+    </footer>
+  </div>
+
+  <script>
+    const translations = {
+      ru: {
+        title: "Политика использования Cookie",
+        back_btn: "На главную",
+        p1: "Привет! Ты наверняка видел на других сайтах всплывающие окна с просьбой согласиться на использование файлов cookie. Я тоже добавил такую плашку, потому что это стандартная практика, которая нужна для стабильной работы сайта.",
+        p2_1: "Если говорить прямо:",
+        p2_2: "я не собираю твои личные данные, не продаю их и не передаю третьим лицам.",
+        p2_3: "Мне, как разработчику, это попросту не нужно.",
+        h2_1: "Зачем вообще нужны эти куки?",
+        p3: "Файлы cookie — это маленькие текстовые файлы, которые сохраняются в твоем браузере. На моем сайте они используются исключительно для твоего удобства:",
+        li1_1: "Запоминание языка:",
+        li1_2: "Чтобы сайт не сбрасывал твой выбор (RU, EN или 中文) при каждом обновлении страницы.",
+        li2_1: "Уведомления:",
+        li2_2: "Чтобы браузер запомнил, что ты подписался на стримы, и не просил тебя нажать на кнопку снова.",
+        li3_1: "Согласие:",
+        li3_2: "Чтобы эта самая плашка внизу экрана не вылезала каждый раз, когда ты заходишь.",
+        h2_2: "Могу ли я это отключить?",
+        p4: "Да, конечно. Ты можешь в любой момент зайти в настройки своего браузера (Chrome, Safari, Firefox и т.д.) и запретить сохранение cookie. Но имей в виду: если ты это сделаешь, некоторые функции сайта (например, переключение языка) могут работать некорректно.",
+        p5: "Спасибо, что зашел на мой сайт. Если у тебя остались вопросы — пиши мне в Telegram!",
+        btn_site: "Перейти на сайт",
+        footer: "© 2026 MrKronick — Александр Мочалов."
+      },
+      en: {
+        title: "Cookie Policy",
+        back_btn: "Back to site",
+        p1: "Hey! You've probably seen pop-ups on other websites asking you to agree to the use of cookies. I added one here too, because it's standard practice and important for the site to work properly.",
+        p2_1: "To put it simply:",
+        p2_2: "I do not collect your personal data, sell it, or share it with third parties.",
+        p2_3: "As a developer, I just don't need it.",
+        h2_1: "Why do we need these cookies?",
+        p3: "Cookies are small text files stored in your browser. On my site, they are used purely for your convenience:",
+        li1_1: "Remembering language:",
+        li1_2: "So the site doesn't reset your choice (EN, RU, or 中文) every time you refresh the page.",
+        li2_1: "Notifications:",
+        li2_2: "So your browser remembers that you subscribed to the streams and doesn't ask you to press the button again.",
+        li3_1: "Consent:",
+        li3_2: "So that the cookie banner doesn't pop up every time you visit.",
+        h2_2: "Can I disable them?",
+        p4: "Yes, absolutely. You can go into your browser settings (Chrome, Safari, Firefox, etc.) at any time and block cookies. But keep in mind: if you do, some site features (like language switching) might not work correctly.",
+        p5: "Thanks for visiting my site. If you have any questions, feel free to message me on Telegram!",
+        btn_site: "Go to site",
+        footer: "© 2026 MrKronick — Alexander Mochalov."
+      },
+      zh: {
+        title: "Cookie 使用政策",
+        back_btn: "返回网站",
+        p1: "嘿！你可能在其他网站上看到过弹窗，要求你同意使用 Cookie。我也在这里添加了一个，因为这是标准做法，对网站的正常运行很重要。",
+        p2_1: "简而言之：",
+        p2_2: "我不收集您的个人数据，也不出售或与第三方分享。",
+        p2_3: "作为一名开发者，我不需要这些数据。",
+        h2_1: "我们为什么需要这些 Cookie？",
+        p3: "Cookie 是存储在您浏览器中的小型文本文件。在我的网站上，它们纯粹是为了您的方便而使用：",
+        li1_1: "记住语言选择：",
+        li1_2: "确保网站在每次刷新页面时不会重置您的选择（中文、英文或俄文）。",
+        li2_1: "通知：",
+        li2_2: "让您的浏览器记住您已订阅直播，不会再次要求您点击按钮。",
+        li3_1: "同意：",
+        li3_2: "避免每次访问时底部的 Cookie 提示栏再次弹出。",
+        h2_2: "我可以禁用它们吗？",
+        p4: "当然可以。您可以随时进入浏览器设置（Chrome、Safari、Firefox 等）并阻止 Cookie。但请注意：如果您这样做，某些网站功能（如语言切换）可能无法正常工作。",
+        p5: "感谢您访问我的网站。如果您有任何疑问，请在 Telegram 上给我留言！",
+        btn_site: "前往网站",
+        footer: "© 2026 MrKronick — 亚历山大·莫恰洛夫."
+      }
+    };
+
+    function detectLanguage() {
+      const saved = localStorage.getItem('lang');
+      if (saved && translations[saved]) return saved;
+      const candidates = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en'];
+      for (const c of candidates) {
+        const code = String(c).toLowerCase();
+        if (code.startsWith('ru')) return 'ru';
+        if (code.startsWith('zh')) return 'zh';
+      }
+      return 'en';
+    }
+
+    let currentLang = detectLanguage();
+
+    function applyLang(lang) {
+      const t = translations[lang];
+      if (!t) return;
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang;
+      
+      const titleEl = document.querySelector('title');
+      if(titleEl) titleEl.textContent = t.title + " | MrKronick";
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
+    applyLang(currentLang);
+  </script>
+</body>
+</html>
