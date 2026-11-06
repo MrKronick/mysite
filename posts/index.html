@@ -6,7 +6,6 @@
   <title>Posts | MrKronick</title>
   <meta name="theme-color" content="#0a0a0f">
   
-  <!-- ФАВИКОНКИ -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -47,13 +46,124 @@
 
     .page-title { font-size: 2.5rem; margin-bottom: 2rem; font-family: 'Space Grotesk', sans-serif; color: #fff; text-align: center; }
 
-    .post-card { background: rgba(18,20,28,0.65); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.5rem; padding: 2.5rem; margin-bottom: 2.5rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: all 0.4s ease; position: relative; overflow: hidden; opacity: 0; transform: translateY(30px); animation: fadeInUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
-    .post-card::before { content:''; position:absolute; inset:0; border-radius:1.5rem; padding:1px; background:linear-gradient(135deg, #b388ff, #6c63ff); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:0; transition: opacity 0.4s; }
+    /* ======== КНОПКА "НОВЫЕ ПОСТЫ" ======== */
+    .new-posts-pill {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-150px);
+      background: linear-gradient(135deg, #6c63ff, #b388ff);
+      color: #fff;
+      padding: 0.8rem 1.8rem;
+      border-radius: 3rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(108,99,255,0.6);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+      border: none;
+      font-family: inherit;
+      pointer-events: none;
+    }
+    .new-posts-pill.visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .new-posts-pill:hover { transform: translateX(-50%) translateY(-3px) scale(1.05); }
+    .new-posts-pill i { animation: bell-shake 2s infinite; }
+    @keyframes bell-shake {
+      0%, 80%, 100% { transform: rotate(0); }
+      85% { transform: rotate(-15deg); }
+      90% { transform: rotate(15deg); }
+      95% { transform: rotate(-10deg); }
+    }
+
+    /* ======== КАРТОЧКИ ПОСТОВ ======== */
+    .post-card { 
+      background: rgba(18,20,28,0.65); 
+      border: 1px solid rgba(255,255,255,0.08); 
+      border-radius: 1.5rem; 
+      padding: 2.5rem; 
+      margin-bottom: 2.5rem; 
+      backdrop-filter: blur(20px); 
+      -webkit-backdrop-filter: blur(20px); 
+      transition: all 0.4s ease; 
+      position: relative; 
+      overflow: hidden; 
+      opacity: 0; 
+      transform: translateY(40px);
+    }
+    .post-card::before { 
+      content:''; 
+      position:absolute; 
+      inset:0; 
+      border-radius:1.5rem; 
+      padding:1px; 
+      background:linear-gradient(135deg, #b388ff, #6c63ff); 
+      -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); 
+      -webkit-mask-composite: xor; 
+      mask-composite: exclude; 
+      opacity:0; 
+      transition: opacity 0.4s; 
+      pointer-events: none;
+    }
     .post-card:hover::before { opacity: 1; }
     .post-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(108,99,255,0.15); }
     
-    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
+    /* Плавное появление при загрузке (staggered) */
+    .post-card.appear {
+      animation: postAppear 0.7s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+    @keyframes postAppear {
+      0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    
+    /* Красивое появление нового поста (как в соц сетях) */
+    .post-card.new-post {
+      animation: newPostAppear 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+    @keyframes newPostAppear {
+      0% { 
+        opacity: 0; 
+        transform: translateY(-40px) scale(0.85); 
+        box-shadow: 0 0 0 0 rgba(179,136,255,0); 
+        border-color: rgba(179,136,255,0);
+      }
+      40% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1.03); 
+        box-shadow: 0 0 50px 10px rgba(179,136,255,0.5); 
+        border-color: #b388ff;
+      }
+      70% {
+        transform: translateY(0) scale(0.99);
+      }
+      100% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+        box-shadow: 0 0 0 0 rgba(179,136,255,0); 
+        border-color: rgba(255,255,255,0.08);
+      }
+    }
+    
+    /* Подсветка при переходе по ссылке из пуша */
+    .post-card.highlighted {
+      animation: highlightPulse 2.5s ease-out;
+    }
+    @keyframes highlightPulse {
+      0% { box-shadow: 0 0 0 0 rgba(179,136,255,0); }
+      15% { box-shadow: 0 0 70px 20px rgba(179,136,255,0.7); border-color: #b388ff; }
+      50% { box-shadow: 0 0 70px 20px rgba(179,136,255,0.7); border-color: #b388ff; }
+      100% { box-shadow: 0 0 0 0 rgba(179,136,255,0); }
+    }
+    
     .post-date { font-size: 0.85rem; color: #b388ff; font-weight: 600; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
     .post-title { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: #fff; margin-bottom: 1.2rem; line-height: 1.3; }
     .post-content { color: #c0c5e0; font-size: 1.1rem; margin-bottom: 2rem; white-space: pre-wrap; }
@@ -78,11 +188,17 @@
       header { flex-direction: column; text-align: center; margin-bottom: 2rem; }
       .header-right { justify-content: center; width: 100%; }
       .post-actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .new-posts-pill { top: 20px; font-size: 0.85rem; padding: 0.7rem 1.3rem; }
     }
   </style>
 </head>
 <body>
   <canvas id="bgCanvas"></canvas>
+  
+  <button class="new-posts-pill" id="newPostsPill">
+    <i class="fas fa-bell"></i>
+    <span id="newPostsText">Новые посты</span>
+  </button>
   
   <div class="container">
     <header>
@@ -106,6 +222,7 @@
 
   <script>
     const API_URL = 'https://api.mrkronick.site';
+    const POLL_INTERVAL = 15000; // Проверка новых постов каждые 15 сек
 
     const translations = {
       ru: {
@@ -114,7 +231,9 @@
         loading: "Загрузка...",
         no_posts: "Постов пока нет.",
         error: "Ошибка сети. Попробуйте позже.",
-        link_btn_default: "Перейти по ссылке"
+        link_btn_default: "Перейти по ссылке",
+        new_post_single: "Новый пост",
+        new_posts_plural: "Новых постов"
       },
       en: {
         page_title: "Posts",
@@ -122,7 +241,9 @@
         loading: "Loading...",
         no_posts: "No posts yet.",
         error: "Network error. Please try again later.",
-        link_btn_default: "Go to link"
+        link_btn_default: "Go to link",
+        new_post_single: "New post",
+        new_posts_plural: "New posts"
       },
       zh: {
         page_title: "帖子",
@@ -130,7 +251,9 @@
         loading: "加载中...",
         no_posts: "暂时没有帖子。",
         error: "网络错误，请稍后再试。",
-        link_btn_default: "前往链接"
+        link_btn_default: "前往链接",
+        new_post_single: "新帖子",
+        new_posts_plural: "新帖子"
       }
     };
 
@@ -147,6 +270,11 @@
     }
 
     let currentLang = detectLanguage();
+    let globalLikesCache = {};
+    let knownPostIds = new Set();
+    let firstLoad = true;
+    let pendingNewPosts = [];
+    let pollTimer = null;
 
     function applyLang(lang) {
       const t = translations[lang];
@@ -165,7 +293,11 @@
 
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
       
-      // Перезагружаем посты, чтобы обновить кнопки "Перейти по ссылке"
+      // Полный перерендер постов при смене языка
+      knownPostIds.clear();
+      firstLoad = true;
+      pendingNewPosts = [];
+      hidePill();
       loadPosts();
     }
 
@@ -173,74 +305,238 @@
       btn.addEventListener('click', () => applyLang(btn.dataset.lang));
     });
 
+    function updatePillText() {
+      const t = translations[currentLang];
+      const textEl = document.getElementById('newPostsText');
+      const count = pendingNewPosts.length;
+      if (count === 1) {
+        textEl.textContent = t.new_post_single;
+      } else {
+        textEl.textContent = `${t.new_posts_plural} (${count})`;
+      }
+    }
+
+    function showPill() {
+      updatePillText();
+      document.getElementById('newPostsPill').classList.add('visible');
+    }
+
+    function hidePill() {
+      document.getElementById('newPostsPill').classList.remove('visible');
+    }
+
+    function createPostCard(post, likes, t, animationType = 'appear', delay = 0) {
+      const userLiked = localStorage.getItem(`liked_${post.id}`) === 'true';
+      const likesCount = (likes[post.id] || 0) + (userLiked && !likes[post.id] ? 1 : 0);
+      const displayCount = userLiked ? Math.max(likes[post.id] || 0, 1) : (likes[post.id] || 0);
+      
+      const card = document.createElement('div');
+      card.className = `post-card ${animationType}`;
+      card.dataset.postId = post.id;
+      if (delay > 0) card.style.animationDelay = `${delay}s`;
+      
+      let linkHtml = '';
+      if (post.link && post.link.trim() !== '') {
+        const btnText = (post.linkText && post.linkText.trim() !== '') ? post.linkText : t.link_btn_default;
+        linkHtml = `<a href="${post.link}" target="_blank" class="post-link-btn">${btnText} <i class="fas fa-arrow-right"></i></a>`;
+      }
+
+      card.innerHTML = `
+        <div class="post-date">${post.date}</div>
+        <h2 class="post-title">${post.title}</h2>
+        <div class="post-content">${post.content}</div>
+        <div class="post-actions">
+          <button class="like-btn ${userLiked ? 'liked' : ''}" onclick="toggleLike(this, '${post.id}')">
+            <i class="${userLiked ? 'fas' : 'far'} fa-heart"></i>
+            <span class="like-count">${displayCount}</span>
+          </button>
+          ${linkHtml}
+        </div>
+      `;
+      return card;
+    }
+
+    function insertNewPosts(posts) {
+      const t = translations[currentLang];
+      const container = document.getElementById('posts-container');
+      
+      // Удаляем заглушку "нет постов" если она была
+      const placeholder = container.querySelector('.no-posts');
+      if (placeholder) placeholder.remove();
+      
+      posts.forEach((post, i) => {
+        knownPostIds.add(post.id);
+        const card = createPostCard(post, globalLikesCache, t, 'new-post');
+        card.style.animationDelay = `${i * 0.15}s`;
+        container.insertBefore(card, container.querySelector('.post-card') || null);
+      });
+    }
+
     async function loadPosts() {
       const t = translations[currentLang];
       const container = document.getElementById('posts-container');
       
       try {
-        const res = await fetch(API_URL + '/posts');
-        const posts = await res.json();
-        const likesRes = await fetch(API_URL + '/likes');
-        const globalLikes = await likesRes.json();
+        const [postsRes, likesRes] = await Promise.all([
+          fetch(API_URL + '/posts'),
+          fetch(API_URL + '/likes')
+        ]);
+        const posts = await postsRes.json();
+        const likes = await likesRes.json();
+        globalLikesCache = likes;
 
-        container.innerHTML = '';
-
-        if (posts.length === 0) {
-          container.innerHTML = `<div class="no-posts">${t.no_posts}</div>`;
-          return;
-        }
-
-        posts.forEach((post, index) => {
-          const userLiked = localStorage.getItem(`liked_${post.id}`) === 'true';
-          const likesCount = globalLikes[post.id] || 0;
-
-          const card = document.createElement('div');
-          card.className = 'post-card';
-          card.style.animationDelay = `${index * 0.1}s`;
+        if (firstLoad) {
+          container.innerHTML = '';
+          knownPostIds.clear();
           
-          let linkHtml = '';
-          if (post.link && post.link.trim() !== '') {
-            const btnText = (post.linkText && post.linkText.trim() !== '') ? post.linkText : t.link_btn_default;
-            linkHtml = `<a href="${post.link}" target="_blank" class="post-link-btn">${btnText} <i class="fas fa-arrow-right"></i></a>`;
+          if (posts.length === 0) {
+            container.innerHTML = `<div class="no-posts">${t.no_posts}</div>`;
+            firstLoad = false;
+            return;
           }
 
-          card.innerHTML = `
-            <div class="post-date">${post.date}</div>
-            <h2 class="post-title">${post.title}</h2>
-            <div class="post-content">${post.content}</div>
-            <div class="post-actions">
-              <button class="like-btn ${userLiked ? 'liked' : ''}" onclick="toggleLike(this, '${post.id}')">
-                <i class="${userLiked ? 'fas' : 'far'} fa-heart"></i>
-                <span class="like-count">${likesCount}</span>
-              </button>
-              ${linkHtml}
-            </div>
-          `;
-          container.appendChild(card);
-        });
+          posts.forEach((post, index) => {
+            knownPostIds.add(post.id);
+            const card = createPostCard(post, likes, t, 'appear', index * 0.1);
+            container.appendChild(card);
+          });
+          firstLoad = false;
+          
+          // Прокрутка к посту, если перешли по пушу
+          handleHashScroll();
+        } else {
+          const newPosts = posts.filter(p => !knownPostIds.has(p.id));
+          
+          if (newPosts.length > 0) {
+            // Удаляем посты, которые больше не существуют на сервере
+            document.querySelectorAll('.post-card').forEach(card => {
+              if (!posts.some(p => p.id === card.dataset.postId)) {
+                card.style.transition = 'opacity 0.3s, transform 0.3s';
+                card.style.opacity = '0';
+                card.style.transform = 'translateX(-60px)';
+                setTimeout(() => card.remove(), 300);
+              }
+            });
+            
+            const isAtTop = window.scrollY < 200;
+            
+            if (isAtTop) {
+              // Пользователь наверху — сразу вставляем с анимацией
+              insertNewPosts(newPosts);
+            } else {
+              // Пользователь листает — копим и показываем пилюлю
+              pendingNewPosts.push(...newPosts);
+              newPosts.forEach(p => knownPostIds.add(p.id)); // Чтобы не задублировать
+              showPill();
+            }
+          }
+        }
       } catch (e) {
-        container.innerHTML = `<div class="no-posts" style="color: #ff4444;">${t.error}</div>`;
+        console.error('Load error:', e);
+        if (firstLoad) {
+          container.innerHTML = `<div class="no-posts" style="color: #ff4444;">${t.error}</div>`;
+        }
       }
     }
+
+    function handleHashScroll() {
+      const hash = window.location.hash;
+      if (!hash.startsWith('#post-')) return;
+      
+      const postId = hash.replace('#post-', '');
+      setTimeout(() => {
+        const card = document.querySelector(`[data-post-id="${postId}"]`);
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(() => {
+            card.classList.add('highlighted');
+            setTimeout(() => card.classList.remove('highlighted'), 3000);
+          }, 600);
+        }
+      }, 400);
+    }
+
+    window.addEventListener('hashchange', handleHashScroll);
+
+    // Клик по пилюле — прокручиваем наверх и вставляем накопленные посты
+    document.getElementById('newPostsPill').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      hidePill();
+      
+      if (pendingNewPosts.length > 0) {
+        insertNewPosts(pendingNewPosts);
+        pendingNewPosts = [];
+        
+        // Подсвечиваем новые посты после появления
+        setTimeout(() => {
+          document.querySelectorAll('.post-card.new-post').forEach((card, i) => {
+            setTimeout(() => {
+              card.classList.add('highlighted');
+              setTimeout(() => card.classList.remove('highlighted'), 2500);
+            }, i * 200);
+          });
+        }, 800);
+      }
+    });
+
+    // Прячем пилюлю, если пользователь сам прокрутил наверх
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < 100 && pendingNewPosts.length > 0) {
+        // Вставляем отложенные посты
+        insertNewPosts(pendingNewPosts);
+        pendingNewPosts = [];
+        hidePill();
+      }
+    });
 
     async function toggleLike(btn, postId) {
       if (btn.classList.contains('liked')) return;
       const icon = btn.querySelector('i');
       const countSpan = btn.querySelector('.like-count');
+      
       btn.classList.add('liked');
       icon.classList.replace('far', 'fas');
       countSpan.textContent = parseInt(countSpan.textContent) + 1;
       localStorage.setItem(`liked_${postId}`, 'true');
       
       try {
-        await fetch(API_URL + '/like', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ postId }) });
-      } catch (e) {}
+        const res = await fetch(API_URL + '/like', { 
+          method: 'POST', 
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({ postId }) 
+        });
+        if (!res.ok) throw new Error('Server error');
+      } catch (e) {
+        console.error('Like error:', e);
+        btn.classList.remove('liked');
+        icon.classList.replace('fas', 'far');
+        countSpan.textContent = parseInt(countSpan.textContent) - 1;
+        localStorage.removeItem(`liked_${postId}`);
+      }
     }
 
     // Инициализация
     applyLang(currentLang);
 
-    // Легкая анимация фона (частицы)
+    // Поллинг
+    function startPolling() {
+      if (pollTimer) clearInterval(pollTimer);
+      pollTimer = setInterval(() => {
+        if (!firstLoad && document.visibilityState === 'visible') {
+          loadPosts();
+        }
+      }, POLL_INTERVAL);
+    }
+    
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && !firstLoad) {
+        loadPosts();
+      }
+    });
+    
+    startPolling();
+
+    // Фоновая анимация частиц
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     let width, height;
