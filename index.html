@@ -12,9 +12,12 @@
   <meta property="og:description" content="Creator of FoggyLand and CustomTPA. All socials and projects in one place.">
   <meta property="og:url" content="https://mrkronick.site/">
   <meta property="og:image" content="https://mrkronick.site/images/avatar.webp">
+  
+  <!-- ФАВИКОНКИ -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -24,7 +27,6 @@
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
-    
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #0a0a0f; }
     ::-webkit-scrollbar-thumb { background: #6c63ff; border-radius: 10px; }
@@ -37,30 +39,15 @@
 
     .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, #6c63ff, #b388ff, #3f8cff); z-index: 10000; transition: width 0.1s ease-out; box-shadow: 0 0 12px #6c63ffcc; }
     
-    /* ПЛАШКА КУКИ */
-    .cookie-banner {
-      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(150%);
-      width: calc(100% - 4rem); max-width: 900px;
-      background: rgba(18,20,28,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(108,99,255,0.4); border-radius: 1.5rem; padding: 1.5rem 2rem;
-      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
-      z-index: 99999; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    }
+    .cookie-banner { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(150%); width: calc(100% - 4rem); max-width: 900px; background: rgba(18,20,28,0.85); backdrop-filter: blur(20px); border: 1px solid rgba(108,99,255,0.4); border-radius: 1.5rem; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; z-index: 99999; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
     .cookie-banner.visible { transform: translateX(-50%) translateY(0); }
     .cookie-text { font-size: 0.95rem; color: #c0c5e0; line-height: 1.5; }
     .cookie-text a { color: #b388ff; text-decoration: none; border-bottom: 1px dashed #b388ff; }
-    .cookie-btn {
-      background: #6c63ff; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 3rem;
-      font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; flex-shrink: 0; font-family: inherit;
-    }
+    .cookie-btn { background: #6c63ff; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 3rem; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; flex-shrink: 0; font-family: inherit; }
     .cookie-btn:hover { background: #b388ff; color: #000; box-shadow: 0 0 20px rgba(179,136,255,0.5); }
     
-    @media (max-width: 768px) {
-      .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; width: calc(100% - 2rem); padding: 1.5rem; }
-    }
+    @media (max-width: 768px) { .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; width: calc(100% - 2rem); padding: 1.5rem; } }
 
-    /* OFFLINE BANNER */
     .offline-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 10050; background: linear-gradient(90deg, #c62828, #8e0000); color: #fff; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: center; gap: 1rem; transform: translateY(-120%); transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 6px 25px rgba(198, 40, 40, 0.6); font-size: 0.95rem; line-height: 1.45; }
     .offline-banner.visible { transform: translateY(0); }
     .offline-banner .offline-icon { font-size: 1.6rem; flex-shrink: 0; }
@@ -68,8 +55,7 @@
     .offline-banner .offline-close { background: rgba(255,255,255,0.2); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; font-size: 0.95rem; flex-shrink: 0; transition: background 0.3s; cursor: pointer; }
     .offline-banner .offline-close:hover { background: rgba(255,255,255,0.35); }
 
-    /* REDIRECT POPUP (RU) */
-    .redirect-popup { position: fixed; inset: 0; z-index: 10060; background: rgba(0, 0, 0, 0.78); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
+    .redirect-popup { position: fixed; inset: 0; z-index: 10060; background: rgba(0, 0, 0, 0.78); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
     .redirect-popup.visible { opacity: 1; visibility: visible; }
     .redirect-popup-inner { background: linear-gradient(145deg, #1a1a2e, #16162a); border: 1px solid rgba(108,99,255,0.4); border-radius: 2rem; padding: 2.5rem 2rem; max-width: 520px; width: 100%; box-shadow: 0 30px 80px rgba(108,99,255,0.4); text-align: center; transform: scale(0.85); transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .redirect-popup.visible .redirect-popup-inner { transform: scale(1); }
@@ -82,8 +68,7 @@
     .redirect-popup-inner .popup-btn.primary:hover { transform: translateY(-3px); background: #5647ff; box-shadow: 0 15px 35px #6c63ffdd; }
     .redirect-popup-inner .popup-btn.secondary:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
 
-    /* STICKY HEADER */
-    .sticky-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 9997; background: rgba(15, 16, 25, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.5); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease; }
+    .sticky-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 9997; background: rgba(15, 16, 25, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.5); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease; }
     .sticky-header.visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
     .sticky-inner { max-width: 1300px; margin: 0 auto; padding: 0.7rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
     .sticky-logo { font-family:'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.4rem; background: linear-gradient(135deg, #fff, #b388ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 10px rgba(179,136,255,0.5)); text-decoration: none; transition: transform 0.3s ease; white-space: nowrap; }
@@ -96,7 +81,6 @@
     .sticky-header .lang-switch { padding: 0.2rem; }
     .sticky-header .lang-btn { padding: 0.35rem 0.7rem; font-size: 0.78rem; }
 
-    /* LOADER */
     #loader { position: fixed; top:0; left:0; width:100%; height:100%; background: #0a0a0f; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.8s ease, visibility 0.8s ease; }
     #loader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
     .loader-ring-container { position:relative; width:100px; height:100px; margin-bottom:2rem; }
@@ -119,7 +103,7 @@
     .back-to-top:hover { background: #6c63ff; transform: translateY(-6px) scale(1.08); box-shadow: 0 15px 40px #6c63ffcc; }
 
     .tab-nav { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0 2.5rem; flex-wrap: wrap; }
-    .tab-button { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); padding: 0.8rem 2.5rem; border-radius: 3rem; color: #fff; font-weight: 600; font-size: 1.1rem; backdrop-filter: blur(12px); transition: all 0.3s ease; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.7rem; font-family: inherit; touch-action: manipulation; }
+    .tab-button { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); padding: 0.8rem 2.5rem; border-radius: 3rem; color: #fff; font-weight: 600; font-size: 1.1rem; backdrop-filter: blur(12px); transition: all 0.3s ease; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.7rem; font-family: inherit; touch-action: manipulation; text-decoration: none; }
     .tab-button.active { background: #6c63ff; border-color: #6c63ff; box-shadow: 0 8px 25px #6c63ffaa; }
     .tab-button:hover:not(.active) { background: rgba(108,99,255,0.3); border-color: #6c63ff; transform: translateY(-3px); }
 
@@ -267,7 +251,6 @@
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- COOKIE BANNER -->
   <div class="cookie-banner" id="cookieBanner">
     <div class="cookie-text" id="cookieText">
       Hey! We use cookies to keep the site running smoothly, remember your language, and save your settings. By continuing to browse, you agree to this. Read more <a href="cookies.html">here</a>.
@@ -349,6 +332,8 @@
         <button class="tab-button active" data-tab="main"><i class="fas fa-home"></i> <span data-i18n="tab_main">Home</span></button>
         <button class="tab-button" data-tab="social"><i class="fas fa-share-alt"></i> <span data-i18n="tab_social">Socials</span></button>
         <button class="tab-button" data-tab="stream"><i class="fab fa-twitch"></i> <span data-i18n="tab_stream">Streams</span></button>
+        <!-- НОВАЯ КНОПКА ПОСТОВ -->
+        <a href="/posts/" class="tab-button"><i class="fas fa-newspaper"></i> <span data-i18n="tab_posts">Posts</span></a>
       </div>
 
       <div id="tab-main" class="tab-content active">
@@ -516,6 +501,19 @@ Developer of CustomTPA</div>
 
   <button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
+  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ПОСТОВ И УВЕДОМЛЕНИЙ -->
+  <div id="notification-modal" style="position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); z-index:100000; display:none; align-items:center; justify-content:center; padding:1.5rem; opacity:0; transition:opacity 0.4s;">
+    <div style="background:linear-gradient(145deg, #1a1a2e, #10101a); border:1px solid rgba(108,99,255,0.4); border-radius:2rem; padding:2.5rem; max-width:600px; width:100%; box-shadow:0 30px 80px rgba(108,99,255,0.4); transform:scale(0.9); transition:transform 0.4s; position:relative;">
+      <button onclick="closePostModal()" style="position:absolute; top:1.2rem; right:1.2rem; background:rgba(255,255,255,0.08); border:none; color:#fff; width:38px; height:38px; border-radius:50%; cursor:pointer; font-size:1.2rem; transition:0.3s;">&times;</button>
+      <span style="color:#b388ff; font-weight:700; letter-spacing:1px; font-size:0.85rem; text-transform:uppercase; display:block; margin-bottom:1rem;" id="modal-date"></span>
+      <h2 style="font-family:'Space Grotesk', sans-serif; font-size:2rem; color:#fff; margin-bottom:1.2rem; line-height:1.3; padding-right:2.5rem;" id="modal-title"></h2>
+      <p style="color:#c0c5e0; font-size:1.1rem; line-height:1.6; margin-bottom:2rem; white-space:pre-wrap;" id="modal-content"></p>
+      <div id="modal-link-container" style="display:none;">
+        <a href="#" id="modal-link" target="_blank" style="display:inline-flex; align-items:center; gap:0.7rem; background:#6c63ff; color:#fff; padding:0.9rem 2rem; border-radius:3rem; text-decoration:none; font-weight:600; box-shadow:0 10px 25px rgba(108,99,255,0.5); transition:0.3s;"></a>
+      </div>
+    </div>
+  </div>
+
   <script>
     // ЛОГИКА ПЛАШКИ КУКИ
     const cookieBanner = document.getElementById('cookieBanner');
@@ -530,6 +528,65 @@ Developer of CustomTPA</div>
       cookieBanner.classList.remove('visible');
     });
 
+    // МОДАЛКА
+    const API_MODAL_URL = 'https://api.mrkronick.site';
+
+    async function checkContentHash() {
+      const hash = window.location.hash;
+      let prefix = null, itemId = null;
+
+      if (hash.startsWith('#post-')) { prefix = 'post'; itemId = hash.replace('#post-', ''); }
+      else if (hash.startsWith('#notify-')) { prefix = 'notify'; itemId = hash.replace('#notify-', ''); }
+      else return;
+
+      if (prefix === 'notify' && localStorage.getItem(`seen_notify_${itemId}`) === 'true') {
+        history.replaceState(null, null, window.location.pathname);
+        return;
+      }
+
+      try {
+        const res = await fetch(API_MODAL_URL + '/content/' + itemId);
+        if (!res.ok) return;
+        const item = await res.json();
+
+        document.getElementById('modal-date').textContent = item.date || '';
+        document.getElementById('modal-title').textContent = item.title || '';
+        document.getElementById('modal-content').textContent = item.content || '';
+
+        const linkContainer = document.getElementById('modal-link-container');
+        const linkBtn = document.getElementById('modal-link');
+
+        if (item.link && item.link.trim() !== '') {
+          linkContainer.style.display = 'block';
+          linkBtn.href = item.link;
+          const btnText = (item.linkText && item.linkText.trim() !== '') ? item.linkText : 'Go to link';
+          linkBtn.innerHTML = `${btnText} <i class="fas fa-arrow-right"></i>`;
+        } else {
+          linkContainer.style.display = 'none';
+        }
+
+        const modal = document.getElementById('notification-modal');
+        modal.style.display = 'flex';
+        setTimeout(() => {
+          modal.style.opacity = '1';
+          modal.querySelector('div').style.transform = 'scale(1)';
+        }, 100);
+
+        if (prefix === 'notify') localStorage.setItem(`seen_notify_${itemId}`, 'true');
+      } catch (e) { console.error('Modal error:', e); }
+    }
+
+    function closePostModal() {
+      const modal = document.getElementById('notification-modal');
+      modal.style.opacity = '0';
+      modal.querySelector('div').style.transform = 'scale(0.9)';
+      setTimeout(() => { modal.style.display = 'none'; }, 400);
+      history.replaceState(null, null, window.location.pathname);
+    }
+
+    window.addEventListener('load', checkContentHash);
+
+    // ОСТАЛЬНОЙ JS
     const VAPID_PUBLIC_KEY = 'BEQUS1Qg5HToCnZT5L1SeTmolZ2KYoMm70Sm48oUxzxXIVwSg_r5X-iu9VVJr8BEBwFy02ZOKn6DhxEDuiE7n1A';
     const WORKER_URL = 'https://api.mrkronick.site';
 
@@ -546,7 +603,7 @@ Developer of CustomTPA</div>
       ru: {
         title: "MrKronick — Официальный сайт | Александр Мочалов",
         description: "Официальный сайт MrKronick (Александр Мочалов). Создатель FoggyLand и CustomTPA.",
-        name: "Александр", tab_main: "Главная", tab_social: "Соц сети", tab_stream: "Стримы",
+        name: "Александр", tab_main: "Главная", tab_social: "Соц сети", tab_stream: "Стримы", tab_posts: "Посты",
         subtitle: "MrKronick · Создатель FoggyLand\nРазработчик CustomTPA",
         badge_dev: "⚡ Minecraft разработчик", badge_owner: "🌐 Владелец сервера", badge_plugins: "🔌 Плагины Spigot",
         about_title: "Обо мне",
@@ -578,7 +635,7 @@ Developer of CustomTPA</div>
       en: {
         title: "MrKronick — Official Website | Alexander Mochalov",
         description: "Official website of MrKronick (Alexander Mochalov). Creator of FoggyLand and CustomTPA.",
-        name: "Alexander", tab_main: "Home", tab_social: "Socials", tab_stream: "Streams",
+        name: "Alexander", tab_main: "Home", tab_social: "Socials", tab_stream: "Streams", tab_posts: "Posts",
         subtitle: "MrKronick · Creator of FoggyLand\nDeveloper of CustomTPA",
         badge_dev: "⚡ Minecraft Developer", badge_owner: "🌐 Server Owner", badge_plugins: "🔌 Spigot Plugins",
         about_title: "About Me",
@@ -610,7 +667,7 @@ Developer of CustomTPA</div>
       zh: {
         title: "MrKronick — 官方网站 | 亚历山大·莫恰洛夫",
         description: "MrKronick（亚历山大·莫恰洛夫）官方网站。FoggyLand 服务器和 CustomTPA 插件的创作者。",
-        name: "亚历山大", tab_main: "首页", tab_social: "社交媒体", tab_stream: "直播",
+        name: "亚历山大", tab_main: "首页", tab_social: "社交媒体", tab_stream: "直播", tab_posts: "帖子",
         subtitle: "MrKronick · FoggyLand 创始人\nCustomTPA 开发者",
         badge_dev: "⚡ Minecraft 开发者", badge_owner: "🌐 服务器所有者", badge_plugins: "🔌 Spigot 插件",
         about_title: "关于我",
@@ -927,7 +984,7 @@ Developer of CustomTPA</div>
         document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('revealed'));
       }
 
-      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabButtons = document.querySelectorAll('.tab-button[data-tab]');
       const tabs = document.querySelectorAll('.tab-content');
       
       function switchTab(tabId) {
