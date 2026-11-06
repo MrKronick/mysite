@@ -46,6 +46,155 @@
 
     .page-title { font-size: 2.5rem; margin-bottom: 2rem; font-family: 'Space Grotesk', sans-serif; color: #fff; text-align: center; }
 
+    /* ======== ПЛАШКА "ВКЛЮЧИТЕ УВЕДОМЛЕНИЯ" ======== */
+    .notify-banner {
+      background: linear-gradient(135deg, rgba(108,99,255,0.15), rgba(179,136,255,0.1));
+      border: 1px solid rgba(108,99,255,0.5);
+      border-radius: 1.5rem;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-30px);
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .notify-banner.visible {
+      opacity: 1;
+      transform: translateY(0);
+      max-height: 200px;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .notify-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(179,136,255,0.15) 0%, transparent 50%);
+      animation: notifyGlow 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes notifyGlow {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, 20px); }
+    }
+    
+    .notify-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex: 1 1 300px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .notify-icon {
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #6c63ff, #b388ff);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #fff;
+      animation: bellFloat 2.5s ease-in-out infinite;
+      box-shadow: 0 10px 25px rgba(108,99,255,0.5);
+    }
+    @keyframes bellFloat {
+      0%, 100% { transform: translateY(0) rotate(0); }
+      25% { transform: translateY(-4px) rotate(-8deg); }
+      75% { transform: translateY(-4px) rotate(8deg); }
+    }
+    
+    .notify-text {
+      flex: 1;
+    }
+    .notify-text strong {
+      display: block;
+      color: #fff;
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .notify-text span {
+      color: #c0c5e0;
+      font-size: 0.9rem;
+    }
+    
+    .notify-actions {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .notify-enable-btn {
+      background: linear-gradient(135deg, #6c63ff, #b388ff);
+      border: none;
+      color: #fff;
+      padding: 0.8rem 1.6rem;
+      border-radius: 3rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 10px 25px rgba(108,99,255,0.5);
+      touch-action: manipulation;
+      white-space: nowrap;
+    }
+    .notify-enable-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 15px 35px rgba(108,99,255,0.8);
+    }
+    .notify-enable-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .notify-close-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #c0c5e0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    .notify-close-btn:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      transform: rotate(90deg);
+    }
+
     /* ======== КНОПКА "НОВЫЕ ПОСТЫ" ======== */
     .new-posts-pill {
       position: fixed;
@@ -116,7 +265,6 @@
     .post-card:hover::before { opacity: 1; }
     .post-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(108,99,255,0.15); }
     
-    /* Плавное появление при загрузке (staggered) */
     .post-card.appear {
       animation: postAppear 0.7s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
     }
@@ -125,7 +273,6 @@
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
     
-    /* Красивое появление нового поста (как в соц сетях) */
     .post-card.new-post {
       animation: newPostAppear 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
     }
@@ -142,9 +289,7 @@
         box-shadow: 0 0 50px 10px rgba(179,136,255,0.5); 
         border-color: #b388ff;
       }
-      70% {
-        transform: translateY(0) scale(0.99);
-      }
+      70% { transform: translateY(0) scale(0.99); }
       100% { 
         opacity: 1; 
         transform: translateY(0) scale(1); 
@@ -153,7 +298,6 @@
       }
     }
     
-    /* Подсветка при переходе по ссылке из пуша */
     .post-card.highlighted {
       animation: highlightPulse 2.5s ease-out;
     }
@@ -189,6 +333,10 @@
       .header-right { justify-content: center; width: 100%; }
       .post-actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
       .new-posts-pill { top: 20px; font-size: 0.85rem; padding: 0.7rem 1.3rem; }
+      .notify-banner { padding: 1.2rem; }
+      .notify-banner-content { flex-direction: column; text-align: center; gap: 0.8rem; }
+      .notify-actions { flex-direction: column; width: 100%; }
+      .notify-enable-btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -213,6 +361,25 @@
       </div>
     </header>
 
+    <!-- ПЛАШКА ВКЛЮЧИТЬ УВЕДОМЛЕНИЯ -->
+    <div class="notify-banner" id="notifyBanner">
+      <div class="notify-banner-content">
+        <div class="notify-icon"><i class="fas fa-bell"></i></div>
+        <div class="notify-text">
+          <strong data-i18n="notify_title">Включите уведомления</strong>
+          <span data-i18n="notify_subtitle">Получайте свежие посты первыми!</span>
+        </div>
+      </div>
+      <div class="notify-actions">
+        <button class="notify-enable-btn" id="notifyEnableBtn">
+          <i class="fas fa-bell"></i> <span data-i18n="notify_enable_btn">Включить уведомления</span>
+        </button>
+        <button class="notify-close-btn" id="notifyCloseBtn" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
     <h1 class="page-title" data-i18n="page_title">Посты</h1>
 
     <div id="posts-container">
@@ -222,7 +389,10 @@
 
   <script>
     const API_URL = 'https://api.mrkronick.site';
-    const POLL_INTERVAL = 15000; // Проверка новых постов каждые 15 сек
+    const WORKER_URL = 'https://api.mrkronick.site';
+    const VAPID_PUBLIC_KEY = 'BEQUS1Qg5HToCnZT5L1SeTmolZ2KYoMm70Sm48oUxzxXIVwSg_r5X-iu9VVJr8BEBwFy02ZOKn6DhxEDuiE7n1A';
+    const POLL_INTERVAL = 15000;
+    const NOTIFY_DISMISSED_KEY = 'notify_banner_dismissed';
 
     const translations = {
       ru: {
@@ -233,7 +403,12 @@
         error: "Ошибка сети. Попробуйте позже.",
         link_btn_default: "Перейти по ссылке",
         new_post_single: "Новый пост",
-        new_posts_plural: "Новых постов"
+        new_posts_plural: "Новых постов",
+        notify_title: "Включите уведомления",
+        notify_subtitle: "Получайте свежие посты первыми!",
+        notify_enable_btn: "Включить уведомления",
+        notify_enabled: "Уведомления включены!",
+        notify_connecting: "Подключаем..."
       },
       en: {
         page_title: "Posts",
@@ -243,7 +418,12 @@
         error: "Network error. Please try again later.",
         link_btn_default: "Go to link",
         new_post_single: "New post",
-        new_posts_plural: "New posts"
+        new_posts_plural: "New posts",
+        notify_title: "Enable notifications",
+        notify_subtitle: "Get fresh posts first!",
+        notify_enable_btn: "Enable notifications",
+        notify_enabled: "Notifications enabled!",
+        notify_connecting: "Connecting..."
       },
       zh: {
         page_title: "帖子",
@@ -253,7 +433,12 @@
         error: "网络错误，请稍后再试。",
         link_btn_default: "前往链接",
         new_post_single: "新帖子",
-        new_posts_plural: "新帖子"
+        new_posts_plural: "新帖子",
+        notify_title: "启用通知",
+        notify_subtitle: "第一时间收到最新帖子！",
+        notify_enable_btn: "启用通知",
+        notify_enabled: "通知已启用！",
+        notify_connecting: "连接中..."
       }
     };
 
@@ -293,7 +478,6 @@
 
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
       
-      // Полный перерендер постов при смене языка
       knownPostIds.clear();
       firstLoad = true;
       pendingNewPosts = [];
@@ -305,6 +489,126 @@
       btn.addEventListener('click', () => applyLang(btn.dataset.lang));
     });
 
+    // ======== ПЛАШКА УВЕДОМЛЕНИЙ ========
+    const notifyBanner = document.getElementById('notifyBanner');
+    const notifyEnableBtn = document.getElementById('notifyEnableBtn');
+    const notifyCloseBtn = document.getElementById('notifyCloseBtn');
+
+    async function checkNotifyStatus() {
+      // Не показываем, если юзер уже закрыл
+      if (localStorage.getItem(NOTIFY_DISMISSED_KEY) === 'true') return;
+      
+      // Не показываем в браузерах без поддержки
+      if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) return;
+      
+      // Не показываем если запрещено в браузере
+      if (Notification.permission === 'denied') return;
+      
+      // На iOS без PWA показываем с подсказкой (или не показываем)
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+      if (isIOS && !isStandalone) return;
+      
+      try {
+        const registration = await navigator.serviceWorker.ready;
+        const subscription = await registration.pushManager.getSubscription();
+        
+        if (subscription) {
+          // Уже подписан — не показываем
+          return;
+        }
+        
+        // Показываем плашку с задержкой для красоты
+        setTimeout(() => {
+          notifyBanner.classList.add('visible');
+        }, 1200);
+      } catch (e) {
+        // Если ошибка — тоже покажем (может, сервис-воркер не активен)
+        setTimeout(() => {
+          notifyBanner.classList.add('visible');
+        }, 1200);
+      }
+    }
+
+    notifyCloseBtn.addEventListener('click', () => {
+      notifyBanner.classList.remove('visible');
+      // Запоминаем, что закрыл (на 7 дней)
+      const expires = Date.now() + 7 * 24 * 60 * 60 * 1000;
+      localStorage.setItem(NOTIFY_DISMISSED_KEY, JSON.stringify(expires));
+    });
+
+    function urlBase64ToUint8Array(base64String) {
+      const padding = '='.repeat((4 - base64String.length % 4) % 4);
+      const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+      const rawData = window.atob(base64);
+      const outputArray = new Uint8Array(rawData.length);
+      for (let i = 0; i < rawData.length; ++i) outputArray[i] = rawData.charCodeAt(i);
+      return outputArray;
+    }
+
+    notifyEnableBtn.addEventListener('click', async () => {
+      const t = translations[currentLang];
+      const originalHTML = notifyEnableBtn.innerHTML;
+      
+      try {
+        const permission = await Notification.requestPermission();
+        if (permission !== 'granted') {
+          alert(t.notify_subtitle);
+          return;
+        }
+
+        notifyEnableBtn.disabled = true;
+        notifyEnableBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${t.notify_connecting}`;
+
+        await navigator.serviceWorker.register('/sw.js');
+        const registration = await Promise.race([
+          navigator.serviceWorker.ready,
+          new Promise((_, reject) => setTimeout(() => reject(new Error('SW timeout')), 15000))
+        ]);
+
+        let subscription = await registration.pushManager.getSubscription();
+        if (!subscription) {
+          const applicationServerKey = urlBase64ToUint8Array(VAPID_PUBLIC_KEY);
+          subscription = await registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: applicationServerKey
+          });
+        }
+
+        const response = await fetch(WORKER_URL + '/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(subscription)
+        });
+
+        if (!response.ok) throw new Error('Server error');
+
+        notifyEnableBtn.innerHTML = `<i class="fas fa-check"></i> ${t.notify_enabled}`;
+        notifyEnableBtn.style.background = 'linear-gradient(135deg, #4caf50, #8bc34a)';
+        notifyEnableBtn.style.boxShadow = '0 10px 25px rgba(76, 175, 80, 0.5)';
+        
+        setTimeout(() => {
+          notifyBanner.classList.remove('visible');
+        }, 2000);
+      } catch (e) {
+        console.error('Notify error:', e);
+        notifyEnableBtn.disabled = false;
+        notifyEnableBtn.innerHTML = originalHTML;
+        alert('Error: ' + e.message);
+      }
+    });
+
+    // Проверка на закрытие (если истёк срок — показываем снова)
+    const dismissedData = localStorage.getItem(NOTIFY_DISMISSED_KEY);
+    if (dismissedData) {
+      const ts = parseInt(dismissedData);
+      if (!isNaN(ts) && Date.now() > ts) {
+        localStorage.removeItem(NOTIFY_DISMISSED_KEY);
+      }
+    }
+    checkNotifyStatus();
+
+    // ======== ПИЛЮЛЯ "НОВЫЕ ПОСТЫ" ========
     function updatePillText() {
       const t = translations[currentLang];
       const textEl = document.getElementById('newPostsText');
@@ -327,7 +631,6 @@
 
     function createPostCard(post, likes, t, animationType = 'appear', delay = 0) {
       const userLiked = localStorage.getItem(`liked_${post.id}`) === 'true';
-      const likesCount = (likes[post.id] || 0) + (userLiked && !likes[post.id] ? 1 : 0);
       const displayCount = userLiked ? Math.max(likes[post.id] || 0, 1) : (likes[post.id] || 0);
       
       const card = document.createElement('div');
@@ -360,7 +663,6 @@
       const t = translations[currentLang];
       const container = document.getElementById('posts-container');
       
-      // Удаляем заглушку "нет постов" если она была
       const placeholder = container.querySelector('.no-posts');
       if (placeholder) placeholder.remove();
       
@@ -402,13 +704,11 @@
           });
           firstLoad = false;
           
-          // Прокрутка к посту, если перешли по пушу
           handleHashScroll();
         } else {
           const newPosts = posts.filter(p => !knownPostIds.has(p.id));
           
           if (newPosts.length > 0) {
-            // Удаляем посты, которые больше не существуют на сервере
             document.querySelectorAll('.post-card').forEach(card => {
               if (!posts.some(p => p.id === card.dataset.postId)) {
                 card.style.transition = 'opacity 0.3s, transform 0.3s';
@@ -421,12 +721,10 @@
             const isAtTop = window.scrollY < 200;
             
             if (isAtTop) {
-              // Пользователь наверху — сразу вставляем с анимацией
               insertNewPosts(newPosts);
             } else {
-              // Пользователь листает — копим и показываем пилюлю
               pendingNewPosts.push(...newPosts);
-              newPosts.forEach(p => knownPostIds.add(p.id)); // Чтобы не задублировать
+              newPosts.forEach(p => knownPostIds.add(p.id));
               showPill();
             }
           }
@@ -458,7 +756,6 @@
 
     window.addEventListener('hashchange', handleHashScroll);
 
-    // Клик по пилюле — прокручиваем наверх и вставляем накопленные посты
     document.getElementById('newPostsPill').addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       hidePill();
@@ -467,7 +764,6 @@
         insertNewPosts(pendingNewPosts);
         pendingNewPosts = [];
         
-        // Подсвечиваем новые посты после появления
         setTimeout(() => {
           document.querySelectorAll('.post-card.new-post').forEach((card, i) => {
             setTimeout(() => {
@@ -479,10 +775,8 @@
       }
     });
 
-    // Прячем пилюлю, если пользователь сам прокрутил наверх
     window.addEventListener('scroll', () => {
       if (window.scrollY < 100 && pendingNewPosts.length > 0) {
-        // Вставляем отложенные посты
         insertNewPosts(pendingNewPosts);
         pendingNewPosts = [];
         hidePill();
@@ -518,7 +812,6 @@
     // Инициализация
     applyLang(currentLang);
 
-    // Поллинг
     function startPolling() {
       if (pollTimer) clearInterval(pollTimer);
       pollTimer = setInterval(() => {
