@@ -46,278 +46,71 @@
 
     .page-title { font-size: 2.5rem; margin-bottom: 2rem; font-family: 'Space Grotesk', sans-serif; color: #fff; text-align: center; }
 
-    /* ======== ПЛАШКА "ВКЛЮЧИТЕ УВЕДОМЛЕНИЯ" ======== */
+    /* ПЛАШКА УВЕДОМЛЕНИЙ */
     .notify-banner {
       background: linear-gradient(135deg, rgba(108,99,255,0.15), rgba(179,136,255,0.1));
       border: 1px solid rgba(108,99,255,0.5);
       border-radius: 1.5rem;
       padding: 1.5rem 2rem;
-      margin-bottom: 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      position: relative;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(-30px);
-      max-height: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-      margin-bottom: 0;
+      position: relative; overflow: hidden;
+      opacity: 0; transform: translateY(-30px);
+      max-height: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0;
       transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    .notify-banner.visible {
-      opacity: 1;
-      transform: translateY(0);
-      max-height: 200px;
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-    .notify-banner::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(179,136,255,0.15) 0%, transparent 50%);
-      animation: notifyGlow 4s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes notifyGlow {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(20px, 20px); }
-    }
+    .notify-banner.visible { opacity: 1; transform: translateY(0); max-height: 200px; padding-top: 1.5rem; padding-bottom: 1.5rem; margin-bottom: 2.5rem; }
     
-    .notify-banner-content {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex: 1 1 300px;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .notify-icon {
-      width: 50px;
-      height: 50px;
-      flex-shrink: 0;
-      background: linear-gradient(135deg, #6c63ff, #b388ff);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      color: #fff;
-      animation: bellFloat 2.5s ease-in-out infinite;
-      box-shadow: 0 10px 25px rgba(108,99,255,0.5);
-    }
-    @keyframes bellFloat {
-      0%, 100% { transform: translateY(0) rotate(0); }
-      25% { transform: translateY(-4px) rotate(-8deg); }
-      75% { transform: translateY(-4px) rotate(8deg); }
-    }
-    
-    .notify-text {
-      flex: 1;
-    }
-    .notify-text strong {
-      display: block;
-      color: #fff;
-      font-size: 1.05rem;
-      margin-bottom: 0.3rem;
-      font-family: 'Space Grotesk', sans-serif;
-    }
-    .notify-text span {
-      color: #c0c5e0;
-      font-size: 0.9rem;
-    }
-    
-    .notify-actions {
-      display: flex;
-      gap: 0.8rem;
-      align-items: center;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .notify-enable-btn {
-      background: linear-gradient(135deg, #6c63ff, #b388ff);
-      border: none;
-      color: #fff;
-      padding: 0.8rem 1.6rem;
-      border-radius: 3rem;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: inherit;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 10px 25px rgba(108,99,255,0.5);
-      touch-action: manipulation;
-      white-space: nowrap;
-    }
-    .notify-enable-btn:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 15px 35px rgba(108,99,255,0.8);
-    }
-    .notify-enable-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-    
-    .notify-close-btn {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #c0c5e0;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      flex-shrink: 0;
-    }
-    .notify-close-btn:hover {
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-      transform: rotate(90deg);
-    }
+    .notify-banner-content { display: flex; align-items: center; gap: 1rem; flex: 1 1 300px; }
+    .notify-icon { width: 50px; height: 50px; flex-shrink: 0; background: linear-gradient(135deg, #6c63ff, #b388ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fff; animation: bellFloat 2.5s ease-in-out infinite; box-shadow: 0 10px 25px rgba(108,99,255,0.5); }
+    @keyframes bellFloat { 0%, 100% { transform: translateY(0) rotate(0); } 25% { transform: translateY(-4px) rotate(-8deg); } 75% { transform: translateY(-4px) rotate(8deg); } }
+    .notify-text strong { display: block; color: #fff; font-size: 1.05rem; margin-bottom: 0.3rem; font-family: 'Space Grotesk', sans-serif; }
+    .notify-text span { color: #c0c5e0; font-size: 0.9rem; }
+    .notify-actions { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; }
+    .notify-enable-btn { background: linear-gradient(135deg, #6c63ff, #b388ff); border: none; color: #fff; padding: 0.8rem 1.6rem; border-radius: 3rem; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; font-family: inherit; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 10px 25px rgba(108,99,255,0.5); touch-action: manipulation; white-space: nowrap; }
+    .notify-enable-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 15px 35px rgba(108,99,255,0.8); }
+    .notify-enable-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .notify-close-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: #c0c5e0; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; flex-shrink: 0; }
+    .notify-close-btn:hover { background: rgba(255,255,255,0.15); color: #fff; transform: rotate(90deg); }
 
-    /* ======== КНОПКА "НОВЫЕ ПОСТЫ" ======== */
-    .new-posts-pill {
-      position: fixed;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-150px);
-      background: linear-gradient(135deg, #6c63ff, #b388ff);
-      color: #fff;
-      padding: 0.8rem 1.8rem;
-      border-radius: 3rem;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      z-index: 9999;
-      box-shadow: 0 10px 30px rgba(108,99,255,0.6);
-      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      opacity: 0;
-      border: none;
-      font-family: inherit;
-      pointer-events: none;
-    }
-    .new-posts-pill.visible {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
+    /* ПИЛЮЛЯ НОВЫХ ПОСТОВ */
+    .new-posts-pill { position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-150px); background: linear-gradient(135deg, #6c63ff, #b388ff); color: #fff; padding: 0.8rem 1.8rem; border-radius: 3rem; font-weight: 700; font-size: 0.95rem; cursor: pointer; z-index: 9999; box-shadow: 0 10px 30px rgba(108,99,255,0.6); transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease; display: flex; align-items: center; gap: 0.6rem; opacity: 0; border: none; font-family: inherit; pointer-events: none; }
+    .new-posts-pill.visible { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
     .new-posts-pill:hover { transform: translateX(-50%) translateY(-3px) scale(1.05); }
     .new-posts-pill i { animation: bell-shake 2s infinite; }
-    @keyframes bell-shake {
-      0%, 80%, 100% { transform: rotate(0); }
-      85% { transform: rotate(-15deg); }
-      90% { transform: rotate(15deg); }
-      95% { transform: rotate(-10deg); }
-    }
+    @keyframes bell-shake { 0%, 80%, 100% { transform: rotate(0); } 85% { transform: rotate(-15deg); } 90% { transform: rotate(15deg); } 95% { transform: rotate(-10deg); } }
 
-    /* ======== КАРТОЧКИ ПОСТОВ ======== */
-    .post-card { 
-      background: rgba(18,20,28,0.65); 
-      border: 1px solid rgba(255,255,255,0.08); 
-      border-radius: 1.5rem; 
-      padding: 2.5rem; 
-      margin-bottom: 2.5rem; 
-      backdrop-filter: blur(20px); 
-      -webkit-backdrop-filter: blur(20px); 
-      transition: all 0.4s ease; 
-      position: relative; 
-      overflow: hidden; 
-      opacity: 0; 
-      transform: translateY(40px);
-    }
-    .post-card::before { 
-      content:''; 
-      position:absolute; 
-      inset:0; 
-      border-radius:1.5rem; 
-      padding:1px; 
-      background:linear-gradient(135deg, #b388ff, #6c63ff); 
-      -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); 
-      -webkit-mask-composite: xor; 
-      mask-composite: exclude; 
-      opacity:0; 
-      transition: opacity 0.4s; 
-      pointer-events: none;
-    }
+    /* КАРТОЧКИ */
+    .post-card { background: rgba(18,20,28,0.65); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.5rem; padding: 2.5rem; margin-bottom: 2.5rem; backdrop-filter: blur(20px); transition: all 0.4s ease; position: relative; overflow: hidden; opacity: 0; transform: translateY(40px); }
+    .post-card::before { content:''; position:absolute; inset:0; border-radius:1.5rem; padding:1px; background:linear-gradient(135deg, #b388ff, #6c63ff); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:0; transition: opacity 0.4s; pointer-events: none; }
     .post-card:hover::before { opacity: 1; }
     .post-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(108,99,255,0.15); }
-    
-    .post-card.appear {
-      animation: postAppear 0.7s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-    }
-    @keyframes postAppear {
-      0% { opacity: 0; transform: translateY(40px) scale(0.95); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    
-    .post-card.new-post {
-      animation: newPostAppear 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-    }
+    .post-card.appear { animation: postAppear 0.7s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+    @keyframes postAppear { 0% { opacity: 0; transform: translateY(40px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+    .post-card.new-post { animation: newPostAppear 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
     @keyframes newPostAppear {
-      0% { 
-        opacity: 0; 
-        transform: translateY(-40px) scale(0.85); 
-        box-shadow: 0 0 0 0 rgba(179,136,255,0); 
-        border-color: rgba(179,136,255,0);
-      }
-      40% { 
-        opacity: 1; 
-        transform: translateY(0) scale(1.03); 
-        box-shadow: 0 0 50px 10px rgba(179,136,255,0.5); 
-        border-color: #b388ff;
-      }
+      0% { opacity: 0; transform: translateY(-40px) scale(0.85); box-shadow: 0 0 0 0 rgba(179,136,255,0); border-color: rgba(179,136,255,0); }
+      40% { opacity: 1; transform: translateY(0) scale(1.03); box-shadow: 0 0 50px 10px rgba(179,136,255,0.5); border-color: #b388ff; }
       70% { transform: translateY(0) scale(0.99); }
-      100% { 
-        opacity: 1; 
-        transform: translateY(0) scale(1); 
-        box-shadow: 0 0 0 0 rgba(179,136,255,0); 
-        border-color: rgba(255,255,255,0.08);
-      }
+      100% { opacity: 1; transform: translateY(0) scale(1); box-shadow: 0 0 0 0 rgba(179,136,255,0); border-color: rgba(255,255,255,0.08); }
     }
-    
-    .post-card.highlighted {
-      animation: highlightPulse 2.5s ease-out;
-    }
-    @keyframes highlightPulse {
-      0% { box-shadow: 0 0 0 0 rgba(179,136,255,0); }
-      15% { box-shadow: 0 0 70px 20px rgba(179,136,255,0.7); border-color: #b388ff; }
-      50% { box-shadow: 0 0 70px 20px rgba(179,136,255,0.7); border-color: #b388ff; }
-      100% { box-shadow: 0 0 0 0 rgba(179,136,255,0); }
-    }
+    .post-card.highlighted { animation: highlightPulse 2.5s ease-out; }
+    @keyframes highlightPulse { 0% { box-shadow: 0 0 0 0 rgba(179,136,255,0); } 15% { box-shadow: 0 0 70px 20px rgba(179,136,255,0.7); border-color: #b388ff; } 50% { box-shadow: 0 0 70px 20px rgba(179,136,255,0.7); border-color: #b388ff; } 100% { box-shadow: 0 0 0 0 rgba(179,136,255,0); } }
     
     .post-date { font-size: 0.85rem; color: #b388ff; font-weight: 600; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
     .post-title { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: #fff; margin-bottom: 1.2rem; line-height: 1.3; }
     .post-content { color: #c0c5e0; font-size: 1.1rem; margin-bottom: 2rem; white-space: pre-wrap; }
     
     .post-actions { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-    .like-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #e8e9f0; padding: 0.6rem 1.5rem; border-radius: 3rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; transition: 0.3s; font-family: inherit; touch-action: manipulation; }
+    .post-stats { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    
+    .like-btn, .views-indicator { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #e8e9f0; padding: 0.6rem 1.3rem; border-radius: 3rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; transition: 0.3s; font-family: inherit; touch-action: manipulation; }
+    .like-btn { cursor: pointer; }
     .like-btn:hover { background: rgba(108,99,255,0.2); border-color: #6c63ff; }
     .like-btn.liked { color: #ff4444; border-color: #ff4444; background: rgba(255,68,68,0.1); }
     .like-btn.liked i { transform: scale(1.2); }
     .like-btn i { transition: 0.3s; }
+    .views-indicator { cursor: default; color: #a0a5c0; }
     
     .post-link-btn { color: #b388ff; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; transition: 0.3s; }
     .post-link-btn:hover { color: #fff; gap: 0.8rem; }
@@ -361,7 +154,6 @@
       </div>
     </header>
 
-    <!-- ПЛАШКА ВКЛЮЧИТЬ УВЕДОМЛЕНИЯ -->
     <div class="notify-banner" id="notifyBanner">
       <div class="notify-banner-content">
         <div class="notify-icon"><i class="fas fa-bell"></i></div>
@@ -393,6 +185,7 @@
     const VAPID_PUBLIC_KEY = 'BEQUS1Qg5HToCnZT5L1SeTmolZ2KYoMm70Sm48oUxzxXIVwSg_r5X-iu9VVJr8BEBwFy02ZOKn6DhxEDuiE7n1A';
     const POLL_INTERVAL = 15000;
     const NOTIFY_DISMISSED_KEY = 'notify_banner_dismissed';
+    const VIEWER_ID_KEY = 'mrkronick_viewer_id';
 
     const translations = {
       ru: {
@@ -408,7 +201,8 @@
         notify_subtitle: "Получайте свежие посты первыми!",
         notify_enable_btn: "Включить уведомления",
         notify_enabled: "Уведомления включены!",
-        notify_connecting: "Подключаем..."
+        notify_connecting: "Подключаем...",
+        views: "просмотров"
       },
       en: {
         page_title: "Posts",
@@ -423,7 +217,8 @@
         notify_subtitle: "Get fresh posts first!",
         notify_enable_btn: "Enable notifications",
         notify_enabled: "Notifications enabled!",
-        notify_connecting: "Connecting..."
+        notify_connecting: "Connecting...",
+        views: "views"
       },
       zh: {
         page_title: "帖子",
@@ -438,7 +233,8 @@
         notify_subtitle: "第一时间收到最新帖子！",
         notify_enable_btn: "启用通知",
         notify_enabled: "通知已启用！",
-        notify_connecting: "连接中..."
+        notify_connecting: "连接中...",
+        views: "浏览"
       }
     };
 
@@ -456,10 +252,51 @@
 
     let currentLang = detectLanguage();
     let globalLikesCache = {};
+    let globalViewsCache = {};
     let knownPostIds = new Set();
     let firstLoad = true;
     let pendingNewPosts = [];
     let pollTimer = null;
+    let viewObserver = null;
+
+    function getViewerId() {
+      let id = localStorage.getItem(VIEWER_ID_KEY);
+      if (!id) {
+        id = 'v_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem(VIEWER_ID_KEY, id);
+      }
+      return id;
+    }
+    const viewerId = getViewerId();
+
+    function setupViewTracking() {
+      if (viewObserver) viewObserver.disconnect();
+      
+      viewObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const card = entry.target;
+            const postId = card.dataset.postId;
+            if (!postId || card.dataset.viewTracked === 'true') return;
+            
+            card.dataset.viewTracked = 'true';
+            
+            fetch(API_URL + '/view', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ postId, viewerId })
+            }).then(r => r.json()).then(data => {
+              if (data.counted && data.count) {
+                const viewSpan = card.querySelector('.view-count');
+                if (viewSpan) viewSpan.textContent = data.count;
+              }
+            }).catch(e => console.log('View error:', e));
+            
+            viewObserver.unobserve(card);
+          }
+        });
+      }, { threshold: 0.5 });
+    }
 
     function applyLang(lang) {
       const t = translations[lang];
@@ -469,7 +306,7 @@
       document.documentElement.lang = lang;
       
       const titleEl = document.querySelector('title');
-      if(titleEl) titleEl.textContent = t.page_title + " | MrKronick";
+      if (titleEl) titleEl.textContent = t.page_title + " | MrKronick";
 
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -489,22 +326,19 @@
       btn.addEventListener('click', () => applyLang(btn.dataset.lang));
     });
 
-    // ======== ПЛАШКА УВЕДОМЛЕНИЙ ========
     const notifyBanner = document.getElementById('notifyBanner');
     const notifyEnableBtn = document.getElementById('notifyEnableBtn');
     const notifyCloseBtn = document.getElementById('notifyCloseBtn');
 
     async function checkNotifyStatus() {
-      // Не показываем, если юзер уже закрыл
-      if (localStorage.getItem(NOTIFY_DISMISSED_KEY) === 'true') return;
-      
-      // Не показываем в браузерах без поддержки
+      if (localStorage.getItem(NOTIFY_DISMISSED_KEY)) {
+        const ts = parseInt(localStorage.getItem(NOTIFY_DISMISSED_KEY));
+        if (!isNaN(ts) && Date.now() < ts) return;
+        else localStorage.removeItem(NOTIFY_DISMISSED_KEY);
+      }
       if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) return;
-      
-      // Не показываем если запрещено в браузере
       if (Notification.permission === 'denied') return;
       
-      // На iOS без PWA показываем с подсказкой (или не показываем)
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
       if (isIOS && !isStandalone) return;
@@ -512,29 +346,16 @@
       try {
         const registration = await navigator.serviceWorker.ready;
         const subscription = await registration.pushManager.getSubscription();
-        
-        if (subscription) {
-          // Уже подписан — не показываем
-          return;
-        }
-        
-        // Показываем плашку с задержкой для красоты
-        setTimeout(() => {
-          notifyBanner.classList.add('visible');
-        }, 1200);
-      } catch (e) {
-        // Если ошибка — тоже покажем (может, сервис-воркер не активен)
-        setTimeout(() => {
-          notifyBanner.classList.add('visible');
-        }, 1200);
-      }
+        if (subscription) return;
+      } catch (e) {}
+      
+      setTimeout(() => notifyBanner.classList.add('visible'), 1200);
     }
 
     notifyCloseBtn.addEventListener('click', () => {
       notifyBanner.classList.remove('visible');
-      // Запоминаем, что закрыл (на 7 дней)
       const expires = Date.now() + 7 * 24 * 60 * 60 * 1000;
-      localStorage.setItem(NOTIFY_DISMISSED_KEY, JSON.stringify(expires));
+      localStorage.setItem(NOTIFY_DISMISSED_KEY, expires.toString());
     });
 
     function urlBase64ToUint8Array(base64String) {
@@ -549,13 +370,9 @@
     notifyEnableBtn.addEventListener('click', async () => {
       const t = translations[currentLang];
       const originalHTML = notifyEnableBtn.innerHTML;
-      
       try {
         const permission = await Notification.requestPermission();
-        if (permission !== 'granted') {
-          alert(t.notify_subtitle);
-          return;
-        }
+        if (permission !== 'granted') { alert(t.notify_subtitle); return; }
 
         notifyEnableBtn.disabled = true;
         notifyEnableBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${t.notify_connecting}`;
@@ -568,10 +385,9 @@
 
         let subscription = await registration.pushManager.getSubscription();
         if (!subscription) {
-          const applicationServerKey = urlBase64ToUint8Array(VAPID_PUBLIC_KEY);
           subscription = await registration.pushManager.subscribe({
             userVisibleOnly: true,
-            applicationServerKey: applicationServerKey
+            applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
           });
         }
 
@@ -585,39 +401,20 @@
 
         notifyEnableBtn.innerHTML = `<i class="fas fa-check"></i> ${t.notify_enabled}`;
         notifyEnableBtn.style.background = 'linear-gradient(135deg, #4caf50, #8bc34a)';
-        notifyEnableBtn.style.boxShadow = '0 10px 25px rgba(76, 175, 80, 0.5)';
-        
-        setTimeout(() => {
-          notifyBanner.classList.remove('visible');
-        }, 2000);
+        setTimeout(() => notifyBanner.classList.remove('visible'), 2000);
       } catch (e) {
-        console.error('Notify error:', e);
         notifyEnableBtn.disabled = false;
         notifyEnableBtn.innerHTML = originalHTML;
         alert('Error: ' + e.message);
       }
     });
 
-    // Проверка на закрытие (если истёк срок — показываем снова)
-    const dismissedData = localStorage.getItem(NOTIFY_DISMISSED_KEY);
-    if (dismissedData) {
-      const ts = parseInt(dismissedData);
-      if (!isNaN(ts) && Date.now() > ts) {
-        localStorage.removeItem(NOTIFY_DISMISSED_KEY);
-      }
-    }
     checkNotifyStatus();
 
-    // ======== ПИЛЮЛЯ "НОВЫЕ ПОСТЫ" ========
     function updatePillText() {
       const t = translations[currentLang];
-      const textEl = document.getElementById('newPostsText');
       const count = pendingNewPosts.length;
-      if (count === 1) {
-        textEl.textContent = t.new_post_single;
-      } else {
-        textEl.textContent = `${t.new_posts_plural} (${count})`;
-      }
+      document.getElementById('newPostsText').textContent = count === 1 ? t.new_post_single : `${t.new_posts_plural} (${count})`;
     }
 
     function showPill() {
@@ -629,9 +426,11 @@
       document.getElementById('newPostsPill').classList.remove('visible');
     }
 
-    function createPostCard(post, likes, t, animationType = 'appear', delay = 0) {
+    function createPostCard(post, likes, views, t, animationType = 'appear', delay = 0) {
       const userLiked = localStorage.getItem(`liked_${post.id}`) === 'true';
-      const displayCount = userLiked ? Math.max(likes[post.id] || 0, 1) : (likes[post.id] || 0);
+      const likesCount = likes[post.id] || 0;
+      const displayLikes = userLiked ? Math.max(likesCount, 1) : likesCount;
+      const viewsCount = views[post.id] || 0;
       
       const card = document.createElement('div');
       card.className = `post-card ${animationType}`;
@@ -649,26 +448,34 @@
         <h2 class="post-title">${post.title}</h2>
         <div class="post-content">${post.content}</div>
         <div class="post-actions">
-          <button class="like-btn ${userLiked ? 'liked' : ''}" onclick="toggleLike(this, '${post.id}')">
-            <i class="${userLiked ? 'fas' : 'far'} fa-heart"></i>
-            <span class="like-count">${displayCount}</span>
-          </button>
+          <div class="post-stats">
+            <button class="like-btn ${userLiked ? 'liked' : ''}" onclick="toggleLike(this, '${post.id}')">
+              <i class="${userLiked ? 'fas' : 'far'} fa-heart"></i>
+              <span class="like-count">${displayLikes}</span>
+            </button>
+            <div class="views-indicator" title="${t.views}">
+              <i class="fas fa-eye"></i>
+              <span class="view-count">${viewsCount}</span>
+            </div>
+          </div>
           ${linkHtml}
         </div>
       `;
+      
+      if (viewObserver) viewObserver.observe(card);
+      
       return card;
     }
 
     function insertNewPosts(posts) {
       const t = translations[currentLang];
       const container = document.getElementById('posts-container');
-      
       const placeholder = container.querySelector('.no-posts');
       if (placeholder) placeholder.remove();
       
       posts.forEach((post, i) => {
         knownPostIds.add(post.id);
-        const card = createPostCard(post, globalLikesCache, t, 'new-post');
+        const card = createPostCard(post, globalLikesCache, globalViewsCache, t, 'new-post');
         card.style.animationDelay = `${i * 0.15}s`;
         container.insertBefore(card, container.querySelector('.post-card') || null);
       });
@@ -679,17 +486,21 @@
       const container = document.getElementById('posts-container');
       
       try {
-        const [postsRes, likesRes] = await Promise.all([
+        const [postsRes, likesRes, viewsRes] = await Promise.all([
           fetch(API_URL + '/posts'),
-          fetch(API_URL + '/likes')
+          fetch(API_URL + '/likes'),
+          fetch(API_URL + '/views')
         ]);
         const posts = await postsRes.json();
         const likes = await likesRes.json();
+        const views = await viewsRes.json();
         globalLikesCache = likes;
+        globalViewsCache = views;
 
         if (firstLoad) {
           container.innerHTML = '';
           knownPostIds.clear();
+          setupViewTracking();
           
           if (posts.length === 0) {
             container.innerHTML = `<div class="no-posts">${t.no_posts}</div>`;
@@ -699,11 +510,10 @@
 
           posts.forEach((post, index) => {
             knownPostIds.add(post.id);
-            const card = createPostCard(post, likes, t, 'appear', index * 0.1);
+            const card = createPostCard(post, likes, views, t, 'appear', index * 0.1);
             container.appendChild(card);
           });
           firstLoad = false;
-          
           handleHashScroll();
         } else {
           const newPosts = posts.filter(p => !knownPostIds.has(p.id));
@@ -719,7 +529,6 @@
             });
             
             const isAtTop = window.scrollY < 200;
-            
             if (isAtTop) {
               insertNewPosts(newPosts);
             } else {
@@ -728,6 +537,19 @@
               showPill();
             }
           }
+          
+          document.querySelectorAll('.post-card').forEach(card => {
+            const postId = card.dataset.postId;
+            const likeSpan = card.querySelector('.like-count');
+            const viewSpan = card.querySelector('.view-count');
+            if (likeSpan && likes[postId] !== undefined) {
+              const userLiked = localStorage.getItem(`liked_${postId}`) === 'true';
+              likeSpan.textContent = userLiked ? Math.max(likes[postId], 1) : likes[postId];
+            }
+            if (viewSpan && views[postId] !== undefined) {
+              viewSpan.textContent = views[postId];
+            }
+          });
         }
       } catch (e) {
         console.error('Load error:', e);
@@ -740,7 +562,6 @@
     function handleHashScroll() {
       const hash = window.location.hash;
       if (!hash.startsWith('#post-')) return;
-      
       const postId = hash.replace('#post-', '');
       setTimeout(() => {
         const card = document.querySelector(`[data-post-id="${postId}"]`);
@@ -759,11 +580,9 @@
     document.getElementById('newPostsPill').addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       hidePill();
-      
       if (pendingNewPosts.length > 0) {
         insertNewPosts(pendingNewPosts);
         pendingNewPosts = [];
-        
         setTimeout(() => {
           document.querySelectorAll('.post-card.new-post').forEach((card, i) => {
             setTimeout(() => {
@@ -787,17 +606,16 @@
       if (btn.classList.contains('liked')) return;
       const icon = btn.querySelector('i');
       const countSpan = btn.querySelector('.like-count');
-      
       btn.classList.add('liked');
       icon.classList.replace('far', 'fas');
       countSpan.textContent = parseInt(countSpan.textContent) + 1;
       localStorage.setItem(`liked_${postId}`, 'true');
       
       try {
-        const res = await fetch(API_URL + '/like', { 
-          method: 'POST', 
-          headers: { 'Content-Type': 'application/json' }, 
-          body: JSON.stringify({ postId }) 
+        const res = await fetch(API_URL + '/like', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ postId })
         });
         if (!res.ok) throw new Error('Server error');
       } catch (e) {
@@ -809,47 +627,70 @@
       }
     }
 
-    // Инициализация
     applyLang(currentLang);
 
     function startPolling() {
       if (pollTimer) clearInterval(pollTimer);
       pollTimer = setInterval(() => {
-        if (!firstLoad && document.visibilityState === 'visible') {
-          loadPosts();
-        }
+        if (!firstLoad && document.visibilityState === 'visible') loadPosts();
       }, POLL_INTERVAL);
     }
-    
+
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible' && !firstLoad) {
-        loadPosts();
-      }
+      if (document.visibilityState === 'visible' && !firstLoad) loadPosts();
     });
-    
+
     startPolling();
 
     // Фоновая анимация частиц
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
-    let width, height;
-    let particles = [];
-    
-    function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+    let width, height, particles = [];
+
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
     class Particle {
       constructor() { this.reset(); }
-      reset() { this.x = Math.random() * width; this.y = Math.random() * height; this.radius = Math.random() * 2 + 1; this.speedX = (Math.random() - 0.5) * 0.2; this.speedY = (Math.random() - 0.5) * 0.2; this.opacity = Math.random() * 0.5 + 0.1; }
-      update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset(); }
-      draw(ctx) { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius*2); gradient.addColorStop(0, `rgba(179,136,255,${this.opacity})`); gradient.addColorStop(1, 'rgba(108,99,255,0)'); ctx.fillStyle = gradient; ctx.fill(); }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.radius = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.2;
+        this.speedY = (Math.random() - 0.5) * 0.2;
+        this.opacity = Math.random() * 0.5 + 0.1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
+      }
+      draw(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 2);
+        g.addColorStop(0, `rgba(179,136,255,${this.opacity})`);
+        g.addColorStop(1, 'rgba(108,99,255,0)');
+        ctx.fillStyle = g;
+        ctx.fill();
+      }
     }
+
     for (let i = 0; i < 50; i++) particles.push(new Particle());
-    
+
     function animate() {
       ctx.clearRect(0, 0, width, height);
-      for (let p of particles) { p.update(); p.draw(ctx); }
+      for (let p of particles) {
+        p.update();
+        p.draw(ctx);
+      }
       requestAnimationFrame(animate);
     }
     animate();
