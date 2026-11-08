@@ -13,7 +13,6 @@
   <meta property="og:url" content="https://mrkronick.site/">
   <meta property="og:image" content="https://mrkronick.site/images/avatar.webp">
   
-  <!-- ФАВИКОНКИ -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -332,7 +331,6 @@
         <button class="tab-button active" data-tab="main"><i class="fas fa-home"></i> <span data-i18n="tab_main">Home</span></button>
         <button class="tab-button" data-tab="social"><i class="fas fa-share-alt"></i> <span data-i18n="tab_social">Socials</span></button>
         <button class="tab-button" data-tab="stream"><i class="fab fa-twitch"></i> <span data-i18n="tab_stream">Streams</span></button>
-        <!-- НОВАЯ КНОПКА ПОСТОВ -->
         <a href="/posts/" class="tab-button"><i class="fas fa-newspaper"></i> <span data-i18n="tab_posts">Posts</span></a>
       </div>
 
@@ -495,6 +493,7 @@ Developer of CustomTPA</div>
       <footer class="scroll-reveal reveal-fade-up">
         <p data-i18n="footer1">© 2026 MrKronick — Alexander Mochalov. Official MrKronick website. FoggyLand & CustomTPA.</p>
         <p style="margin-top: 0.8rem; opacity: 0.6; font-size: 0.95rem;" data-i18n="footer2">Information site</p>
+        <p style="margin-top: 0.6rem; font-size: 0.8rem; opacity: 0.4; letter-spacing: 1px; font-weight: 600;">Version v6.1</p>
       </footer>
     </div>
   </main>
@@ -515,7 +514,6 @@ Developer of CustomTPA</div>
   </div>
 
   <script>
-    // ЛОГИКА ПЛАШКИ КУКИ
     const cookieBanner = document.getElementById('cookieBanner');
     const acceptCookiesBtn = document.getElementById('acceptCookies');
 
@@ -528,7 +526,6 @@ Developer of CustomTPA</div>
       cookieBanner.classList.remove('visible');
     });
 
-    // МОДАЛКА
     const API_MODAL_URL = 'https://api.mrkronick.site';
 
     async function checkContentHash() {
@@ -586,7 +583,6 @@ Developer of CustomTPA</div>
 
     window.addEventListener('load', checkContentHash);
 
-    // ОСТАЛЬНОЙ JS
     const VAPID_PUBLIC_KEY = 'BEQUS1Qg5HToCnZT5L1SeTmolZ2KYoMm70Sm48oUxzxXIVwSg_r5X-iu9VVJr8BEBwFy02ZOKn6DhxEDuiE7n1A';
     const WORKER_URL = 'https://api.mrkronick.site';
 
