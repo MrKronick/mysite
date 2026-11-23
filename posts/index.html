@@ -114,9 +114,11 @@
     .post-content b, .post-content strong { color: #fff; font-weight: 700; }
     .post-content i, .post-content em { font-style: italic; }
     .post-content u { text-decoration: underline; }
-    .post-content font[size="5"] { font-size: 1.4rem; line-height: 1.4; color: #fff; font-weight: 600; display: block; margin: 10px 0; }
+    .post-content h2 { font-size: 1.4rem; color: #fff; margin: 15px 0 10px 0; font-family: 'Space Grotesk', sans-serif; line-height: 1.3; border: none; text-align: left; }
+    .post-content blockquote { border-left: 3px solid #6c63ff; padding-left: 12px; margin: 15px 0; color: #a0a5c0; font-style: italic; background: rgba(108,99,255,0.05); padding: 10px; border-radius: 0 8px 8px 0; }
     .post-content ul, .post-content ol { margin-left: 20px; margin-bottom: 15px; }
     .post-content li { margin-bottom: 5px; }
+    .post-content div { margin-bottom: 10px; }
     
     .post-actions { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem; }
     .post-stats { display: flex; gap: 0.5rem; flex-wrap: wrap; }
@@ -204,7 +206,7 @@
   </div>
 
   <script>
-    const API_URL = 'https://api.mrkronick.site';
+    const API_URL = 'https://d5d40rngqb9brjmqkdos.bixf7e87.apigw.yandexcloud.net';
     const WORKER_URL = 'https://api.mrkronick.site';
     const VAPID_PUBLIC_KEY = 'BEQUS1Qg5HToCnZT5L1SeTmolZ2KYoMm70Sm48oUxzxXIVwSg_r5X-iu9VVJr8BEBwFy02ZOKn6DhxEDuiE7n1A';
     const POLL_INTERVAL = 15000;
@@ -259,8 +261,8 @@
     let currentLang = detectLanguage();
     let globalLikesCache = {};
     let globalViewsCache = {};
-    let allPostsData = []; // Храним все посты
-    let currentCategory = 'all'; // Текущая категория
+    let allPostsData = [];
+    let currentCategory = 'all';
     let knownPostIds = new Set();
     let firstLoad = true;
     let pendingNewPosts = [];
@@ -323,10 +325,11 @@
 
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
       
-      // Перерисовываем посты при смене языка, чтобы обновить бейджи и кнопки
-      if (allPostsData.length > 0) {
-          renderPosts(currentCategory);
-      }
+      knownPostIds.clear();
+      firstLoad = true;
+      pendingNewPosts = [];
+      hidePill();
+      loadPosts();
     }
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -501,11 +504,11 @@
       }
 
       filteredPosts.forEach((post, index) => {
+        // Note: knownPostIds already populated in loadPosts on firstLoad
         const card = createPostCard(post, globalLikesCache, globalViewsCache, t, 'appear', index * 0.05);
         container.appendChild(card);
       });
 
-      // Перезапускаем анимацию появления
       firstLoad = false;
     }
 
@@ -515,11 +518,10 @@
       const placeholder = container.querySelector('.no-posts');
       if (placeholder) placeholder.remove();
       
-      // Если сейчас выбрана категория "Все" или та же, что у новых постов
       const postsToInsert = posts.filter(p => currentCategory === 'all' || (p.category || 'post') === currentCategory);
 
       postsToInsert.forEach((post, i) => {
-        knownPostIds.add(post.id);
+        // knownPostIds added in loadPosts
         const card = createPostCard(post, globalLikesCache, globalViewsCache, t, 'new-post');
         card.style.animationDelay = `${i * 0.15}s`;
         container.insertBefore(card, container.querySelector('.post-card') || null);
@@ -547,6 +549,8 @@
 
         if (firstLoad) {
           setupViewTracking();
+          knownPostIds.clear();
+          posts.forEach(p => knownPostIds.add(p.id)); // <--- ИСПРАВЛЕНИЕ ЗДЕСЬ
           renderPosts(currentCategory);
           handleHashScroll();
         } else {
@@ -664,7 +668,7 @@
         const res = await fetch(API_URL + '/like', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ postId, action }) // Отправляем действие
+          body: JSON.stringify({ postId, action })
         });
         if (!res.ok) throw new Error('Server error');
       } catch (e) {
@@ -685,7 +689,7 @@
     }
 
     applyLang(currentLang);
-    loadPosts(); // Первичная загрузка
+    loadPosts();
 
     function startPolling() {
       if (pollTimer) clearInterval(pollTimer);
