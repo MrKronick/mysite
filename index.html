@@ -1,1140 +1,332 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>MrKronick — Official Website | Alexander Mochalov</title>
-  <meta name="description" content="Official website of MrKronick (Alexander Mochalov). Creator of FoggyLand and CustomTPA.">
+  <title>Maintenance | MrKronick</title>
   <meta name="theme-color" content="#0a0a0f">
-  <link rel="canonical" href="https://mrkronick.site/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="MrKronick — Official Website">
-  <meta property="og:description" content="Creator of FoggyLand and CustomTPA. All socials and projects in one place.">
-  <meta property="og:url" content="https://mrkronick.site/">
-  <meta property="og:image" content="https://mrkronick.site/images/avatar.webp">
-  
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="images/avatar.webp">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&family=Space+Grotesk:wght@500;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #0a0a0f; }
-    ::-webkit-scrollbar-thumb { background: #6c63ff; border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: #b388ff; }
-    html { scrollbar-width: thin; scrollbar-color: #6c63ff #0a0a0f; }
-
-    body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background: #0a0a0f; color: #e8e9f0; line-height: 1.5; overflow-x: hidden; position: relative; }
-    html[lang="zh"] body { font-family: 'Noto Sans SC', 'Inter', sans-serif; }
-    body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.035; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); }
-
-    .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, #6c63ff, #b388ff, #3f8cff); z-index: 10000; transition: width 0.1s ease-out; box-shadow: 0 0 12px #6c63ffcc; }
-    
-    .cookie-banner { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(150%); width: calc(100% - 4rem); max-width: 900px; background: rgba(18,20,28,0.85); backdrop-filter: blur(20px); border: 1px solid rgba(108,99,255,0.4); border-radius: 1.5rem; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; z-index: 99999; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
-    .cookie-banner.visible { transform: translateX(-50%) translateY(0); }
-    .cookie-text { font-size: 0.95rem; color: #c0c5e0; line-height: 1.5; }
-    .cookie-text a { color: #b388ff; text-decoration: none; border-bottom: 1px dashed #b388ff; }
-    .cookie-btn { background: #6c63ff; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 3rem; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; flex-shrink: 0; font-family: inherit; }
-    .cookie-btn:hover { background: #b388ff; color: #000; box-shadow: 0 0 20px rgba(179,136,255,0.5); }
-    
-    @media (max-width: 768px) { .cookie-banner { flex-direction: column; text-align: center; bottom: 1rem; width: calc(100% - 2rem); padding: 1.5rem; } }
-
-    .offline-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 10050; background: linear-gradient(90deg, #c62828, #8e0000); color: #fff; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: center; gap: 1rem; transform: translateY(-120%); transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 6px 25px rgba(198, 40, 40, 0.6); font-size: 0.95rem; line-height: 1.45; }
-    .offline-banner.visible { transform: translateY(0); }
-    .offline-banner .offline-icon { font-size: 1.6rem; flex-shrink: 0; }
-    .offline-banner .offline-text { max-width: 900px; }
-    .offline-banner .offline-close { background: rgba(255,255,255,0.2); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; font-size: 0.95rem; flex-shrink: 0; transition: background 0.3s; cursor: pointer; }
-    .offline-banner .offline-close:hover { background: rgba(255,255,255,0.35); }
-
-    .redirect-popup { position: fixed; inset: 0; z-index: 10060; background: rgba(0, 0, 0, 0.78); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
-    .redirect-popup.visible { opacity: 1; visibility: visible; }
-    .redirect-popup-inner { background: linear-gradient(145deg, #1a1a2e, #16162a); border: 1px solid rgba(108,99,255,0.4); border-radius: 2rem; padding: 2.5rem 2rem; max-width: 520px; width: 100%; box-shadow: 0 30px 80px rgba(108,99,255,0.4); text-align: center; transform: scale(0.85); transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    .redirect-popup.visible .redirect-popup-inner { transform: scale(1); }
-    .redirect-popup-inner .flag-icon { font-size: 3rem; margin-bottom: 1rem; }
-    .redirect-popup-inner h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: #fff; }
-    .redirect-popup-inner p { color: #cfc8ff; margin-bottom: 1.6rem; font-size: 1rem; line-height: 1.55; }
-    .redirect-popup-inner .popup-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
-    .redirect-popup-inner .popup-btn { padding: 0.85rem 1.9rem; border-radius: 3rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #fff; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; font-family: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; }
-    .redirect-popup-inner .popup-btn.primary { background: #6c63ff; border-color: #6c63ff; box-shadow: 0 10px 25px #6c63ffaa; }
-    .redirect-popup-inner .popup-btn.primary:hover { transform: translateY(-3px); background: #5647ff; box-shadow: 0 15px 35px #6c63ffdd; }
-    .redirect-popup-inner .popup-btn.secondary:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
-
-    .sticky-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 9997; background: rgba(15, 16, 25, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.5); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease; }
-    .sticky-header.visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
-    .sticky-inner { max-width: 1300px; margin: 0 auto; padding: 0.7rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-    .sticky-logo { font-family:'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.4rem; background: linear-gradient(135deg, #fff, #b388ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 10px rgba(179,136,255,0.5)); text-decoration: none; transition: transform 0.3s ease; white-space: nowrap; }
-    .sticky-logo:hover { transform: scale(1.05); }
-    .sticky-right { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; justify-content: flex-end; }
-    .sticky-socials { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .sticky-icon { color: #e8e9f0; font-size: 1rem; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: rgba(255,255,255,0.05); border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); transition: all 0.3s ease; text-decoration: none; }
-    .sticky-icon img { width: 16px; height: 16px; object-fit: contain; }
-    .sticky-icon:hover { color: #fff; transform: translateY(-3px) scale(1.1); background: rgba(108,99,255,0.35); border-color: #6c63ff; box-shadow: 0 0 20px #6c63ffaa; }
-    .sticky-header .lang-switch { padding: 0.2rem; }
-    .sticky-header .lang-btn { padding: 0.35rem 0.7rem; font-size: 0.78rem; }
-
-    #loader { position: fixed; top:0; left:0; width:100%; height:100%; background: #0a0a0f; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.8s ease, visibility 0.8s ease; }
-    #loader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
-    .loader-ring-container { position:relative; width:100px; height:100px; margin-bottom:2rem; }
-    .loader-ring { position:absolute; top:0; left:0; width:100px; height:100px; border:3px solid rgba(255,255,255,0.06); border-top:3px solid #b388ff; border-right:3px solid #6c63ff; border-radius:50%; animation: spin 0.8s linear infinite; transition: all 1.2s cubic-bezier(0.25, 0.8, 0.25, 1.2); }
-    .loader-ring.expanding { width:250vmax; height:250vmax; top:50%; left:50%; transform: translate(-50%, -50%); border-width:0; background: radial-gradient(circle, rgba(108,99,255,0.25) 0%, rgba(10,10,15,0.98) 55%); border-radius:50%; animation:none; transition: all 1.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
-    @keyframes spin { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
-    .loader-particles { position:absolute; top:50%; left:50%; width:100px; height:100px; pointer-events:none; transform:translate(-50%, -50%); }
-    .loader-particle { position:absolute; width:6px; height:6px; background:#b388ff; border-radius:50%; top:50%; left:50%; box-shadow:0 0 12px #b388ff, 0 0 24px #6c63ff; transition: all 1.6s cubic-bezier(0.25, 0.8, 0.25, 1); }
-    .loader-particle.fly { opacity:0; transform:translate(var(--tx), var(--ty)) scale(0); }
-    .loader-text { font-family:'Space Grotesk', 'Noto Sans SC', sans-serif; font-size:1.8rem; font-weight:600; background: linear-gradient(135deg, #b388ff, #6c63ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing:2px; transition: all 0.8s ease; text-align: center; padding: 0 1.5rem; }
-    .loader-text.fade-out { opacity:0; transform:translateY(-30px); filter:blur(12px); }
-
-    #bgCanvas { position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:0; pointer-events:none; opacity:0.6; }
-    .site-content { opacity:0; transition: opacity 0.6s ease; }
-    .site-content.visible { opacity:1; }
-    .container { max-width:1300px; margin:0 auto; padding:0 2rem; position:relative; z-index:2; }
-
-    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 52px; height: 52px; border-radius: 50%; background: rgba(108,99,255,0.85); border: 1px solid rgba(255,255,255,0.25); color: #fff; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(14px); box-shadow: 0 10px 30px rgba(108,99,255,0.5); opacity: 0; pointer-events: none; transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 9998; }
-    .back-to-top.visible { opacity: 1; pointer-events: auto; }
-    .back-to-top:hover { background: #6c63ff; transform: translateY(-6px) scale(1.08); box-shadow: 0 15px 40px #6c63ffcc; }
-
-    .tab-nav { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0 2.5rem; flex-wrap: wrap; }
-    .tab-button { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); padding: 0.8rem 2.5rem; border-radius: 3rem; color: #fff; font-weight: 600; font-size: 1.1rem; backdrop-filter: blur(12px); transition: all 0.3s ease; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.7rem; font-family: inherit; touch-action: manipulation; text-decoration: none; }
-    .tab-button.active { background: #6c63ff; border-color: #6c63ff; box-shadow: 0 8px 25px #6c63ffaa; }
-    .tab-button:hover:not(.active) { background: rgba(108,99,255,0.3); border-color: #6c63ff; transform: translateY(-3px); }
-
-    .tab-content { display: none; }
-    .tab-content.active { display: block; animation: tabFadeIn 0.5s ease; }
-    @keyframes tabFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-    .scroll-reveal { opacity:0; transition: opacity 0.9s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.9s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.9s ease; will-change: transform, opacity, filter; }
-    .scroll-reveal.revealed { opacity:1; transform: translate(0,0) scale(1) rotate(0); filter: blur(0); }
-    .reveal-fade-up { transform: translateY(80px); }
-    .reveal-fade-down { transform: translateY(-80px); }
-    .reveal-fade-left { transform: translateX(-80px); }
-    .reveal-fade-right { transform: translateX(80px); }
-    .reveal-scale { transform: scale(0.7); }
-    .reveal-rotate { transform: perspective(800px) rotateY(30deg) translateZ(-60px); }
-    .reveal-blur { filter: blur(20px); transform: scale(1.05); }
-    .reveal-combo { transform: translateY(60px) scale(0.8) rotate(-5deg); filter: blur(8px); }
-    
-    .glass-panel { background: rgba(18,20,28,0.65); backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.08); border-radius:2.5rem; box-shadow:0 20px 45px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.03); }
-    .gradient-text { background: linear-gradient(135deg, #b388ff, #6c63ff, #3f8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-    header { display:flex; justify-content:space-between; align-items:center; padding:1.8rem 0; flex-wrap:wrap; gap: 1rem; }
-    .logo { font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:2.2rem; background: linear-gradient(135deg, #fff, #b388ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 15px rgba(179,136,255,0.7)); transition: transform 0.3s; }
-    .logo:hover { transform: scale(1.05); }
-    .header-right { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: flex-end; }
-    .social-links { display:flex; gap:1rem; flex-wrap:wrap; }
-    .social-icon { color:#e8e9f0; font-size:1.5rem; transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.3); display:flex; align-items:center; justify-content:center; width:46px; height:46px; background:rgba(255,255,255,0.06); border-radius:50%; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.15); }
-    .social-icon img { width:22px; height:22px; object-fit:contain; }
-    .social-icon:hover { color:#fff; transform:translateY(-6px) scale(1.18); background:rgba(108,99,255,0.35); border-color:#6c63ff; box-shadow:0 0 35px #6c63ffcc; }
-
-    .lang-switch { display: flex; gap: 0.4rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 3rem; padding: 0.3rem; backdrop-filter: blur(10px); }
-    .lang-btn { background: transparent; border: none; color: #cfc8ff; font-family: inherit; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 3rem; transition: all 0.3s ease; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.4rem; touch-action: manipulation; }
-    .lang-btn:hover:not(.active) { background: rgba(108,99,255,0.2); color: #fff; }
-    .lang-btn.active { background: #6c63ff; color: #fff; box-shadow: 0 4px 15px #6c63ffaa; }
-    .lang-btn .flag { font-size: 1.05rem; line-height: 1; }
-
-    .hero { display:flex; flex-direction:row; align-items:center; justify-content:space-between; min-height:70vh; padding:2rem 0 2rem; gap:2rem; flex-wrap:wrap; }
-    .hero-content { flex:1 1 500px; }
-    .hero-visual { flex:1 1 400px; display:flex; justify-content:center; align-items:center; position:relative; }
-    .avatar-frame { width:300px; height:300px; border-radius:50%; background: radial-gradient(circle at 30% 30%, #b388ff, #3f2b96); padding:6px; box-shadow:0 0 100px #6c63ff99; animation: float 6s ease-in-out infinite, pulseGlow 3s infinite; position: relative; }
-    .avatar-frame::before { content:''; position: absolute; inset: -20px; border-radius: 50%; z-index: -1; background: radial-gradient(circle, #6c63ff33 0%, transparent 70%); filter: blur(20px); }
-    @keyframes pulseGlow { 0%,100%{ box-shadow:0 0 70px #6c63ff66; } 50%{ box-shadow:0 0 140px #b388ffdd; } }
-    .avatar-frame img { width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; }
-    @keyframes float { 0%{ transform:translateY(0px); } 50%{ transform:translateY(-20px); } 100%{ transform:translateY(0px); } }
-
-    h1 { font-size:4.5rem; font-weight:700; line-height:1.2; margin-bottom:1rem; font-family:'Space Grotesk', 'Noto Sans SC', sans-serif; min-height:5.5rem; }
-    .name-letter { display:inline-block; opacity:0; transform: translateY(60px) rotateX(-120deg) scale(0.4); transition: opacity 0.7s cubic-bezier(0.34,1.56,0.64,1), transform 0.8s cubic-bezier(0.34,1.56,0.64,1), filter 0.7s ease; filter: blur(14px); }
-    .name-letter.show { opacity:1; transform: translateY(0) rotateX(0deg) scale(1); filter: blur(0); }
-
-    .subtitle { font-size:1.5rem; color:#e0e3f0; margin-bottom:2.5rem; border-left:5px solid #6c63ff; padding-left:2rem; animation: borderPulse 2s infinite; white-space: pre-line; }
-    @keyframes borderPulse { 0%,100%{ border-color:#6c63ff; } 50%{ border-color:#b388ff; } }
-    .badge-container { display:flex; flex-wrap:wrap; gap:1rem; margin:2rem 0; }
-    .badge { background:rgba(108,99,255,0.2); border:1px solid rgba(108,99,255,0.6); padding:0.7rem 1.8rem; border-radius:3rem; font-weight:500; backdrop-filter:blur(10px); color:#f0edff; transition: all 0.3s ease; }
-    .badge:hover { background:rgba(108,99,255,0.35); transform:translateY(-4px); box-shadow:0 8px 20px rgba(108,99,255,0.3); }
-
-    .about-section { margin:4rem 0; }
-    .quote-block { background:rgba(108,99,255,0.08); border-left:6px solid #b388ff; border-radius:0 2rem 2rem 0; padding:2.2rem 2.8rem; font-size:1.35rem; font-style:italic; backdrop-filter:blur(12px); margin:2.5rem 0; transition: all 0.35s ease; }
-    .quote-block:hover { background:rgba(108,99,255,0.15); transform:scale(1.02); border-left-color:#fff; }
-
-    .projects-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap:2.5rem; margin:3.5rem 0 2rem; }
-    .project-card { background:rgba(20,22,36,0.75); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.07); border-radius:2.5rem; padding:2.5rem 2rem; transition: all 0.45s cubic-bezier(0.25,0.8,0.25,1.3); display:flex; flex-direction:column; gap:1.4rem; position:relative; overflow:hidden; transform-style: preserve-3d; contain: content; }
-    .project-card::before { content:''; position:absolute; inset:0; border-radius:2.5rem; padding:1px; background:linear-gradient(135deg, #b388ff, #6c63ff); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:0; transition: opacity 0.4s; }
-    .project-card:hover::before { opacity:1; }
-    .project-card:hover { box-shadow:0 40px 65px -15px #6c63ff90, 0 0 0 1px rgba(108,99,255,0.6); background:rgba(25,28,44,0.8); }
-    .project-icon { font-size:3rem; color:#b388ff; transition:0.4s; transform: translateZ(30px); }
-    .project-card:hover .project-icon { transform:rotate(10deg) scale(1.15) translateZ(30px); }
-
-    .btn { display:inline-flex; align-items:center; gap:0.7rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.25); padding:0.9rem 2.2rem; border-radius:3rem; color:white; font-weight:600; text-decoration:none; transition: all 0.35s ease; backdrop-filter:blur(12px); margin-top:0.8rem; align-self:flex-start; position:relative; overflow:hidden; font-family: inherit; transform: translateZ(20px); touch-action: manipulation; }
-    .btn::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.6s; }
-    .btn:hover::after { left:100%; }
-    .btn:hover { background:#6c63ff; border-color:#6c63ff; box-shadow:0 12px 35px #6c63ffcc; transform:translateX(6px) translateZ(20px); }
-
-    .social-grid { display:flex; flex-wrap:wrap; gap:1.8rem; margin:3rem 0; }
-    .social-card { background: rgba(255,255,255,0.05); border-radius:2rem; padding:1.3rem 2.8rem; display:flex; align-items:center; gap:1.4rem; backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,0.1); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); text-decoration:none; color:#f0f0f0; position:relative; overflow:hidden; contain: content; }
-    .social-card::after { content: ''; position: absolute; inset: 0; border-radius: 2rem; padding: 1px; background: linear-gradient(135deg, #b388ff, #6c63ff); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.4s; }
-    .social-card:hover::after { opacity: 1; }
-    .social-card i { font-size: 2.4rem; transition: transform 0.4s; }
-    .social-card img { width: 2.4rem; height: 2.4rem; transition: transform 0.4s; object-fit: contain; }
-    .social-card:hover { background: rgba(108,99,255,0.25); border-color:#6c63ff; transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(108,99,255,0.5), 0 0 0 1px rgba(108,99,255,0.6); color: #fff; }
-    .social-card:hover i, .social-card:hover img { transform: scale(1.2) rotate(5deg); }
-
-    .stream-wrapper { max-width: 900px; margin: 0 auto; }
-    .stream-player { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 1.5rem; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 0 60px rgba(108,99,255,0.3); }
-    .stream-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-    .stream-info { text-align: center; }
-    .stream-schedule { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.4); padding: 0.6rem 1.5rem; border-radius: 3rem; font-weight: 600; margin-bottom: 1.5rem; }
-    .notify-btn { display: inline-flex; align-items: center; gap: 0.7rem; background: linear-gradient(135deg, #6c63ff, #b388ff); border: none; padding: 0.9rem 2.2rem; border-radius: 3rem; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.35s ease; box-shadow: 0 10px 30px rgba(108,99,255,0.5); margin-top: 1rem; font-family: inherit; touch-action: manipulation; }
-    .notify-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(108,99,255,0.7); }
-    .notify-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; box-shadow: none; background: #2a2a3e; color: #a5d6a7; }
-
-    footer { text-align:center; padding:3rem 0; border-top:1px solid rgba(255,255,255,0.05); color:#b0b5cc; font-size:1rem; }
-
-    /* СТИЛИ ДЛЯ HTML В МОДАЛКЕ */
-    .modal-rich-text { color:#c0c5e0; font-size:1.1rem; line-height:1.6; margin-bottom:2rem; word-wrap: break-word; }
-    .modal-rich-text b, .modal-rich-text strong { color: #fff; font-weight: 700; }
-    .modal-rich-text i, .modal-rich-text em { font-style: italic; }
-    .modal-rich-text u { text-decoration: underline; }
-    .modal-rich-text h2 { font-size: 1.4rem; color: #fff; margin: 15px 0 10px 0; font-family: 'Space Grotesk', sans-serif; line-height: 1.3; border: none; text-align: left; }
-    .modal-rich-text blockquote { border-left: 3px solid #6c63ff; padding-left: 12px; margin: 15px 0; color: #a0a5c0; font-style: italic; background: rgba(108,99,255,0.05); padding: 10px; border-radius: 0 8px 8px 0; }
-    .modal-rich-text ul, .modal-rich-text ol { margin-left: 20px; margin-bottom: 15px; }
-    .modal-rich-text li { margin-bottom: 5px; }
-    .modal-rich-text div { margin-bottom: 10px; }
-    .modal-rich-text span[style*="font-size: 1rem;"] { font-size: 1.1rem !important; }
-
-    @media (max-width: 1024px) {
-      #bgCanvas { display: none; }
-      .name-letter { transform: none; filter: none; opacity: 1; }
-      .name-letter.show { transform: none; }
-      h1 { font-size:2.8rem; min-height:3.5rem; }
-      .hero { flex-direction:column; text-align:center; min-height: auto; }
-      .subtitle { border-left:none; padding-left:0; font-size:1.3rem; }
-      .avatar-frame { width:220px; height:220px; animation: pulseGlow 3s infinite; }
-      .container { padding:0 1.2rem; }
-      .glass-panel, .project-card, .social-card, .sticky-header, .quote-block { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-      .projects-grid { grid-template-columns: 1fr; gap:1.5rem; }
-      .social-grid { gap:1rem; }
-      .social-card { padding:1rem 1.8rem; }
-      .social-card i { font-size: 2rem; }
-      .social-card img { width: 2rem; height: 2rem; }
-      .tab-button { padding:0.6rem 1.8rem; font-size:1rem; }
-      .btn { padding:0.7rem 1.8rem; font-size:0.9rem; }
-      .back-to-top { width: 46px; height: 46px; bottom: 1.2rem; right: 1.2rem; }
-      .header-right { justify-content: center; width: 100%; }
-      .social-links { gap: 0.7rem; }
-      .social-icon { width: 42px; height: 42px; font-size: 1.3rem; }
-      .social-icon img { width: 20px; height: 20px; }
-      .loader-particles { display: none; }
-      .loader-ring-container { width: 80px; height: 80px; }
-      .loader-ring { width: 80px; height: 80px; }
-      .loader-text { font-size: 1.4rem; letter-spacing: 1px; padding: 0 1.5rem; }
-      .sticky-inner { padding: 0.6rem 1rem; gap: 0.5rem; }
-      .sticky-logo { font-size: 1.1rem; }
-      .sticky-icon { width: 32px; height: 32px; font-size: 0.85rem; }
-      .sticky-icon img { width: 14px; height: 14px; }
-      .sticky-socials { gap: 0.35rem; }
-      .sticky-header .lang-btn { padding: 0.3rem 0.55rem; font-size: 0.7rem; }
-      .sticky-header .lang-btn .flag { font-size: 0.9rem; }
-      .offline-banner { padding: 0.8rem 1rem; font-size: 0.85rem; gap: 0.6rem; }
-      .offline-banner .offline-icon { font-size: 1.3rem; }
-      .offline-banner .offline-close { width: 28px; height: 28px; font-size: 0.8rem; }
-      .redirect-popup-inner { padding: 2rem 1.4rem; }
-      .redirect-popup-inner h3 { font-size: 1.25rem; }
-      .redirect-popup-inner p { font-size: 0.92rem; }
+    /* ЗАПРЕТ НА ВЫДЕЛЕНИЕ ТЕКСТА */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none;    /* Firefox */
+      -ms-user-select: none;     /* IE10+/Edge */
+      user-select: none;         /* Standard */
+      -webkit-touch-callout: none; /* iOS Safari */
     }
 
-    @media (max-width: 600px) { .sticky-socials { display: none; } }
-    @media (max-width: 480px) {
-      h1 { font-size: 2.2rem; }
-      .subtitle { font-size: 1.15rem; }
-      .badge { padding: 0.55rem 1.2rem; font-size: 0.85rem; }
-      .tab-button { padding: 0.55rem 1.3rem; font-size: 0.9rem; }
-      .lang-btn { padding: 0.45rem 0.8rem; font-size: 0.8rem; }
-      .loader-text { font-size: 1.15rem; }
+    body {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      background: #0a0a0f;
+      color: #e8e9f0;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      padding: 1.5rem;
+    }
+
+    html[lang="zh"] body {
+      font-family: 'Noto Sans SC', 'Inter', sans-serif;
+    }
+
+    /* Легкий шум на фоне */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    /* Стеклянная панель */
+    .maintenance-card {
+      background: rgba(18, 20, 28, 0.65);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(108, 99, 255, 0.25);
+      border-radius: 2.5rem;
+      padding: 4rem 3rem;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(108, 99, 255, 0.15);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Иконка с пульсацией */
+    .icon-container {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(179, 136, 255, 0.1));
+      border: 1px solid rgba(179, 136, 255, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: #b388ff;
+      animation: pulseGlow 3s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(108, 99, 255, 0.3); }
+      50% { box-shadow: 0 0 50px rgba(179, 136, 255, 0.6); }
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff, #b388ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 15px rgba(179, 136, 255, 0.4));
+    }
+
+    p.description {
+      font-size: 1.1rem;
+      color: #c0c5e0;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    /* Специальная плашка вместо кнопки */
+    .fixing-message {
+      display: inline-block;
+      background: rgba(108, 99, 255, 0.15);
+      border: 1px solid rgba(108, 99, 255, 0.4);
+      padding: 1rem 2rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #e8e9f0;
+      box-shadow: 0 10px 25px rgba(108, 99, 255, 0.2);
+    }
+
+    /* Переключатель языков */
+    .lang-switch {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 3rem;
+      padding: 0.3rem;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: #cfc8ff;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 3rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .lang-btn:hover:not(.active) {
+      background: rgba(108, 99, 255, 0.2);
+      color: #fff;
+    }
+
+    .lang-btn.active {
+      background: #6c63ff;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(108, 99, 255, 0.5);
+    }
+
+    /* Адаптация под мобилки */
+    @media (max-width: 768px) {
+      .maintenance-card {
+        padding: 3rem 1.5rem;
+        border-radius: 2rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      p.description {
+        font-size: 1rem;
+      }
+      .fixing-message {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
+      }
+      .lang-switch {
+        top: 1rem;
+        right: 1rem;
+      }
+      .icon-container {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="scroll-progress" id="scrollProgress"></div>
+  <canvas id="bgCanvas"></canvas>
 
-  <div class="cookie-banner" id="cookieBanner">
-    <div class="cookie-text" id="cookieText">
-      Hey! We use cookies to keep the site running smoothly, remember your language, and save your settings. By continuing to browse, you agree to this. Read more <a href="cookies.html">here</a>.
+  <div class="maintenance-card">
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="ru"><span class="flag">🇷🇺</span></button>
+      <button class="lang-btn" data-lang="en"><span class="flag">🇬🇧</span></button>
+      <button class="lang-btn" data-lang="zh"><span class="flag">🇨🇳</span></button>
     </div>
-    <button class="cookie-btn" id="acceptCookies">Accept</button>
-  </div>
 
-  <div class="offline-banner" id="offlineBanner" role="alert">
-    <i class="fas fa-wifi offline-icon" style="opacity:0.6;"></i>
-    <div class="offline-text" id="offlineText"></div>
-    <button class="offline-close" id="offlineClose" aria-label="Close"><i class="fas fa-times"></i></button>
-  </div>
-
-  <div class="redirect-popup" id="redirectPopup" role="dialog" aria-modal="true">
-    <div class="redirect-popup-inner">
-      <div class="flag-icon">🇷🇺</div>
-      <h3 data-i18n="redir_title">You are in the Russian Federation</h3>
-      <p data-i18n="redir_text">Go to the site intended for Russian users so the site works stably.</p>
-      <div class="popup-buttons">
-        <a href="https://mrkronick.ru" class="popup-btn primary" data-i18n="redir_go">Go to site</a>
-        <button class="popup-btn secondary" id="redirStay" data-i18n="redir_stay">Stay here</button>
-      </div>
+    <div class="icon-container">
+      <i class="fas fa-tools"></i>
     </div>
-  </div>
 
-  <div class="sticky-header" id="stickyHeader">
-    <div class="sticky-inner">
-      <a href="#" class="sticky-logo">MrKronick</a>
-      <div class="sticky-right">
-        <div class="sticky-socials">
-          <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="sticky-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.twitch.tv/mrkronickorig" target="_blank" class="sticky-icon" title="Twitch"><i class="fab fa-twitch"></i></a>
-          <a href="https://rutube.ru/channel/32579876/" target="_blank" class="sticky-icon" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube"></a>
-          <a href="https://vk.com/alexanderkronik" target="_blank" class="sticky-icon" title="VK"><i class="fab fa-vk"></i></a>
-          <a href="https://t.me/bazakronika" target="_blank" class="sticky-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
-        </div>
-        <div class="lang-switch" role="group" aria-label="Language">
-          <button class="lang-btn" data-lang="ru"><span class="flag">🇷🇺</span> RU</button>
-          <button class="lang-btn" data-lang="en"><span class="flag">🇬🇧</span> EN</button>
-          <button class="lang-btn" data-lang="zh"><span class="flag">🇨🇳</span> 中文</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="loader">
-    <div class="loader-ring-container">
-      <div class="loader-ring" id="loaderRing"></div>
-      <div class="loader-particles" id="loaderParticles">
-        <div class="loader-particle" style="--tx:-55px;--ty:-45px;"></div><div class="loader-particle" style="--tx:50px;--ty:-40px;"></div><div class="loader-particle" style="--tx:-45px;--ty:50px;"></div><div class="loader-particle" style="--tx:55px;--ty:45px;"></div><div class="loader-particle" style="--tx:-60px;--ty:10px;"></div><div class="loader-particle" style="--tx:60px;--ty:-10px;"></div><div class="loader-particle" style="--tx:15px;--ty:-55px;"></div><div class="loader-particle" style="--tx:-15px;--ty:55px;"></div><div class="loader-particle" style="--tx:-30px;--ty:-60px;"></div><div class="loader-particle" style="--tx:30px;--ty:60px;"></div>
-      </div>
-    </div>
-    <div class="loader-text" id="loaderMessage">loading text</div>
-  </div>
-
-  <main class="site-content" id="siteContent">
-    <canvas id="bgCanvas"></canvas>
-    <div class="container">
-      <header class="scroll-reveal reveal-fade-down">
-        <div class="logo">MrKronick</div>
-        <div class="header-right">
-          <div class="social-links">
-            <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.twitch.tv/mrkronickorig" target="_blank" class="social-icon" title="Twitch"><i class="fab fa-twitch"></i></a>
-            <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-icon" title="Rutube"><img src="images/rutube-icon.webp" alt="Rutube" width="22" height="22"></a>
-            <a href="https://vk.com/alexanderkronik" target="_blank" class="social-icon" title="VK"><i class="fab fa-vk"></i></a>
-            <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-icon" title="Modrinth"><i class="fas fa-cube"></i></a>
-            <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-icon" title="SpigotMC"><i class="fas fa-plug"></i></a>
-          </div>
-          <div class="lang-switch" role="group" aria-label="Language">
-            <button class="lang-btn" data-lang="ru"><span class="flag">🇷🇺</span> RU</button>
-            <button class="lang-btn" data-lang="en"><span class="flag">🇬🇧</span> EN</button>
-            <button class="lang-btn" data-lang="zh"><span class="flag">🇨🇳</span> 中文</button>
-          </div>
-        </div>
-      </header>
-
-      <div class="tab-nav">
-        <button class="tab-button active" data-tab="main"><i class="fas fa-home"></i> <span data-i18n="tab_main">Home</span></button>
-        <button class="tab-button" data-tab="social"><i class="fas fa-share-alt"></i> <span data-i18n="tab_social">Socials</span></button>
-        <button class="tab-button" data-tab="stream"><i class="fab fa-twitch"></i> <span data-i18n="tab_stream">Streams</span></button>
-        <a href="/posts/" class="tab-button"><i class="fas fa-newspaper"></i> <span data-i18n="tab_posts">Posts</span></a>
-      </div>
-
-      <div id="tab-main" class="tab-content active">
-        <section class="hero">
-          <div class="hero-content">
-            <h1 id="nameContainer"></h1>
-            <div class="subtitle scroll-reveal reveal-fade-left delay-200" data-i18n="subtitle">MrKronick · Creator of FoggyLand
-Developer of CustomTPA</div>
-            <div class="badge-container">
-              <span class="badge scroll-reveal reveal-scale delay-300" data-i18n="badge_dev">⚡ Minecraft Developer</span>
-              <span class="badge scroll-reveal reveal-scale delay-400" data-i18n="badge_owner">🌐 Server Owner</span>
-              <span class="badge scroll-reveal reveal-scale delay-500" data-i18n="badge_plugins">🔌 Spigot Plugins</span>
-            </div>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-              <a href="https://site.foggyland.ru/" target="_blank" class="btn scroll-reveal reveal-fade-up delay-500"><i class="fas fa-server"></i> FoggyLand</a>
-              <a href="https://customtpa.mrkronick.ru/" target="_blank" class="btn scroll-reveal reveal-fade-up delay-600"><i class="fas fa-puzzle-piece"></i> CustomTPA</a>
-            </div>
-          </div>
-          <div class="hero-visual scroll-reveal reveal-blur delay-400">
-            <div class="avatar-frame">
-              <img src="images/avatar.webp" alt="MrKronick" width="300" height="300">
-            </div>
-          </div>
-        </section>
-
-        <div class="about-section glass-panel scroll-reveal reveal-combo delay-100" style="padding: 3rem;">
-          <h2 style="font-size: 2.5rem; margin-bottom: 1.8rem; color:#fff;"><i class="fas fa-heart" style="color: #b388ff;"></i> <span data-i18n="about_title">About Me</span></h2>
-          <p style="font-size: 1.3rem; margin-bottom: 1.2rem; color:#e0e3f0;" data-i18n="about_p1"></p>
-          <div class="quote-block" data-i18n="about_quote"></div>
-          <p style="color: #d0d5f0; font-size: 1.1rem;" data-i18n="about_p2"></p>
-        </div>
-
-        <div class="glass-panel" style="padding: 3rem; margin: 3rem 0;">
-          <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color:#fff;" class="scroll-reveal reveal-fade-left"><i class="fas fa-crown" style="color: #b388ff;"></i> <span data-i18n="projects_title">Projects</span></h2>
-          <div class="projects-grid">
-            <div class="project-card scroll-reveal reveal-rotate delay-200">
-              <div class="project-icon"><i class="fas fa-cloud-moon"></i></div>
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-                <h3 style="font-size: 2rem; color:#fff; margin: 0;">FoggyLand</h3>
-                <span style="background: rgba(211, 47, 47, 0.2); border: 1px solid rgba(211, 47, 47, 0.6); color: #ff8a8a; padding: 0.3rem 0.8rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 700;" data-i18n="foggyland_status">Closed</span>
-              </div>
-              <p style="font-size: 0.95rem; color: #e0e3f0; line-height: 1.6;" data-i18n="foggyland_reason"></p>
-              <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-                <a href="https://dalink.to/mrkronick" target="_blank" class="btn" style="background: rgba(76, 175, 80, 0.2); border-color: rgba(76, 175, 80, 0.6); color: #a5d6a7;"><i class="fas fa-heart"></i> <span data-i18n="foggyland_support">Support project</span></a>
-              </div>
-            </div>
-            <div class="project-card scroll-reveal reveal-rotate delay-400">
-              <div class="project-icon"><i class="fas fa-code-branch"></i></div>
-              <h3 style="font-size: 2rem; color:#fff;">CustomTPA</h3>
-              <p data-i18n="customtpa_desc"></p>
-              <a href="https://customtpa.mrkronick.ru/" target="_blank" class="btn"><span data-i18n="customtpa_btn">Learn more</span> <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-section glass-panel scroll-reveal reveal-fade-up" style="padding: 3rem; margin: 3rem 0;">
-          <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color:#fff;"><i class="fas fa-question-circle" style="color: #b388ff;"></i> <span data-i18n="faq_title">FAQ</span></h2>
-          <div class="faq-grid">
-            <div class="faq-item">
-              <div class="faq-question"><span data-i18n="faq_q1">Who is MrKronick?</span> <i class="fas fa-chevron-down"></i></div>
-              <div class="faq-answer"><span data-i18n="faq_a1">MrKronick (Alexander Mochalov) is a Minecraft developer, creator of the FoggyLand server and the CustomTPA plugin.</span></div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-question"><span data-i18n="faq_q2">How to join FoggyLand?</span> <i class="fas fa-chevron-down"></i></div>
-              <div class="faq-answer"><span data-i18n="faq_a2">FoggyLand is currently closed. We are raising funds to reopen it. You can support the project via DALink.</span></div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-question"><span data-i18n="faq_q3">Where can I download CustomTPA?</span> <i class="fas fa-chevron-down"></i></div>
-              <div class="faq-answer"><span data-i18n="faq_a3">CustomTPA is available on SpigotMC and Modrinth. You can find links in the "Projects" section above.</span></div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-question"><span data-i18n="faq_q4">How to contact MrKronick?</span> <i class="fas fa-chevron-down"></i></div>
-              <div class="faq-answer"><span data-i18n="faq_a4">You can reach out via Telegram (@bazakronika), VK, or Discord. Links are in the "Socials" tab.</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="tab-social" class="tab-content">
-        <div style="margin: 4rem 0;">
-          <h2 style="font-size: 2.5rem; margin-bottom: 2rem;" class="scroll-reveal reveal-fade-left"><span class="gradient-text" data-i18n="social_title">Social Networks</span></h2>
-          <div class="social-grid">
-            <a href="https://www.youtube.com/@mrkronickyt" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-100">
-              <i class="fab fa-youtube" style="color:#ff4444;"></i>
-              <div><strong>YouTube</strong><br><small>@mrkronickyt</small></div>
-            </a>
-            <a href="https://www.twitch.tv/mrkronickorig" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-110">
-              <i class="fab fa-twitch" style="color:#9146FF;"></i>
-              <div><strong>Twitch</strong><br><small>@mrkronickorig</small></div>
-            </a>
-            <a href="https://rutube.ru/channel/32579876/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-120">
-              <img src="images/rutube-icon.webp" alt="Rutube" width="42" height="42">
-              <div><strong>Rutube</strong><br><small data-i18n="s_channel">Channel</small></div>
-            </a>
-            <a href="https://dalink.to/mrkronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-140">
-              <img src="images/dalink.png" alt="DALink" width="42" height="42">
-              <div><strong>DALink</strong><br><small data-i18n="s_support">Support</small></div>
-            </a>
-            <a href="https://vk.com/alexanderkronik" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-200">
-              <i class="fab fa-vk" style="color:#4a76a8;"></i>
-              <div><strong>VK</strong><br><small>alexanderkronik</small></div>
-            </a>
-            <a href="https://x.com/MrKronick_MC" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-250">
-              <img src="images/x-logo.png" alt="X (Twitter)" width="42" height="42">
-              <div><strong>X (Twitter)</strong><br><small>@MrKronick_MC</small></div>
-            </a>
-            <a href="https://www.instagram.com/mrkronick/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-275">
-              <i class="fab fa-instagram" style="color:#e1306c;"></i>
-              <div><strong>Instagram</strong><br><small>@mrkronick</small></div>
-            </a>
-            <a href="https://www.tiktok.com/@mrkronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-300">
-              <i class="fab fa-tiktok" style="color:#ff0050;"></i>
-              <div><strong>TikTok</strong><br><small>@mrkronick</small></div>
-            </a>
-            <a href="https://t.me/bazakronika" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-320">
-              <i class="fab fa-telegram" style="color:#26A5E4;"></i>
-              <div><strong>Telegram</strong><br><small>@bazakronika</small></div>
-            </a>
-            <a href="https://modrinth.com/user/MrKronick" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-350">
-              <i class="fas fa-cube" style="color:#1bd96a;"></i>
-              <div><strong>Modrinth</strong><br><small>MrKronick</small></div>
-            </a>
-            <a href="https://www.spigotmc.org/members/mrkronick.2535896/" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-400">
-              <i class="fas fa-plug" style="color:#ed8106;"></i>
-              <div><strong>SpigotMC</strong><br><small>MrKronick</small></div>
-            </a>
-            <a href="https://www.roblox.com/users/4792145553/profile" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-450">
-              <img src="images/roblox-icon.png" alt="Roblox" width="42" height="42">
-              <div><strong>Roblox</strong><br><small data-i18n="s_profile">Profile</small></div>
-            </a>
-            <a href="https://www.roblox.com/games/101982747695467/Easy-Parkour" target="_blank" class="social-card scroll-reveal reveal-fade-up delay-470">
-              <img src="images/roblox-icon.png" alt="Roblox Place" width="42" height="42">
-              <div><strong>Roblox Place</strong><br><small>Easy Parkour</small></div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div id="tab-stream" class="tab-content">
-        <div style="margin: 4rem 0;">
-          <h2 style="font-size: 2.5rem; margin-bottom: 2rem;" class="scroll-reveal reveal-fade-left"><span class="gradient-text" data-i18n="stream_title">Live Streams</span></h2>
-          <div class="glass-panel stream-wrapper" style="padding: 2rem;">
-            
-            <div class="stream-player">
-              <iframe src="https://player.twitch.tv/?channel=mrkronickorig&parent=mrkronick.site&parent=localhost&autoplay=false&chat=disabled&layout=video" allowfullscreen="true" scrolling="no"></iframe>
-            </div>
-
-            <div class="stream-info">
-              <div class="stream-schedule"><i class="fas fa-calendar-alt"></i> <span data-i18n="stream_schedule">Every Saturday · Roblox</span></div>
-              <p style="color:#c0c5e0; margin-bottom: 1.5rem;" data-i18n="stream_desc">Watch the stream directly on the website!</p>
-              <button class="notify-btn" id="notifyBtn"><i class="fas fa-bell"></i> <span data-i18n="stream_notify">Notify me about streams</span></button>
-              <br>
-              <a href="https://www.twitch.tv/mrkronickorig" target="_blank" class="btn" style="margin-top: 1rem;"><i class="fab fa-twitch"></i> <span data-i18n="stream_open">Open in Twitch</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <footer class="scroll-reveal reveal-fade-up">
-        <p data-i18n="footer1">© 2026 MrKronick — Alexander Mochalov. Official MrKronick website. FoggyLand & CustomTPA.</p>
-        <p style="margin-top: 0.8rem; opacity: 0.6; font-size: 0.95rem;" data-i18n="footer2">Information site</p>
-        <p style="margin-top: 0.6rem; font-size: 0.8rem; opacity: 0.4; letter-spacing: 1px; font-weight: 600;">Version v6.1</p>
-      </footer>
-    </div>
-  </main>
-
-  <button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
-
-  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ПОСТОВ И УВЕДОМЛЕНИЙ -->
-  <div id="notification-modal" style="position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); z-index:100000; display:none; align-items:center; justify-content:center; padding:1.5rem; opacity:0; transition:opacity 0.4s;">
-    <div style="background:linear-gradient(145deg, #1a1a2e, #10101a); border:1px solid rgba(108,99,255,0.4); border-radius:2rem; padding:2.5rem; max-width:600px; width:100%; box-shadow:0 30px 80px rgba(108,99,255,0.4); transform:scale(0.9); transition:transform 0.4s; position:relative;">
-      <button onclick="closePostModal()" style="position:absolute; top:1.2rem; right:1.2rem; background:rgba(255,255,255,0.08); border:none; color:#fff; width:38px; height:38px; border-radius:50%; cursor:pointer; font-size:1.2rem; transition:0.3s;">&times;</button>
-      <span style="color:#b388ff; font-weight:700; letter-spacing:1px; font-size:0.85rem; text-transform:uppercase; display:block; margin-bottom:1rem;" id="modal-date"></span>
-      <h2 style="font-family:'Space Grotesk', sans-serif; font-size:2rem; color:#fff; margin-bottom:1.2rem; line-height:1.3; padding-right:2.5rem;" id="modal-title"></h2>
-      <!-- Используем div вместо p и добавляем класс для стилизации HTML -->
-      <div class="modal-rich-text" id="modal-content"></div>
-      <div id="modal-link-container" style="display:none;">
-        <a href="#" id="modal-link" target="_blank" style="display:inline-flex; align-items:center; gap:0.7rem; background:#6c63ff; color:#fff; padding:0.9rem 2rem; border-radius:3rem; text-decoration:none; font-weight:600; box-shadow:0 10px 25px rgba(108,99,255,0.5); transition:0.3s;"></a>
-      </div>
-    </div>
+    <h1 id="title" data-i18n="title">Технические работы</h1>
+    <p class="description" id="desc" data-i18n="desc">На сайте обноружены уязвимости, мы уже всё фиксим!</p>
+    
+    <div class="fixing-message" id="note" data-i18n="note">Попробуйте зайти чуть позже, уже фиксим!</div>
   </div>
 
   <script>
-    const cookieBanner = document.getElementById('cookieBanner');
-    const acceptCookiesBtn = document.getElementById('acceptCookies');
-
-    if (!localStorage.getItem('cookie_consent')) {
-      setTimeout(() => { cookieBanner.classList.add('visible'); }, 1500);
-    }
-
-    acceptCookiesBtn.addEventListener('click', () => {
-      localStorage.setItem('cookie_consent', 'true');
-      cookieBanner.classList.remove('visible');
-    });
-
-    const API_MODAL_URL = 'https://api.mrkronick.site';
-
-    async function checkContentHash() {
-      const hash = window.location.hash;
-      let prefix = null, itemId = null;
-
-      if (hash.startsWith('#post-')) { prefix = 'post'; itemId = hash.replace('#post-', ''); }
-      else if (hash.startsWith('#notify-')) { prefix = 'notify'; itemId = hash.replace('#notify-', ''); }
-      else return;
-
-      if (prefix === 'notify' && localStorage.getItem(`seen_notify_${itemId}`) === 'true') {
-        history.replaceState(null, null, window.location.pathname);
-        return;
-      }
-
-      try {
-        const res = await fetch(API_MODAL_URL + '/content/' + itemId);
-        if (!res.ok) return;
-        const item = await res.json();
-
-        document.getElementById('modal-date').textContent = item.date || '';
-        document.getElementById('modal-title').textContent = item.title || '';
-        // ВАЖНО: Используем innerHTML вместо textContent для отображения тегов
-        document.getElementById('modal-content').innerHTML = item.content || '';
-
-        const linkContainer = document.getElementById('modal-link-container');
-        const linkBtn = document.getElementById('modal-link');
-
-        if (item.link && item.link.trim() !== '') {
-          linkContainer.style.display = 'block';
-          linkBtn.href = item.link;
-          const btnText = (item.linkText && item.linkText.trim() !== '') ? item.linkText : 'Go to link';
-          linkBtn.innerHTML = `${btnText} <i class="fas fa-arrow-right"></i>`;
-        } else {
-          linkContainer.style.display = 'none';
-        }
-
-        const modal = document.getElementById('notification-modal');
-        modal.style.display = 'flex';
-        setTimeout(() => {
-          modal.style.opacity = '1';
-          modal.querySelector('div').style.transform = 'scale(1)';
-        }, 100);
-
-        if (prefix === 'notify') localStorage.setItem(`seen_notify_${itemId}`, 'true');
-      } catch (e) { console.error('Modal error:', e); }
-    }
-
-    function closePostModal() {
-      const modal = document.getElementById('notification-modal');
-      modal.style.opacity = '0';
-      modal.querySelector('div').style.transform = 'scale(0.9)';
-      setTimeout(() => { modal.style.display = 'none'; }, 400);
-      history.replaceState(null, null, window.location.pathname);
-    }
-
-    window.addEventListener('load', checkContentHash);
-
-    const VAPID_PUBLIC_KEY = 'BEQUS1Qg5HToCnZT5L1SeTmolZ2KYoMm70Sm48oUxzxXIVwSg_r5X-iu9VVJr8BEBwFy02ZOKn6DhxEDuiE7n1A';
-    const WORKER_URL = 'https://api.mrkronick.site';
-
-    function urlBase64ToUint8Array(base64String) {
-      const padding = '='.repeat((4 - base64String.length % 4) % 4);
-      const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
-      const rawData = window.atob(base64);
-      const outputArray = new Uint8Array(rawData.length);
-      for (let i = 0; i < rawData.length; ++i) outputArray[i] = rawData.charCodeAt(i);
-      return outputArray;
-    }
-
+    // Переводы
     const translations = {
       ru: {
-        title: "MrKronick — Официальный сайт | Александр Мочалов",
-        description: "Официальный сайт MrKronick (Александр Мочалов). Создатель FoggyLand и CustomTPA.",
-        name: "Александр", tab_main: "Главная", tab_social: "Соц сети", tab_stream: "Стримы", tab_posts: "Посты",
-        subtitle: "MrKronick · Создатель FoggyLand\nРазработчик CustomTPA",
-        badge_dev: "⚡ Minecraft разработчик", badge_owner: "🌐 Владелец сервера", badge_plugins: "🔌 Плагины Spigot",
-        about_title: "Обо мне",
-        about_p1: "Я так то обычный парень, очень любопытный, и очень люблю всем помогать. Многие ищут MrKronick кто это или кто такой MrKronick — и это мой официальный сайт.",
-        about_quote: "✨ «Хочу, чтобы в этом мире, были только дружелюбные, и хорошие люди.»",
-        about_p2: "Каждый день стараюсь делать сообщество вокруг моих проектов немного добрее. FoggyLand и CustomTPA созданы с заботой о людях.",
-        projects_title: "Проекты", foggyland_status: "Закрыт",
-        foggyland_reason: "У меня есть мотивация дальше развивать свой проект FoggyLand, но для этого мне нужны деньги. Я просто уже устал каждыми днями вставать в 8:00 по МСК, из-за этого пропала мотивация, но она у меня появилась. Для открытия сервера мне нужно 5к рублей, но я не знаю откуда мне их взять. Если не сложно, поддержите меня, и давайте вместе соберём 5 тыс. руб. Просто пожертвуйте любую сумму мне на DALink, спасибо.",
-        foggyland_support: "Поддержать проект",
-        customtpa_desc: "Плагин для телепортации с тонкой настройкой. Гибкие запросы, кулдауны, понятный GUI. Доступен на SpigotMC и Modrinth.",
-        customtpa_btn: "Подробнее", faq_title: "Частые вопросы (FAQ)",
-        faq_q1: "Кто такой MrKronick?", faq_a1: "MrKronick (Александр Мочалов) — разработчик Minecraft, создатель сервера FoggyLand и плагина CustomTPA.",
-        faq_q2: "Как зайти на FoggyLand?", faq_a2: "Сервер FoggyLand временно закрыт. Мы собираем средства на его открытие. Вы можете поддержать проект через DALink.",
-        faq_q3: "Где скачать CustomTPA?", faq_a3: "CustomTPA доступен на SpigotMC и Modrinth. Ссылки можно найти в разделе «Проекты» выше.",
-        faq_q4: "Как связаться с MrKronick?", faq_a4: "Ты можешь написать мне в Telegram (@bazakronika), ВК или Discord. Ссылки есть во вкладке «Соц сети».",
-        social_title: "Социальные сети", s_channel: "Канал", s_support: "Поддержка", s_profile: "Профиль",
-        footer1: "© 2026 MrKronick — Александр Мочалов. Официальный сайт MrKronick. FoggyLand & CustomTPA.",
-        footer2: "Информационный сайт",
-        loader_1: "загрузка текста", loader_2: "проверяем устройство", loader_3: "загрузка анимаций", loader_4: "загрузка данных",
-        loader_connecting: "соединяемся с сервером", loader_images: "прогружаем картинки", loader_offline: "нет соединения с интернетом",
-        redir_title: "Вы находитесь на территории РФ", redir_text: "Перейдите на сайт, который предназначен для РФ пользователей, чтобы сайт стабильно работал.",
-        redir_go: "Перейти на сайт", redir_stay: "Остаться здесь",
-        stream_title: "Прямые трансляции", stream_schedule: "Каждую субботу · Roblox", stream_desc: "Смотри трансляцию прямо на сайте!",
-        stream_notify: "Уведомить о стримах", stream_open: "Открыть в Twitch", subscribed: "Вы подписаны!",
-        offline_text: "У вас пропало интернет соединение, сайт будет работать оффлайн, и вы не сможете перейти по ссылкам, подключитесь к сети, чтобы всё заработало. А если какой-то сайт не открывается, воспользуйтесь VPN сервисом (желательно платным), иначе заблокированные сервисы в РФ попросту не откроются.",
-        cookie_text: "Привет! Мы используем файлы cookie, чтобы сайт работал стабильно, запоминал твой язык и не сбрасывал настройки. Продолжая просмотр, ты соглашаешься с этим. Подробнее можно почитать <a href='cookies.html'>здесь</a>.",
-        cookie_btn: "Принять"
+        title: "Технические работы",
+        desc: "На сайте обноружены уязвимости, мы уже всё фиксим!",
+        note: "Попробуйте зайти чуть позже, уже фиксим!"
       },
       en: {
-        title: "MrKronick — Official Website | Alexander Mochalov",
-        description: "Official website of MrKronick (Alexander Mochalov). Creator of FoggyLand and CustomTPA.",
-        name: "Alexander", tab_main: "Home", tab_social: "Socials", tab_stream: "Streams", tab_posts: "Posts",
-        subtitle: "MrKronick · Creator of FoggyLand\nDeveloper of CustomTPA",
-        badge_dev: "⚡ Minecraft Developer", badge_owner: "🌐 Server Owner", badge_plugins: "🔌 Spigot Plugins",
-        about_title: "About Me",
-        about_p1: "I'm just an ordinary guy, very curious, and I love helping everyone. People often ask who is MrKronick — this is my official site.",
-        about_quote: "✨ «I want this world to have only friendly and good people.»",
-        about_p2: "Every day I try to make the community around my projects a little kinder. FoggyLand and CustomTPA were created with care for people.",
-        projects_title: "Projects", foggyland_status: "Closed",
-        foggyland_reason: "I have the motivation to further develop my FoggyLand project, but I need money for that. I'm just tired of waking up at 8:00 AM MSK every day, which killed my motivation, but it's back now. To open the server, I need 5,000 rubles, but I don't know where to get them. If it's not too much trouble, please support me, and let's raise 5,000 rubles together. Just donate any amount to me on DALink, thank you.",
-        foggyland_support: "Support project",
-        customtpa_desc: "A teleportation plugin with deep customization. Flexible requests, cooldowns, and a clear GUI. Available on SpigotMC and Modrinth.",
-        customtpa_btn: "Learn more", faq_title: "Frequently Asked Questions",
-        faq_q1: "Who is MrKronick?", faq_a1: "MrKronick (Alexander Mochalov) is a Minecraft developer, creator of the FoggyLand server and the CustomTPA plugin.",
-        faq_q2: "How to join FoggyLand?", faq_a2: "FoggyLand is currently closed. We are raising funds to reopen it. You can support the project via DALink.",
-        faq_q3: "Where can I download CustomTPA?", faq_a3: "CustomTPA is available on SpigotMC and Modrinth. You can find links in the 'Projects' section above.",
-        faq_q4: "How to contact MrKronick?", faq_a4: "You can reach out via Telegram (@bazakronika), VK, or Discord. Links are in the 'Socials' tab.",
-        social_title: "Social Networks", s_channel: "Channel", s_support: "Support", s_profile: "Profile",
-        footer1: "© 2026 MrKronick — Alexander Mochalov. Official MrKronick website. FoggyLand & CustomTPA.",
-        footer2: "Information site",
-        loader_1: "loading text", loader_2: "checking device", loader_3: "loading animations", loader_4: "loading data",
-        loader_connecting: "connecting to server", loader_images: "loading images", loader_offline: "no internet connection",
-        redir_title: "You are in the Russian Federation", redir_text: "Go to the site intended for Russian users so the site works stably.",
-        redir_go: "Go to site", redir_stay: "Stay here",
-        stream_title: "Live Streams", stream_schedule: "Every Saturday · Roblox", stream_desc: "Watch the stream directly on the website!",
-        stream_notify: "Notify me about streams", stream_open: "Open in Twitch", subscribed: "You are subscribed!",
-        offline_text: "Your internet connection was lost. The site will work offline and you won't be able to follow links. Reconnect to the network to make everything work again.",
-        cookie_text: "Hey! We use cookies to keep the site running smoothly, remember your language, and save your settings. By continuing to browse, you agree to this. Read more <a href='cookies.html'>here</a>.",
-        cookie_btn: "Accept"
+        title: "Maintenance",
+        desc: "Vulnerabilities have been discovered on the site; we’re already working on fixing everything!",
+        note: "Try to come back a bit later, we are already fixing it!"
       },
       zh: {
-        title: "MrKronick — 官方网站 | 亚历山大·莫恰洛夫",
-        description: "MrKronick（亚历山大·莫恰洛夫）官方网站。FoggyLand 服务器和 CustomTPA 插件的创作者。",
-        name: "亚历山大", tab_main: "首页", tab_social: "社交媒体", tab_stream: "直播", tab_posts: "帖子",
-        subtitle: "MrKronick · FoggyLand 创始人\nCustomTPA 开发者",
-        badge_dev: "⚡ Minecraft 开发者", badge_owner: "🌐 服务器所有者", badge_plugins: "🔌 Spigot 插件",
-        about_title: "关于我",
-        about_p1: "我只是一个普通的人，非常好奇，喜欢帮助所有人。很多人搜索 MrKronick 是谁 — 这就是我的官方网站。",
-        about_quote: "✨ «我希望这个世界上只有友好和善良的人。»",
-        about_p2: "每一天我都努力让我的项目周围的社区变得更友善。FoggyLand 和 CustomTPA 都是用关爱之心创建的。",
-        projects_title: "项目", foggyland_status: "已关闭",
-        foggyland_reason: "我有动力继续开发我的 FoggyLand 项目，但这需要钱。我只是厌倦了每天莫斯科时间早上 8 点起床，这让我失去了动力，但现在动力又回来了。开服需要 5000 卢布，但我不知道去哪里弄。如果不麻烦的话，请支持我，让我们一起筹集 5000 卢布。只需在 DALink 上给我捐任意金额，谢谢。",
-        foggyland_support: "支持项目",
-        customtpa_desc: "一款具有深度自定义的传送插件。灵活的请求、冷却时间和清晰的 GUI。在 SpigotMC 和 Modrinth 上可用。",
-        customtpa_btn: "了解更多", faq_title: "常见问题",
-        faq_q1: "MrKronick 是谁？", faq_a1: "MrKronick（亚历山大·莫恰洛夫）是一名 Minecraft 开发者，FoggyLand 服务器和 CustomTPA 插件的创作者。",
-        faq_q2: "如何加入 FoggyLand？", faq_a2: "FoggyLand 目前处于关闭状态。我们正在筹集资金重新开放它。您可以通过 DALink 支持该项目。",
-        faq_q3: "在哪里下载 CustomTPA？", faq_a3: "CustomTPA 可在 SpigotMC 和 Modrinth 上获取。您可以在上面的“项目”部分找到链接。",
-        faq_q4: "如何联系 MrKronick？", faq_a4: "您可以通过 Telegram（@bazakronika）、VK 或 Discord 联系我。链接在“社交媒体”选项卡中。",
-        social_title: "社交媒体", s_channel: "频道", s_support: "支持", s_profile: "个人资料",
-        footer1: "© 2026 MrKronick — 亚历山大·莫恰洛夫。MrKronick 官方网站。FoggyLand & CustomTPA。",
-        footer2: "信息网站",
-        loader_1: "加载文本", loader_2: "检查设备", loader_3: "加载动画", loader_4: "加载数据",
-        loader_connecting: "连接服务器中", loader_images: "加载图片中", loader_offline: "无网络连接",
-        redir_title: "您位于俄罗斯境内", redir_text: "请转到为俄罗斯用户准备的网站，以便网站稳定运行。",
-        redir_go: "转到网站", redir_stay: "留在这里",
-        stream_title: "直播", stream_schedule: "每周六 · Roblox", stream_desc: "直接在网站上观看直播！",
-        stream_notify: "通知我直播", stream_open: "在 Twitch 中打开", subscribed: "您已订阅！",
-        offline_text: "网络连接已断开，网站将以离线模式工作，您将无法点击链接。请重新连接网络以恢复正常。",
-        cookie_text: "嘿！我们使用 cookie 来保持网站平稳运行、记住您的语言并保存您的设置。继续浏览即表示您同意此操作。在此处了解更多信息 <a href='cookies.html'>在此处</a>。",
-        cookie_btn: "接受"
+        title: "维护中",
+        desc: "我们发现网站存在漏洞，目前正在修复所有漏洞！",
+        note: "请稍后再试，我们正在修复！"
       }
     };
 
-    function detectLanguage() {
-      const saved = localStorage.getItem('lang');
-      if (saved && translations[saved]) return saved;
-      const candidates = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en'];
-      for (const c of candidates) {
-        const code = String(c).toLowerCase();
-        if (code.startsWith('ru')) return 'ru';
-        if (code.startsWith('zh')) return 'zh';
-      }
-      return 'en';
-    }
-
-    let currentLang = detectLanguage();
-
-    function applyLang(lang, animateName) {
+    function setLang(lang) {
       const t = translations[lang];
       if (!t) return;
-      currentLang = lang;
-      localStorage.setItem('lang', lang);
+      
       document.documentElement.lang = lang;
-      document.title = t.title;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.setAttribute('content', t.description);
       
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key] !== undefined) el.textContent = t[key];
       });
 
-      const nameContainer = document.getElementById('nameContainer');
-      if (nameContainer) {
-        const isMobileV = window.matchMedia('(max-width: 1024px)').matches;
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        nameContainer.innerHTML = '';
-        if (isMobileV || prefersReduced || animateName === false) {
-          nameContainer.textContent = t.name;
-          nameContainer.className = 'gradient-text';
-        } else {
-          t.name.split('').forEach((char, i) => {
-            const span = document.createElement('span');
-            span.className = 'name-letter gradient-text';
-            span.textContent = char;
-            nameContainer.appendChild(span);
-            setTimeout(() => span.classList.add('show'), i * 70);
-          });
-        }
-      }
-      
-      const cookieText = document.getElementById('cookieText');
-      if (cookieText) cookieText.innerHTML = t.cookie_text;
-      
-      const acceptCookies = document.getElementById('acceptCookies');
-      if (acceptCookies) acceptCookies.textContent = t.cookie_btn;
-
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-      updateOfflineBanner();
-      
-      const notifyBtn = document.getElementById('notifyBtn');
-      if (notifyBtn && notifyBtn.disabled) {
-          notifyBtn.innerHTML = `<i class="fas fa-check"></i> ${t.subscribed}`;
-      }
-    }
-
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => applyLang(btn.dataset.lang, true)));
-
-    function isRussianTimezone() {
-      try {
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const russianTz = ['Europe/Kaliningrad','Europe/Moscow','Europe/Simferopol','Europe/Volgograd','Europe/Saratov','Europe/Astrakhan','Europe/Ulyanovsk','Europe/Samara','Asia/Yekaterinburg','Asia/Omsk','Asia/Novosibirsk','Asia/Barnaul','Asia/Tomsk','Asia/Novokuznetsk','Asia/Krasnoyarsk','Asia/Irkutsk','Asia/Chita','Asia/Yakutsk','Asia/Khandyga','Asia/Vladivostok','Asia/Ust-Nera','Asia/Magadan','Asia/Sakhalin','Asia/Srednekolymsk','Asia/Kamchatka','Asia/Anadyr'];
-        return russianTz.includes(tz);
-      } catch(e) { return false; }
-    }
-
-    async function isRussianIP() {
-      const apis = [
-        { url: 'https://ipwho.is/', field: 'country_code' },
-        { url: 'https://ipapi.co/json/', field: 'country_code' },
-        { url: 'https://freeipapi.com/api/json', field: 'countryCode' }
-      ];
-      for (const api of apis) {
-        try {
-          const res = await fetch(api.url, { cache: 'no-store' });
-          if (!res.ok) continue;
-          const data = await res.json();
-          const code = data[api.field];
-          if (code) return code === 'RU';
-        } catch (e) { /* ignore */ }
-      }
-      return isRussianTimezone();
-    }
-
-    const offlineBanner = document.getElementById('offlineBanner');
-    const offlineText = document.getElementById('offlineText');
-    const offlineClose = document.getElementById('offlineClose');
-    let offlineDismissed = false;
-
-    function updateOfflineBanner() {
-      const t = translations[currentLang] || translations.en;
-      offlineText.textContent = t.offline_text;
-      if (!navigator.onLine && !offlineDismissed) offlineBanner.classList.add('visible');
-      else offlineBanner.classList.remove('visible');
-    }
-
-    offlineClose.addEventListener('click', () => { offlineDismissed = true; offlineBanner.classList.remove('visible'); });
-    window.addEventListener('online', () => { offlineDismissed = false; updateOfflineBanner(); });
-    window.addEventListener('offline', updateOfflineBanner);
-    updateOfflineBanner();
-
-    const redirectPopup = document.getElementById('redirectPopup');
-    const redirStay = document.getElementById('redirStay');
-
-    async function checkRedirect() {
-      const isRU = await isRussianIP();
-      if (isRU) {
-        const alreadySeen = sessionStorage.getItem('redirect_seen_main');
-        if (!alreadySeen) {
-          setTimeout(() => {
-            redirectPopup.classList.add('visible');
-            sessionStorage.setItem('redirect_seen_main', '1');
-          }, 1500);
-        }
-      }
-    }
-
-    redirStay.addEventListener('click', () => redirectPopup.classList.remove('visible'));
-    redirectPopup.addEventListener('click', (e) => { if (e.target === redirectPopup) redirectPopup.classList.remove('visible'); });
-
-    const progressBar = document.getElementById('scrollProgress');
-    const stickyHeader = document.getElementById('stickyHeader');
-    const backBtn = document.getElementById('backToTop');
-
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      const h = document.documentElement;
-      const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-      progressBar.style.width = scrolled + '%';
-      if (y > 200) stickyHeader.classList.add('visible');
-      else stickyHeader.classList.remove('visible');
-      if (y > 400) backBtn.classList.add('visible');
-      else backBtn.classList.remove('visible');
-    }, { passive: true });
-
-    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    (function() {
-      const isMobileV = window.matchMedia('(max-width: 1024px)').matches;
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      applyLang(currentLang, false);
-
-      const loader = document.getElementById('loader');
-      const loaderRing = document.getElementById('loaderRing');
-      const loaderMessage = document.getElementById('loaderMessage');
-      const siteContent = document.getElementById('siteContent');
-      const loaderParticleEls = document.querySelectorAll('.loader-particle');
-      const canvas = document.getElementById('bgCanvas');
-
-      const images = Array.from(document.querySelectorAll('img'));
-      let allImagesLoaded = false;
-      let done = false;
-      let networkOnline = navigator.onLine;
-
-      function checkAllImages() { return images.every(img => img.complete); }
-      function updateImageStatus() { if (checkAllImages()) allImagesLoaded = true; }
-      updateImageStatus();
-      images.forEach(img => { if (!img.complete) { img.addEventListener('load', updateImageStatus); img.addEventListener('error', updateImageStatus); } });
-      const imagePoller = setInterval(() => { if (done) { clearInterval(imagePoller); return; } updateImageStatus(); }, 500);
-      window.addEventListener('online', () => { networkOnline = true; });
-      window.addEventListener('offline', () => { networkOnline = false; });
-
-      let msgPhase = 'initial';
-      let tickCount = 0;
-      let initialIndex = 0;
-      let waitingIndex = 0;
-
-      setTimeout(() => {
-        if (!done) {
-          console.warn('Failsafe: Force finishing loading due to timeout.');
-          finishLoading();
-        }
-      }, 4000);
-
-      function setMessage(text) {
-        loaderMessage.style.opacity = '0';
-        loaderMessage.style.transform = 'translateY(-10px)';
-        setTimeout(() => {
-          loaderMessage.textContent = text;
-          loaderMessage.style.opacity = '1';
-          loaderMessage.style.transform = 'translateY(0)';
-        }, 200);
-      }
-
-      function getT() { return translations[currentLang] || translations.en; }
-
-      function finishLoading() {
-        if (done) return;
-        done = true;
-        clearInterval(tickInterval);
-        clearInterval(imagePoller);
-        loaderMessage.classList.add('fade-out');
-        if (!isMobileV && !prefersReduced) {
-          loaderParticleEls.forEach((p, i) => setTimeout(() => p.classList.add('fly'), i * 50));
-          setTimeout(() => loaderRing.classList.add('expanding'), 300);
-        }
-        setTimeout(() => siteContent.classList.add('visible'), 500);
-        setTimeout(() => loader.classList.add('hidden'), 900);
-        setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 1800);
-        if (!isMobileV && !prefersReduced) {
-          const nameContainer = document.getElementById('nameContainer');
-          const name = getT().name;
-          nameContainer.innerHTML = '';
-          name.split('').forEach((char, i) => {
-            const span = document.createElement('span');
-            span.className = 'name-letter gradient-text';
-            span.textContent = char;
-            nameContainer.appendChild(span);
-            setTimeout(() => span.classList.add('show'), i * 70);
-          });
-        }
-      }
-
-      loaderMessage.textContent = getT().loader_1;
-
-      const tickInterval = setInterval(() => {
-        if (done) { clearInterval(tickInterval); return; }
-        tickCount++;
-        if (msgPhase === 'initial') {
-          const messages = [getT().loader_1, getT().loader_2, getT().loader_3, getT().loader_4];
-          initialIndex = (tickCount - 1) % messages.length;
-          if (tickCount > messages.length) initialIndex = messages.length - 1;
-          setMessage(messages[initialIndex]);
-          if (tickCount >= 4) {
-            if (allImagesLoaded) finishLoading();
-            else { msgPhase = 'waiting'; tickCount = 0; }
-          }
-        } else if (msgPhase === 'waiting') {
-          if (allImagesLoaded) { finishLoading(); return; }
-          if (!networkOnline) setMessage(getT().loader_offline);
-          else {
-            waitingIndex = tickCount % 2;
-            if (waitingIndex === 0) setMessage(getT().loader_connecting);
-            else setMessage(getT().loader_images);
-          }
-        }
-      }, 1000);
-
-      if (!isMobileV && !prefersReduced && canvas) {
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let bgParticles = [];
-        const PARTICLE_COUNT = 90;
-
-        function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-          constructor() { this.reset(); }
-          reset() { this.x = Math.random() * width; this.y = Math.random() * height; this.radius = Math.random() * 2.8 + 0.8; this.speedX = (Math.random() - 0.5) * 0.4; this.speedY = (Math.random() - 0.5) * 0.4; this.opacity = Math.random() * 0.7 + 0.2; }
-          update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset(); }
-          draw(ctx) { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius*2.5); gradient.addColorStop(0, `rgba(179,136,255,${this.opacity})`); gradient.addColorStop(1, 'rgba(108,99,255,0)'); ctx.fillStyle = gradient; ctx.fill(); }
-        }
-        for (let i = 0; i < PARTICLE_COUNT; i++) bgParticles.push(new Particle());
-
-        function connectParticles(ctx) {
-          for (let i = 0; i < bgParticles.length; i++) {
-            for (let j = i+1; j < bgParticles.length; j++) {
-              const dx = bgParticles[i].x - bgParticles[j].x;
-              const dy = bgParticles[i].y - bgParticles[j].y;
-              const dist = Math.sqrt(dx*dx+dy*dy);
-              if (dist < 150) { ctx.beginPath(); ctx.moveTo(bgParticles[i].x, bgParticles[i].y); ctx.lineTo(bgParticles[j].x, bgParticles[j].y); ctx.strokeStyle = `rgba(138,120,255,${0.12 * (1 - dist/150)})`; ctx.lineWidth = 0.9; ctx.stroke(); }
-            }
-          }
-        }
-        function animateParticles() { ctx.clearRect(0, 0, width, height); for (let p of bgParticles) { p.update(); p.draw(ctx); } connectParticles(ctx); requestAnimationFrame(animateParticles); }
-        animateParticles();
-        window.addEventListener('mousemove', (e) => { bgParticles.forEach(p => { const dx = p.x - e.clientX, dy = p.y - e.clientY; if (Math.sqrt(dx*dx+dy*dy) < 110) { p.speedX += dx*0.004; p.speedY += dy*0.004; } }); });
-      } else if (canvas) { canvas.style.display = 'none'; }
-
-      if (!prefersReduced) {
-        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('revealed'); observer.unobserve(entry.target); } }); }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-      } else {
-        document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('revealed'));
-      }
-
-      const tabButtons = document.querySelectorAll('.tab-button[data-tab]');
-      const tabs = document.querySelectorAll('.tab-content');
-      
-      function switchTab(tabId) {
-        if (!tabId) return;
-        tabButtons.forEach(b => {
-          if (b.dataset.tab === tabId) b.classList.add('active');
-          else b.classList.remove('active');
-        });
-        tabs.forEach(tab => {
-          if (tab.id === 'tab-' + tabId) tab.classList.add('active');
-          else tab.classList.remove('active');
-        });
-      }
-
-      tabButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const tabId = btn.dataset.tab;
-          switchTab(tabId);
-          history.replaceState(null, null, '#' + tabId);
-        });
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
       });
+    }
 
-      const initialHash = window.location.hash.replace('#', '');
-      if (initialHash === 'social' || initialHash === 'stream' || initialHash === 'main') {
-        switchTab(initialHash);
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    });
+
+    // Определяем язык браузера при загрузке
+    const userLang = navigator.language || navigator.userLanguage;
+    if (userLang.startsWith('en')) setLang('en');
+    else if (userLang.startsWith('zh')) setLang('zh');
+    else setLang('ru');
+
+
+    // Фоновая анимация частиц (в том же стиле)
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, particles = [];
+
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.radius = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.2;
+        this.speedY = (Math.random() - 0.5) * 0.2;
+        this.opacity = Math.random() * 0.5 + 0.1;
       }
-
-      async function checkSubscriptionState() {
-        const notifyBtn = document.getElementById('notifyBtn');
-        if (!notifyBtn || !('serviceWorker' in navigator)) return;
-        try {
-          const registration = await navigator.serviceWorker.ready;
-          const subscription = await registration.pushManager.getSubscription();
-          if (subscription) {
-            notifyBtn.innerHTML = `<i class="fas fa-check"></i> ${getT().subscribed}`;
-            notifyBtn.disabled = true;
-          }
-        } catch (e) {}
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
       }
-      checkSubscriptionState();
-
-      const notifyBtn = document.getElementById('notifyBtn');
-      if (notifyBtn) {
-        notifyBtn.addEventListener('click', async () => {
-          const originalText = notifyBtn.innerHTML;
-          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-          const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-
-          if (isIOS && !isStandalone) {
-            alert('On iPhone, notifications only work if the site is added to the Home Screen.\n\n1. Tap "Share" in Safari\n2. Select "Add to Home Screen"\n3. Open the site from the icon\n4. Tap this button again');
-            return;
-          }
-
-          if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
-            alert('Your browser does not support notifications.');
-            return;
-          }
-          if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
-            alert('Notifications only work over HTTPS.');
-            return;
-          }
-
-          try {
-            const permission = await Notification.requestPermission();
-            if (permission !== 'granted') {
-              alert('You denied notifications. Please allow them in your browser settings for this site and try again.');
-              return;
-            }
-
-            notifyBtn.disabled = true;
-            notifyBtn.textContent = '⏳ Connecting...';
-
-            await navigator.serviceWorker.register('/sw.js');
-            const registration = await Promise.race([
-              navigator.serviceWorker.ready,
-              new Promise((_, reject) => setTimeout(() => reject(new Error('Service Worker did not activate within 15 seconds. Please reload the page and try again.')), 15000))
-            ]);
-
-            let subscription = await registration.pushManager.getSubscription();
-            if (!subscription) {
-              const applicationServerKey = urlBase64ToUint8Array(VAPID_PUBLIC_KEY);
-              subscription = await registration.pushManager.subscribe({
-                userVisibleOnly: true,
-                applicationServerKey: applicationServerKey
-              });
-            }
-
-            const response = await fetch(WORKER_URL + '/subscribe', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(subscription)
-            });
-
-            if (!response.ok) {
-              const errText = await response.text().catch(() => '');
-              throw new Error('Server returned ' + response.status + (errText ? ': ' + errText : ''));
-            }
-
-            notifyBtn.innerHTML = `<i class="fas fa-check"></i> ${getT().subscribed}`;
-            notifyBtn.disabled = true;
-          } catch (e) {
-            console.error(e);
-            notifyBtn.disabled = false;
-            notifyBtn.innerHTML = originalText;
-            alert('Subscription error: ' + e.message + '\n\nCheck:\n• Site is on HTTPS\n• Not in incognito mode\n• Browser supports push notifications');
-          }
-        });
+      draw(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 2);
+        g.addColorStop(0, `rgba(179,136,255,${this.opacity})`);
+        g.addColorStop(1, 'rgba(108,99,255,0)');
+        ctx.fillStyle = g;
+        ctx.fill();
       }
+    }
 
-      if (!isMobileV && !prefersReduced) {
-        const cards = document.querySelectorAll('.project-card');
-        cards.forEach(card => {
-          card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = ((y - centerY) / centerY) * -10;
-            const rotateY = ((x - centerX) / centerX) * 10;
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-          });
-          card.addEventListener('mouseleave', () => {
-            card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
-          });
-        });
+    for (let i = 0; i < 60; i++) particles.push(new Particle());
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let p of particles) {
+        p.update();
+        p.draw(ctx);
       }
-
-      const faqItems = document.querySelectorAll('.faq-item');
-      faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-          const isActive = item.classList.contains('active');
-          faqItems.forEach(i => i.classList.remove('active'));
-          if (!isActive) item.classList.add('active');
-        });
-      });
-
-      setTimeout(checkRedirect, 2500);
-    })();
+      requestAnimationFrame(animate);
+    }
+    animate();
   </script>
 </body>
 </html>
