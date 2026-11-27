@@ -109,8 +109,20 @@
     
     .post-title { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: #fff; margin-bottom: 1.2rem; line-height: 1.3; }
     
-    /* КРАСИВЫЙ ТЕКСТ (RICH TEXT) */
-    .post-content { color: #c0c5e0; font-size: 1.1rem; margin-bottom: 2rem; word-wrap: break-word; }
+    /* КРАСИВЫЙ ТЕКСТ (RICH TEXT) И СВОРАЧИВАНИЕ */
+    .post-content-wrapper {
+        position: relative;
+        transition: max-height 0.4s ease;
+        margin-bottom: 1.5rem;
+    }
+    .post-content-wrapper.collapsed {
+        max-height: 250px;
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        margin-bottom: 0.5rem;
+    }
+    .post-content { color: #c0c5e0; font-size: 1.1rem; word-wrap: break-word; }
     .post-content b, .post-content strong { color: #fff; font-weight: 700; }
     .post-content i, .post-content em { font-style: italic; }
     .post-content u { text-decoration: underline; }
@@ -119,6 +131,23 @@
     .post-content ul, .post-content ol { margin-left: 20px; margin-bottom: 15px; }
     .post-content li { margin-bottom: 5px; }
     .post-content div { margin-bottom: 10px; }
+    
+    .read-more-btn {
+        background: transparent;
+        border: none;
+        color: #b388ff;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0;
+        font-family: inherit;
+        margin-bottom: 1.5rem;
+        transition: 0.3s;
+    }
+    .read-more-btn:hover { color: #fff; gap: 0.8rem; }
     
     .post-actions { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem; }
     .post-stats { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
@@ -223,7 +252,8 @@
         notify_connecting: "Подключаем...", views: "просмотров", min_read: "мин. чтения",
         cat_all: "Все", cat_news: "📰 Новости", cat_posts: "📝 Посты",
         badge_news: "Новость", badge_post: "Пост", no_posts_cat: "В этой категории пока пусто.",
-        link_copied: "Ссылка скопирована!"
+        link_copied: "Ссылка скопирована!",
+        read_more: "Читать далее", collapse: "Свернуть"
       },
       en: {
         page_title: "Posts", back_btn: "Back to Home", loading: "Loading...",
@@ -234,7 +264,8 @@
         notify_connecting: "Connecting...", views: "views", min_read: "min read",
         cat_all: "All", cat_news: "📰 News", cat_posts: "📝 Posts",
         badge_news: "News", badge_post: "Post", no_posts_cat: "No posts in this category yet.",
-        link_copied: "Link copied!"
+        link_copied: "Link copied!",
+        read_more: "Read more", collapse: "Collapse"
       },
       zh: {
         page_title: "帖子", back_btn: "返回首页", loading: "加载中...",
@@ -245,7 +276,8 @@
         notify_connecting: "连接中...", views: "浏览", min_read: "分钟阅读",
         cat_all: "全部", cat_news: "📰 新闻", cat_posts: "📝 帖子",
         badge_news: "新闻", badge_post: "帖子", no_posts_cat: "此分类中暂时没有帖子。",
-        link_copied: "链接已复制！"
+        link_copied: "链接已复制！",
+        read_more: "阅读更多", collapse: "收起"
       }
     };
 
@@ -439,7 +471,7 @@
     function getReadingTime(htmlContent) {
       const text = htmlContent.replace(/<[^>]+>/g, ' ');
       const words = text.trim().split(/\s+/).length;
-      const time = Math.ceil(words / 150); // Примерно 150 слов в минуту
+      const time = Math.ceil(words / 150);
       return time > 0 ? time : 1;
     }
 
@@ -455,6 +487,28 @@
       });
     };
 
+    // Функция раскрытия/сворачивания поста
+    window.toggleReadMore = function(btn, postId) {
+      const wrapper = document.getElementById(`post-content-${postId}`);
+      if (!wrapper) return;
+      const t = translations[currentLang];
+      
+      if (wrapper.classList.contains('collapsed')) {
+        wrapper.classList.remove('collapsed');
+        btn.innerHTML = `<i class="fas fa-chevron-up"></i> ${t.collapse}`;
+      } else {
+        wrapper.classList.add('collapsed');
+        btn.innerHTML = `<i class="fas fa-chevron-down"></i> ${t.read_more}`;
+        
+        // Прокрутка наверх карточки при сворачивании, чтобы не потерять контекст
+        const card = wrapper.closest('.post-card');
+        if (card) {
+            const y = card.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+    };
+
     function createPostCard(post, likes, views, t, animationType = 'appear', delay = 0) {
       const userLiked = localStorage.getItem(`liked_${post.id}`) === 'true';
       const likesCount = likes[post.id] || 0;
@@ -467,6 +521,11 @@
         : `<span class="post-badge">${t.badge_post}</span>`;
         
       const readTime = getReadingTime(post.content);
+
+      // Проверяем, длинный ли пост (чтобы показать кнопку "Читать далее")
+      const plainText = post.content.replace(/<[^>]+>/g, '');
+      const isLong = plainText.length > 500;
+      const collapsedClass = isLong ? 'collapsed' : '';
 
       const card = document.createElement('div');
       card.className = `post-card ${animationType}`;
@@ -485,7 +544,10 @@
           <span style="font-size:0.8rem; opacity:0.6; margin-left:auto;"><i class="far fa-clock"></i> ${readTime} ${t.min_read}</span>
         </div>
         <h2 class="post-title">${post.title}</h2>
-        <div class="post-content">${post.content}</div>
+        <div class="post-content-wrapper ${collapsedClass}" id="post-content-${post.id}">
+            <div class="post-content">${post.content}</div>
+        </div>
+        ${isLong ? `<button class="read-more-btn" onclick="toggleReadMore(this, '${post.id}')"><i class="fas fa-chevron-down"></i> ${t.read_more}</button>` : ''}
         <div class="post-actions">
           <div class="post-stats">
             <button class="like-btn ${userLiked ? 'liked' : ''}" onclick="toggleLike(this, '${post.id}')">
@@ -590,7 +652,6 @@
               }
             });
             
-            // УМНАЯ ПИЛЮЛЯ: проверяем, подходит ли новый пост под текущую категорию
             const hasVisibleNewPosts = newPosts.some(p => currentCategory === 'all' || (p.category || 'post') === currentCategory);
             const isAtTop = window.scrollY < 200;
             
@@ -600,11 +661,10 @@
             } else {
               pendingNewPosts.push(...newPosts);
               newPosts.forEach(p => knownPostIds.add(p.id));
-              if (hasVisibleNewPosts) showPill(); // Показываем только если есть что показывать
+              if (hasVisibleNewPosts) showPill(); 
             }
           }
           
-          // Обновляем счетчики
           document.querySelectorAll('.post-card').forEach(card => {
             const postId = card.dataset.postId;
             const likeSpan = card.querySelector('.like-count');
@@ -633,6 +693,16 @@
       setTimeout(() => {
         const card = document.querySelector(`[data-post-id="${postId}"]`);
         if (card) {
+          // АВТОРАСКРЫТИЕ ПОСТА ПРИ ПЕРЕХОДЕ ПО ССЫЛКЕ
+          const wrapper = document.getElementById(`post-content-${postId}`);
+          if (wrapper && wrapper.classList.contains('collapsed')) {
+              wrapper.classList.remove('collapsed');
+              const btn = card.querySelector('.read-more-btn');
+              if (btn) {
+                  btn.innerHTML = `<i class="fas fa-chevron-up"></i> ${translations[currentLang].collapse}`;
+              }
+          }
+
           card.scrollIntoView({ behavior: 'smooth', block: 'center' });
           setTimeout(() => {
             card.classList.add('highlighted');
