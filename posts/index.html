@@ -467,7 +467,6 @@
       document.getElementById('newPostsPill').classList.remove('visible');
     }
 
-    // Функция для подсчета времени чтения
     function getReadingTime(htmlContent) {
       const text = htmlContent.replace(/<[^>]+>/g, ' ');
       const words = text.trim().split(/\s+/).length;
@@ -475,9 +474,9 @@
       return time > 0 ? time : 1;
     }
 
-    // Функция "Поделиться"
+    // ИЗМЕНЕНО: теперь ссылка ведет на страницу постов
     window.sharePost = function(postId) {
-      const url = `${window.location.origin}/#post-${postId}`;
+      const url = `${window.location.origin}/posts/#post-${postId}`;
       navigator.clipboard.writeText(url).then(() => {
         const t = translations[currentLang];
         alert(t.link_copied);
@@ -487,7 +486,6 @@
       });
     };
 
-    // Функция раскрытия/сворачивания поста
     window.toggleReadMore = function(btn, postId) {
       const wrapper = document.getElementById(`post-content-${postId}`);
       if (!wrapper) return;
@@ -500,7 +498,6 @@
         wrapper.classList.add('collapsed');
         btn.innerHTML = `<i class="fas fa-chevron-down"></i> ${t.read_more}`;
         
-        // Прокрутка наверх карточки при сворачивании, чтобы не потерять контекст
         const card = wrapper.closest('.post-card');
         if (card) {
             const y = card.getBoundingClientRect().top + window.scrollY - 100;
@@ -521,8 +518,6 @@
         : `<span class="post-badge">${t.badge_post}</span>`;
         
       const readTime = getReadingTime(post.content);
-
-      // Проверяем, длинный ли пост (чтобы показать кнопку "Читать далее")
       const plainText = post.content.replace(/<[^>]+>/g, '');
       const isLong = plainText.length > 500;
       const collapsedClass = isLong ? 'collapsed' : '';
@@ -693,7 +688,6 @@
       setTimeout(() => {
         const card = document.querySelector(`[data-post-id="${postId}"]`);
         if (card) {
-          // АВТОРАСКРЫТИЕ ПОСТА ПРИ ПЕРЕХОДЕ ПО ССЫЛКЕ
           const wrapper = document.getElementById(`post-content-${postId}`);
           if (wrapper && wrapper.classList.contains('collapsed')) {
               wrapper.classList.remove('collapsed');
