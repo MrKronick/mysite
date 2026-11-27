@@ -207,6 +207,15 @@
     .modal-rich-text div { margin-bottom: 10px; }
     .modal-rich-text span[style*="font-size: 1rem;"] { font-size: 1.1rem !important; }
 
+    /* Обрезка длинного текста в модалке */
+    .modal-truncated-text {
+        max-height: 250px;
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        margin-bottom: 1rem;
+    }
+
     @media (max-width: 1024px) {
       #bgCanvas { display: none; }
       .name-letter { transform: none; filter: none; opacity: 1; }
@@ -505,7 +514,7 @@ Developer of CustomTPA</div>
       <footer class="scroll-reveal reveal-fade-up">
         <p data-i18n="footer1">© 2026 MrKronick — Alexander Mochalov. Official MrKronick website. FoggyLand & CustomTPA.</p>
         <p style="margin-top: 0.8rem; opacity: 0.6; font-size: 0.95rem;" data-i18n="footer2">Information site</p>
-        <p style="margin-top: 0.6rem; font-size: 0.8rem; opacity: 0.4; letter-spacing: 1px; font-weight: 600;">Version V7.0</p>
+        <p style="margin-top: 0.6rem; font-size: 0.8rem; opacity: 0.4; letter-spacing: 1px; font-weight: 600;">Version V7.1</p>
       </footer>
     </div>
   </main>
@@ -519,6 +528,14 @@ Developer of CustomTPA</div>
       <span style="color:#b388ff; font-weight:700; letter-spacing:1px; font-size:0.85rem; text-transform:uppercase; display:block; margin-bottom:1rem;" id="modal-date"></span>
       <h2 style="font-family:'Space Grotesk', sans-serif; font-size:2rem; color:#fff; margin-bottom:1.2rem; line-height:1.3; padding-right:2.5rem;" id="modal-title"></h2>
       <div class="modal-rich-text" id="modal-content"></div>
+      
+      <!-- Кнопка "Читать полностью" -->
+      <div id="modal-read-more-container" style="display:none; margin-bottom: 2rem;">
+          <a href="#" id="modal-read-more" style="display:inline-flex; align-items:center; gap:0.7rem; background:rgba(108,99,255,0.15); border:1px solid rgba(108,99,255,0.4); color:#fff; padding:0.8rem 1.8rem; border-radius:3rem; text-decoration:none; font-weight:600; font-size:0.95rem; transition:0.3s;">
+              <i class="fas fa-book-open"></i> <span data-i18n="modal_read_more">Read full post</span>
+          </a>
+      </div>
+
       <div id="modal-link-container" style="display:none;">
         <a href="#" id="modal-link" target="_blank" style="display:inline-flex; align-items:center; gap:0.7rem; background:#6c63ff; color:#fff; padding:0.9rem 2rem; border-radius:3rem; text-decoration:none; font-weight:600; box-shadow:0 10px 25px rgba(108,99,255,0.5); transition:0.3s;"></a>
       </div>
@@ -560,7 +577,24 @@ Developer of CustomTPA</div>
 
         document.getElementById('modal-date').textContent = item.date || '';
         document.getElementById('modal-title').textContent = item.title || '';
-        document.getElementById('modal-content').innerHTML = item.content || '';
+        
+        // --- ЛОГИКА ОБРЕЗКИ ДЛИННОГО ТЕКСТА ---
+        const isPost = prefix === 'post';
+        const plainText = item.content.replace(/<[^>]+>/g, ''); 
+        const isLong = plainText.length > 300; 
+
+        const contentEl = document.getElementById('modal-content');
+        const readMoreContainer = document.getElementById('modal-read-more-container');
+
+        if (isLong && isPost) {
+            contentEl.innerHTML = `<div class="modal-truncated-text">${item.content}</div>`;
+            readMoreContainer.style.display = 'block';
+            document.getElementById('modal-read-more').href = `/posts/#post-${itemId}`;
+        } else {
+            contentEl.innerHTML = item.content;
+            readMoreContainer.style.display = 'none';
+        }
+        // -------------------------------------
 
         const linkContainer = document.getElementById('modal-link-container');
         const linkBtn = document.getElementById('modal-link');
@@ -651,7 +685,8 @@ Developer of CustomTPA</div>
         stream_notify: "Уведомить о стримах", stream_open: "Открыть в Twitch", subscribed: "Вы подписаны!",
         offline_text: "У вас пропало интернет соединение, сайт будет работать оффлайн, и вы не сможете перейти по ссылкам, подключитесь к сети, чтобы всё заработало. А если какой-то сайт не открывается, воспользуйтесь VPN сервисом (желательно платным), иначе заблокированные сервисы в РФ попросту не откроются.",
         cookie_text: "Привет! Мы используем файлы cookie, чтобы сайт работал стабильно, запоминал твой язык и не сбрасывал настройки. Продолжая просмотр, ты соглашаешься с этим. Подробнее можно почитать <a href='cookies.html'>здесь</a>.",
-        cookie_btn: "Принять"
+        cookie_btn: "Принять",
+        modal_read_more: "Читать полностью"
       },
       en: {
         title: "MrKronick — Official Website | Alexander Mochalov",
@@ -683,7 +718,8 @@ Developer of CustomTPA</div>
         stream_notify: "Notify me about streams", stream_open: "Open in Twitch", subscribed: "You are subscribed!",
         offline_text: "Your internet connection was lost. The site will work offline and you won't be able to follow links. Reconnect to the network to make everything work again.",
         cookie_text: "Hey! We use cookies to keep the site running smoothly, remember your language, and save your settings. By continuing to browse, you agree to this. Read more <a href='cookies.html'>here</a>.",
-        cookie_btn: "Accept"
+        cookie_btn: "Accept",
+        modal_read_more: "Read full post"
       },
       zh: {
         title: "MrKronick — 官方网站 | 亚历山大·莫恰洛夫",
@@ -715,7 +751,8 @@ Developer of CustomTPA</div>
         stream_notify: "通知我直播", stream_open: "在 Twitch 中打开", subscribed: "您已订阅！",
         offline_text: "网络连接已断开，网站将以离线模式工作，您将无法点击链接。请重新连接网络以恢复正常。",
         cookie_text: "嘿！我们使用 cookie 来保持网站平稳运行、记住您的语言并保存您的设置。继续浏览即表示您同意此操作。在此处了解更多信息 <a href='cookies.html'>在此处</a>。",
-        cookie_btn: "接受"
+        cookie_btn: "接受",
+        modal_read_more: "阅读全文"
       }
     };
 
